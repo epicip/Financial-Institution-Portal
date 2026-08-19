@@ -2,8 +2,8 @@
     <div class="app-sidebar-wrapper">
         <div class="app-sidebar-header d-flex align-items-center justify-content-between">
             <a href="./cases.html" class="app-sidebar-logo">
-                <img class="app-main-logo logo-black" src="assets/img/logo/epic-logo.svg" alt="EPIC Investment Partners">
-                <img class="app-main-logo logo-white d-none" src="assets/img/logo/epic-logo-white.svg" alt="EPIC Investment Partners">
+                <img class="app-main-logo logo-black" src="<?= base_url('assets/img/logo/epic-logo.svg') ?>" alt="EPIC Investment Partners">
+                <img class="app-main-logo logo-white d-none" src="<?= base_url('assets/img/logo/epic-logo-white.svg') ?>" alt="EPIC Investment Partners">
             </a>
             <button type="button" class="app-sidebar-close-btn app-sidebar-mobile-close d-xl-none">
                 <svg width="20" height="12" viewBox="0 0 20 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -15,7 +15,20 @@
         <div id="app-sidebar-menu" class="app-sidebar-menu">
             <ul>
                 <li class="app-sidebar-menu-item">
-                    <a href="./cases.html" class="menu-link d-flex align-items-center active">
+                    <a href="<?= base_url('dashboard') ?>" class="menu-link d-flex align-items-center active">
+                        <span class="menu-icon flex-shrink-0">
+                            <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M4.25 2.25h5.25L13.75 6.5V14.75H4.25V2.25Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
+                                <path d="M9.5 2.25V6.5H13.75" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
+                                <path d="M6.5 9.25h4M6.5 11.75h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                            </svg>
+                        </span>
+                        <span class="menu-title flex-grow-1">Dashboard</span>
+                    </a>
+                </li>
+               
+                <li class="app-sidebar-menu-item">
+                    <a href="<?= base_url('cases/pending') ?>" class="menu-link d-flex align-items-center active">
                         <span class="menu-icon flex-shrink-0">
                             <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M4.25 2.25h5.25L13.75 6.5V14.75H4.25V2.25Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
@@ -24,6 +37,18 @@
                             </svg>
                         </span>
                         <span class="menu-title flex-grow-1">Pending Cases</span>
+                    </a>
+                </li>
+                <li class="app-sidebar-menu-item">
+                    <a href="<?= base_url('cases') ?>" class="menu-link d-flex align-items-center active">
+                        <span class="menu-icon flex-shrink-0">
+                            <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M4.25 2.25h5.25L13.75 6.5V14.75H4.25V2.25Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
+                                <path d="M9.5 2.25V6.5H13.75" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
+                                <path d="M6.5 9.25h4M6.5 11.75h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                            </svg>
+                        </span>
+                        <span class="menu-title flex-grow-1">All Cases</span>
                     </a>
                 </li>
                 <li class="app-sidebar-menu-item">
