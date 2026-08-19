@@ -1,809 +1,681 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php include_once 'inc/header.php' ?>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pending Cases | EPIC Investment Partners</title>
-    <link rel="shortcut icon" href="assets/img/logo/favicon.png" type="image/png">
-    <link id="bootstrap-css" rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/perfect-scrollbar.css">
-    <link rel="stylesheet" type="text/css" href="assets/vendor/datatables/dataTables.bootstrap5.min.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-</head>
+<div class="app-main">
+    <div id="app-wrapper" class="app-wrapper d-flex flex-column align-items-stretch min-vh-100">
 
-<body class="portal-page">
-    <div class="app-main">
-        <div id="app-wrapper" class="app-wrapper d-flex flex-column align-items-stretch min-vh-100">
+        <?php include_once 'inc/left-sidebar.php' ?>
 
-            <div id="app-sidebar" class="app-sidebar overflow-hidden">
-                <div class="app-sidebar-wrapper">
-                    <div class="app-sidebar-header d-flex align-items-center justify-content-between">
-                        <a href="./cases.html" class="app-sidebar-logo">
-                            <img class="app-main-logo logo-black" src="assets/img/logo/epic-logo.svg" alt="EPIC Investment Partners">
-                            <img class="app-main-logo logo-white d-none" src="assets/img/logo/epic-logo-white.svg" alt="EPIC Investment Partners">
-                        </a>
-                        <button type="button" class="app-sidebar-close-btn app-sidebar-mobile-close d-xl-none">
-                            <svg width="20" height="12" viewBox="0 0 20 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M10.6923 10.2857L6.53846 6M6.53846 6L10.6923 1.71429M6.53846 6L19 6M1 11L1 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
-                        </button>
-                    </div>
-
-                    <div id="app-sidebar-menu" class="app-sidebar-menu">
-                        <ul>
-                            <li class="app-sidebar-menu-item">
-                                <a href="./cases.html" class="menu-link d-flex align-items-center active">
-                                    <span class="menu-icon flex-shrink-0">
-                                        <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M4.25 2.25h5.25L13.75 6.5V14.75H4.25V2.25Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
-                                            <path d="M9.5 2.25V6.5H13.75" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
-                                            <path d="M6.5 9.25h4M6.5 11.75h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
-                                        </svg>
-                                    </span>
-                                    <span class="menu-title flex-grow-1">Pending Cases</span>
-                                </a>
-                            </li>
-                            <li class="app-sidebar-menu-item">
-                                <a href="./settings.html" class="menu-link d-flex align-items-center">
-                                    <span class="menu-icon flex-shrink-0">
-                                        <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M14.5962 4.21155H1.90385C1.26659 4.21155 0.75 4.72814 0.75 5.36539V13.4423C0.75 14.0796 1.26659 14.5962 1.90385 14.5962H14.5962C15.2334 14.5962 15.75 14.0796 15.75 13.4423V5.36539C15.75 4.72814 15.2334 4.21155 14.5962 4.21155Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                            <path d="M0.75 8.82692H15.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                            <path d="M8.25 7.67307V9.98076" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                            <path d="M11.7117 4.21153C11.7117 3.29348 11.347 2.41302 10.6978 1.76386C10.0486 1.1147 9.16817 0.75 8.25011 0.75V0.75C7.33206 0.75 6.4516 1.1147 5.80244 1.76386C5.15327 2.41302 4.78857 3.29348 4.78857 4.21153" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                        </svg>
-                                    </span>
-                                    <span class="menu-title flex-grow-1">User Settings</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="app-sidebar-footer">
-                        <div class="d-flex align-items-center gap-3">
-                            <div class="avatar rounded-pill">
-                                <img src="assets/img/avatar/10.jpg" alt="EPIC">
-                            </div>
-                            <div>
-                                <h6 class="mb-0">Joel Becker</h6>
-                                <span class="text-muted">Administration</span>
-                            </div>
-                        </div>
-                    </div>
+        <div class="app-header bg-card py-2 px-4 px-md-6 d-flex align-items-center">
+            <div class="d-flex align-items-center justify-content-between w-100">
+                <div class="d-flex align-items-center">
+                    <button type="button" class="app-header-bar-btn app-sidebar-open-btn me-4 d-none d-xl-inline-block">
+                        <span></span><span></span><span></span>
+                    </button>
+                    <button type="button" class="app-header-bar-btn app-sidebar-mobile-open d-xl-none me-4">
+                        <span></span><span></span><span></span>
+                    </button>
+                    <h6 class="mb-0 fw-semibold">Financial Institution Portal</h6>
                 </div>
-            </div>
+                    <ul class="navbar-nav flex-row align-items-center justify-content-end">
 
-            <div class="app-header bg-card py-2 px-4 px-md-6 d-flex align-items-center">
-                <div class="d-flex align-items-center justify-content-between w-100">
-                    <div class="d-flex align-items-center">
-                        <button type="button" class="app-header-bar-btn app-sidebar-open-btn me-4 d-none d-xl-inline-block">
-                            <span></span><span></span><span></span>
-                        </button>
-                        <button type="button" class="app-header-bar-btn app-sidebar-mobile-open d-xl-none me-4">
-                            <span></span><span></span><span></span>
-                        </button>
-                        <h6 class="mb-0 fw-semibold">Financial Institution Portal</h6>
-                    </div>
-                      <ul class="navbar-nav flex-row align-items-center justify-content-end">
-
-                            <!-- search button -->
-                            <li class="header-nav-item header-language me-2 d-md-none">
-                                <a class="header-nav-link" href="javascript:void(0);" data-bs-toggle="dropdown">
-                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M7.22221 13.4444C10.6586 13.4444 13.4444 10.6586 13.4444 7.22221C13.4444 3.78578 10.6586 1 7.22221 1C3.78578 1 1 3.78578 1 7.22221C1 10.6586 3.78578 13.4444 7.22221 13.4444Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                        <path d="M15 15L11.6167 11.6166" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                    </svg>
-                                </a>
-                                <ul class="dropdown-menu dropdown-menu-end px-2">
-                                    <li class="app-header-search position-relative">
-                                        <form action="#">
-                                            <input type="text" class="app-header-search-input" placeholder="Search for results...">
-                                            <button type="submit" class="app-header-search-btn">
-                                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M7.22221 13.4444C10.6586 13.4444 13.4444 10.6586 13.4444 7.22221C13.4444 3.78578 10.6586 1 7.22221 1C3.78578 1 1 3.78578 1 7.22221C1 10.6586 3.78578 13.4444 7.22221 13.4444Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                                    <path d="M15 15L11.6167 11.6166" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                                </svg>
-                                            </button>
-                                        </form>
-                                    </li>
-                                </ul>
-                            </li>
-                            <!-- search button -->
-
-                            <!-- Language -->
-                            <li class="header-nav-item me-4">
-                                <a class="header-nav-link" href="javascript:void(0);" data-bs-toggle="dropdown" data-bs-auto-close="outside">
-                                    <svg width="18" height="17" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M7.50407 16.1001H9.96007M0.75 6.73041C0.750662 5.56153 1.02941 4.40958 1.56323 3.36971C2.09704 2.32985 2.8706 1.43191 3.82 0.750061M16.714 6.73041C16.7133 5.56153 16.4346 4.40958 15.9008 3.36971C15.367 2.32985 14.5934 1.43191 13.644 0.750061M13.6439 6.88998C13.6439 5.58724 13.1264 4.33786 12.2052 3.41668C11.2841 2.4955 10.0347 1.97799 8.73193 1.97799C7.42919 1.97799 6.1798 2.4955 5.25862 3.41668C4.33744 4.33786 3.81993 5.58724 3.81993 6.88998V11.188C3.81993 11.6765 3.62586 12.145 3.28042 12.4905C2.93498 12.8359 2.46646 13.03 1.97793 13.03H15.4859C14.9974 13.03 14.5289 12.8359 14.1834 12.4905C13.838 12.145 13.6439 11.6765 13.6439 11.188V6.88998Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                    </svg>
-                                    <span class="badge bg-success rounded-pill header-icon-badge pulse pulse-success">
-                                        5
-                                    </span>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-end dropdown-menu-xl py-0">
-                                    <div class="dropdown-header d-flex align-items-center justify-content-between border-bottom py-4">
-                                        <h6 class="mb-0">Notifications</h6>
-                                        <button type="button" class="text-muted clear-all-notifications-btn d-flex align-items-center gap-2">
-                                            Clear All
+                        <!-- search button -->
+                        <li class="header-nav-item header-language me-2 d-md-none">
+                            <a class="header-nav-link" href="javascript:void(0);" data-bs-toggle="dropdown">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M7.22221 13.4444C10.6586 13.4444 13.4444 10.6586 13.4444 7.22221C13.4444 3.78578 10.6586 1 7.22221 1C3.78578 1 1 3.78578 1 7.22221C1 10.6586 3.78578 13.4444 7.22221 13.4444Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M15 15L11.6167 11.6166" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end px-2">
+                                <li class="app-header-search position-relative">
+                                    <form action="#">
+                                        <input type="text" class="app-header-search-input" placeholder="Search for results...">
+                                        <button type="submit" class="app-header-search-btn">
+                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M7.22221 13.4444C10.6586 13.4444 13.4444 10.6586 13.4444 7.22221C13.4444 3.78578 10.6586 1 7.22221 1C3.78578 1 1 3.78578 1 7.22221C1 10.6586 3.78578 13.4444 7.22221 13.4444Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                                <path d="M15 15L11.6167 11.6166" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                            </svg>
                                         </button>
-                                    </div>
-                                    <div class="dropdown-body">
-                                        <div class="dropdown-list notification-list-scroll">
-                                            <div class="dropdown-item notification-list-item d-flex align-items-center m-0 w-100 rounded-none">
-                                                <div class="me-3 flex-shrink-0">
-                                                    <div class="avatar avatar-md rounded-pill">
-                                                        <div class="avatar-text bg-label-warning">
-                                                            <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                <path d="M19.7377 12.6175C20.6116 12.6175 21.32 11.9091 21.32 11.0352V6.2883C21.32 5.41441 20.6116 4.70599 19.7377 4.70599H2.33231C1.45842 4.70599 0.75 5.41441 0.75 6.2883V11.0352C0.75 11.9091 1.45842 12.6175 2.33231 12.6175M19.7377 12.6175H2.33231M19.7377 12.6175L19.7377 19.7378C19.7377 20.1575 19.571 20.56 19.2742 20.8567C18.9775 21.1534 18.575 21.3201 18.1554 21.3201H3.91461C3.49496 21.3201 3.09249 21.1534 2.79575 20.8567C2.49901 20.56 2.33231 20.1575 2.33231 19.7378L2.33231 12.6175M11.035 4.70599V21.3202M11.035 4.70599L15.7819 0.75M11.035 4.70599L6.28808 0.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                                            </svg>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="flex-grow-1 text-start">
-                                                    <p class="mb-0 text-custom-secondary">A new order has been placed</p>
-                                                    <span class="text-muted">5 min ago</span>
-                                                </div>
-                                                <div class="ms-auto">
-                                                    <button type="button" class="text-muted notification-remove-btn">
-                                                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                            <path d="M10.75 0.75L0.75 10.75M0.75 0.75L10.75 10.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                    </form>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- search button -->
+
+                        <!-- Language -->
+                        <li class="header-nav-item me-4">
+                            <a class="header-nav-link" href="javascript:void(0);" data-bs-toggle="dropdown" data-bs-auto-close="outside">
+                                <svg width="18" height="17" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M7.50407 16.1001H9.96007M0.75 6.73041C0.750662 5.56153 1.02941 4.40958 1.56323 3.36971C2.09704 2.32985 2.8706 1.43191 3.82 0.750061M16.714 6.73041C16.7133 5.56153 16.4346 4.40958 15.9008 3.36971C15.367 2.32985 14.5934 1.43191 13.644 0.750061M13.6439 6.88998C13.6439 5.58724 13.1264 4.33786 12.2052 3.41668C11.2841 2.4955 10.0347 1.97799 8.73193 1.97799C7.42919 1.97799 6.1798 2.4955 5.25862 3.41668C4.33744 4.33786 3.81993 5.58724 3.81993 6.88998V11.188C3.81993 11.6765 3.62586 12.145 3.28042 12.4905C2.93498 12.8359 2.46646 13.03 1.97793 13.03H15.4859C14.9974 13.03 14.5289 12.8359 14.1834 12.4905C13.838 12.145 13.6439 11.6765 13.6439 11.188V6.88998Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                                <span class="badge bg-success rounded-pill header-icon-badge pulse pulse-success">
+                                    5
+                                </span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end dropdown-menu-xl py-0">
+                                <div class="dropdown-header d-flex align-items-center justify-content-between border-bottom py-4">
+                                    <h6 class="mb-0">Notifications</h6>
+                                    <button type="button" class="text-muted clear-all-notifications-btn d-flex align-items-center gap-2">
+                                        Clear All
+                                    </button>
+                                </div>
+                                <div class="dropdown-body">
+                                    <div class="dropdown-list notification-list-scroll">
+                                        <div class="dropdown-item notification-list-item d-flex align-items-center m-0 w-100 rounded-none">
+                                            <div class="me-3 flex-shrink-0">
+                                                <div class="avatar avatar-md rounded-pill">
+                                                    <div class="avatar-text bg-label-warning">
+                                                        <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M19.7377 12.6175C20.6116 12.6175 21.32 11.9091 21.32 11.0352V6.2883C21.32 5.41441 20.6116 4.70599 19.7377 4.70599H2.33231C1.45842 4.70599 0.75 5.41441 0.75 6.2883V11.0352C0.75 11.9091 1.45842 12.6175 2.33231 12.6175M19.7377 12.6175H2.33231M19.7377 12.6175L19.7377 19.7378C19.7377 20.1575 19.571 20.56 19.2742 20.8567C18.9775 21.1534 18.575 21.3201 18.1554 21.3201H3.91461C3.49496 21.3201 3.09249 21.1534 2.79575 20.8567C2.49901 20.56 2.33231 20.1575 2.33231 19.7378L2.33231 12.6175M11.035 4.70599V21.3202M11.035 4.70599L15.7819 0.75M11.035 4.70599L6.28808 0.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                                                         </svg>
-                                                    </button>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="dropdown-item notification-list-item d-flex align-items-center m-0 w-100 rounded-none">
-                                                <div class="me-3 flex-shrink-0">
-                                                    <div class="avatar avatar-md avatar-online">
-                                                        <div class="avatar-text bg-label-success rounded-pill">
-                                                            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                <path d="M10.75 6.90367V4.59598M10.75 6.90367C9.47308 6.90367 8.44241 6.90402 8.44241 8.44248C8.44241 10.7502 13.0578 10.7502 13.0578 13.0579C13.0578 14.5963 12.027 14.5963 10.7501 14.5963M10.75 6.90367C12.0269 6.90367 13.0578 7.48864 13.0578 8.44248M8.44241 13.0579C8.44241 14.2117 9.47318 14.5963 10.7501 14.5963M10.7501 14.5963L10.75 16.9036M20.75 10.75C20.75 16.2728 16.2728 20.75 10.75 20.75C5.22715 20.75 0.75 16.2728 0.75 10.75C0.75 5.22715 5.22715 0.75 10.75 0.75C16.2728 0.75 20.75 5.22715 20.75 10.75Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                                            </svg>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="flex-grow-1 text-start">
-                                                    <p class="mb-0 text-custom-secondary">Payout successfull</p>
-                                                    <span class="text-muted">2 hrs ago</span>
-                                                </div>
-                                                <div class="ms-auto">
-                                                    <button type="button" class="text-muted notification-remove-btn">
-                                                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                            <path d="M10.75 0.75L0.75 10.75M0.75 0.75L10.75 10.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                            <div class="flex-grow-1 text-start">
+                                                <p class="mb-0 text-custom-secondary">A new order has been placed</p>
+                                                <span class="text-muted">5 min ago</span>
+                                            </div>
+                                            <div class="ms-auto">
+                                                <button type="button" class="text-muted notification-remove-btn">
+                                                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M10.75 0.75L0.75 10.75M0.75 0.75L10.75 10.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="dropdown-item notification-list-item d-flex align-items-center m-0 w-100 rounded-none">
+                                            <div class="me-3 flex-shrink-0">
+                                                <div class="avatar avatar-md avatar-online">
+                                                    <div class="avatar-text bg-label-success rounded-pill">
+                                                        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M10.75 6.90367V4.59598M10.75 6.90367C9.47308 6.90367 8.44241 6.90402 8.44241 8.44248C8.44241 10.7502 13.0578 10.7502 13.0578 13.0579C13.0578 14.5963 12.027 14.5963 10.7501 14.5963M10.75 6.90367C12.0269 6.90367 13.0578 7.48864 13.0578 8.44248M8.44241 13.0579C8.44241 14.2117 9.47318 14.5963 10.7501 14.5963M10.7501 14.5963L10.75 16.9036M20.75 10.75C20.75 16.2728 16.2728 20.75 10.75 20.75C5.22715 20.75 0.75 16.2728 0.75 10.75C0.75 5.22715 5.22715 0.75 10.75 0.75C16.2728 0.75 20.75 5.22715 20.75 10.75Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                                                         </svg>
-                                                    </button>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="dropdown-item notification-list-item d-flex align-items-center m-0 w-100 rounded-none">
-                                                <div class="me-3 flex-shrink-0">
-                                                    <div class="avatar avatar-md avatar-online">
-                                                        <div class="avatar-text bg-label-primary rounded-pill">
-                                                            <svg width="23" height="22" viewBox="0 0 23 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                <path d="M7.57501 13.35H14.925M7.57501 8.09998H11.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                                                <path d="M13.5291 20.0601C17.9213 19.7681 21.4199 16.2199 21.7077 11.7654C21.7641 10.8937 21.7641 9.99097 21.7077 9.11926C21.4199 4.66479 17.9213 1.11659 13.5291 0.824628C12.0307 0.725022 10.4662 0.725226 8.97087 0.824628C4.57871 1.11659 1.08013 4.66479 0.792252 9.11926C0.735916 9.99097 0.735916 10.8937 0.792252 11.7654C0.8971 13.3878 1.6146 14.8899 2.4593 16.1583C2.94976 17.0463 2.62608 18.1546 2.11522 19.1227C1.74688 19.8207 1.56271 20.1697 1.71058 20.4219C1.85846 20.674 2.18877 20.682 2.8494 20.6981C4.15585 20.7299 5.03682 20.3595 5.73611 19.8439C6.13272 19.5514 6.33103 19.4052 6.46771 19.3884C6.60438 19.3715 6.87336 19.4823 7.41121 19.7038C7.89462 19.9029 8.45591 20.0258 8.97087 20.0601C10.4662 20.1595 12.0307 20.1597 13.5291 20.0601Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
-                                                            </svg>
-                                                        </div>
+                                            <div class="flex-grow-1 text-start">
+                                                <p class="mb-0 text-custom-secondary">Payout successfull</p>
+                                                <span class="text-muted">2 hrs ago</span>
+                                            </div>
+                                            <div class="ms-auto">
+                                                <button type="button" class="text-muted notification-remove-btn">
+                                                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M10.75 0.75L0.75 10.75M0.75 0.75L10.75 10.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="dropdown-item notification-list-item d-flex align-items-center m-0 w-100 rounded-none">
+                                            <div class="me-3 flex-shrink-0">
+                                                <div class="avatar avatar-md avatar-online">
+                                                    <div class="avatar-text bg-label-primary rounded-pill">
+                                                        <svg width="23" height="22" viewBox="0 0 23 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M7.57501 13.35H14.925M7.57501 8.09998H11.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                                            <path d="M13.5291 20.0601C17.9213 19.7681 21.4199 16.2199 21.7077 11.7654C21.7641 10.8937 21.7641 9.99097 21.7077 9.11926C21.4199 4.66479 17.9213 1.11659 13.5291 0.824628C12.0307 0.725022 10.4662 0.725226 8.97087 0.824628C4.57871 1.11659 1.08013 4.66479 0.792252 9.11926C0.735916 9.99097 0.735916 10.8937 0.792252 11.7654C0.8971 13.3878 1.6146 14.8899 2.4593 16.1583C2.94976 17.0463 2.62608 18.1546 2.11522 19.1227C1.74688 19.8207 1.56271 20.1697 1.71058 20.4219C1.85846 20.674 2.18877 20.682 2.8494 20.6981C4.15585 20.7299 5.03682 20.3595 5.73611 19.8439C6.13272 19.5514 6.33103 19.4052 6.46771 19.3884C6.60438 19.3715 6.87336 19.4823 7.41121 19.7038C7.89462 19.9029 8.45591 20.0258 8.97087 20.0601C10.4662 20.1595 12.0307 20.1597 13.5291 20.0601Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
+                                                        </svg>
                                                     </div>
                                                 </div>
-                                                <div class="flex-grow-1 text-start">
-                                                    <p class="mb-0 text-custom-secondary">New comment on your post</p>
-                                                    <span class="text-muted">4 hrs ago</span>
-                                                </div>
-                                                <div class="ms-auto">
-                                                    <button type="button" class="text-muted notification-remove-btn">
-                                                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                            <path d="M10.75 0.75L0.75 10.75M0.75 0.75L10.75 10.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                                        </svg>
-                                                    </button>
-                                                </div>
+                                            </div>
+                                            <div class="flex-grow-1 text-start">
+                                                <p class="mb-0 text-custom-secondary">New comment on your post</p>
+                                                <span class="text-muted">4 hrs ago</span>
+                                            </div>
+                                            <div class="ms-auto">
+                                                <button type="button" class="text-muted notification-remove-btn">
+                                                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M10.75 0.75L0.75 10.75M0.75 0.75L10.75 10.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                                    </svg>
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="dropdown-footer border-top py-3 text-center">
-                                        <a href="user-settings-notification.html" class="text-decoration-none">
-                                            View All Notifications
+                                </div>
+                                <div class="dropdown-footer border-top py-3 text-center">
+                                    <a href="user-settings-notification.html" class="text-decoration-none">
+                                        View All Notifications
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+                        <!-- Language -->
+
+
+                        <!-- User Options -->
+                        <li class="header-nav-item header-user me-2">
+                            <a class="header-nav-link" href="javascript:void(0);" data-bs-toggle="dropdown">
+                                <img src="assets/img/avatar/10.jpg" alt="" width="34" height="34" class="rounded-circle">
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end dropdown-menu-lg py-0">
+                                <div class="dropdown-header d-flex align-items-center border-bottom py-4">
+                                    <div class="me-3 flex-shrink-0">
+                                        <div class="avatar avatar-md">
+                                            <img src="assets/img/avatar/10.jpg" alt="" class="rounded-circle">
+                                        </div>
+                                    </div>
+                                    <div class="flex-grow-1 text-start">
+                                        <h6 class="mb-0">Joel Becker</h6>
+                                        <span class="text-muted">Administration</span>
+                                    </div>
+                                </div>
+                                <div class="dropdown-body py-1">
+                                    <ul class="list-unstyled dropdown-list">
+                                        
+                                        
+                                        
+                                        <li>
+                                            <a class="dropdown-item fz-14px d-flex align-items-center gap-2 px-5" href="user-settings.html">
+                                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M13.5877 3.71609L14.2375 3.34164H14.2375L13.5877 3.71609ZM13.93 4.31014L13.2801 4.68459L13.2801 4.68459L13.93 4.31014ZM13.93 11.0598L13.2801 10.6854L13.93 11.0598ZM13.5877 11.6538L14.2375 12.0283L14.2375 12.0283L13.5877 11.6538ZM13.0445 8.63848L12.456 9.10336L12.4702 9.12138L12.4855 9.13849L13.0445 8.63848ZM11.1654 12.0565L11.3688 11.3346L11.3515 11.3297L11.3339 11.3257L11.1654 12.0565ZM10.2231 12.174L9.8803 11.507L9.86406 11.5153L9.84824 11.5244L10.2231 12.174ZM12.9791 12.4173L12.6965 11.7226L12.6965 11.7226L12.9791 12.4173ZM12.0116 12.2948L12.2164 11.5733L12.2149 11.5729L12.0116 12.2948ZM13.7596 9.4379L13.2006 9.93791L13.2019 9.93938L13.7596 9.4379ZM11.1654 3.31343L11.3339 4.04425L11.3514 4.04021L11.3687 4.03534L11.1654 3.31343ZM10.2233 3.19596L9.84843 3.84558L9.86425 3.85471L9.8805 3.86306L10.2233 3.19596ZM13.0445 6.73145L12.4855 6.23144L12.4702 6.24855L12.456 6.26656L13.0445 6.73145ZM14.2704 5.16598L15.0163 5.24434L15.0163 5.24434L14.2704 5.16598ZM13.7596 5.93204L13.2019 5.43056L13.2006 5.43204L13.7596 5.93204ZM12.0116 3.07508L12.2149 3.79699L12.2164 3.79659L12.0116 3.07508ZM9.44304 2.39008L8.73184 2.62821L8.73698 2.64356L8.74278 2.65867L9.44304 2.39008ZM9.98963 3.06116L9.58512 3.69273L9.59976 3.7021L9.6148 3.71078L9.98963 3.06116ZM9.21144 1.69839L8.49978 1.93514L8.50024 1.93652L9.21144 1.69839ZM9.44306 12.9799L8.7428 12.7113L8.737 12.7264L8.73186 12.7417L9.44306 12.9799ZM9.98954 12.3088L9.61465 11.6592L9.5996 11.6679L9.58497 11.6773L9.98954 12.3088ZM8.80176 14.4891L9.24086 15.0971L9.24086 15.0971L8.80176 14.4891ZM9.21144 13.6716L8.50024 13.4335L8.49979 13.4349L9.21144 13.6716ZM1.43563 3.71609L0.785795 3.34164L0.785795 3.34164L1.43563 3.71609ZM1.09333 4.31014L1.74316 4.68459L1.74316 4.68459L1.09333 4.31014ZM1.09333 11.0598L1.74317 10.6854L1.09333 11.0598ZM1.43562 11.6538L0.785784 12.0283L0.785785 12.0283L1.43562 11.6538ZM1.97876 8.63848L2.53777 9.13849L2.55308 9.12138L2.56731 9.10336L1.97876 8.63848ZM3.85788 12.0565L3.68934 11.3257L3.67183 11.3297L3.65453 11.3346L3.85788 12.0565ZM4.80016 12.174L5.17505 11.5244L5.15923 11.5153L5.14298 11.507L4.80016 12.174ZM2.04419 12.4173L2.32675 11.7226L2.32674 11.7226L2.04419 12.4173ZM3.01169 12.2948L2.80834 11.5729L2.80693 11.5733L3.01169 12.2948ZM1.26372 9.4379L1.82141 9.93938L1.82273 9.93791L1.26372 9.4379ZM3.85791 3.31343L3.65457 4.03534L3.67187 4.04021L3.68938 4.04425L3.85791 3.31343ZM4.80003 3.19596L5.14278 3.86306L5.15903 3.85471L5.17485 3.84558L4.80003 3.19596ZM1.97874 6.73145L2.56729 6.26656L2.55306 6.24855L2.53775 6.23144L1.97874 6.73145ZM0.752883 5.16598L0.00698769 5.24434L0.00698817 5.24434L0.752883 5.16598ZM1.26372 5.93204L1.82273 5.43203L1.82141 5.43057L1.26372 5.93204ZM3.01167 3.07508L2.80693 3.79659L2.80834 3.79699L3.01167 3.07508ZM5.58025 2.39008L6.28051 2.65867L6.2863 2.64356L6.29144 2.62821L5.58025 2.39008ZM5.03366 3.06116L5.40848 3.71078L5.42353 3.7021L5.43816 3.69273L5.03366 3.06116ZM5.81185 1.69839L6.52304 1.93652L6.5235 1.93514L5.81185 1.69839ZM5.58023 12.9799L6.29142 12.7417L6.28628 12.7264L6.28049 12.7113L5.58023 12.9799ZM5.03375 12.3088L5.43831 11.6773L5.42369 11.6679L5.40864 11.6592L5.03375 12.3088ZM6.22152 14.4891L5.78242 15.0971L5.78243 15.0971L6.22152 14.4891ZM5.81185 13.6716L6.5235 13.4349L6.52304 13.4335L5.81185 13.6716ZM13.5877 3.71609L12.9378 4.09054L13.2801 4.68459L13.93 4.31014L14.5798 3.93569L14.2375 3.34164L13.5877 3.71609ZM13.93 11.0598L13.2801 10.6854L12.9378 11.2794L13.5877 11.6538L14.2375 12.0283L14.5798 11.4343L13.93 11.0598ZM13.0445 8.63848L13.6331 8.1736C13.5807 8.10734 13.4957 7.89433 13.4957 7.68489H12.7457H11.9957C11.9957 8.16917 12.1588 8.72707 12.456 9.10336L13.0445 8.63848ZM11.1654 12.0565L11.3339 11.3257C10.8432 11.2125 10.3283 11.2767 9.8803 11.507L10.2231 12.174L10.566 12.8411C10.6989 12.7728 10.8515 12.7538 10.9969 12.7873L11.1654 12.0565ZM13.5877 11.6538L12.9378 11.2794C12.7993 11.5198 12.7273 11.6423 12.668 11.7217C12.6207 11.785 12.6332 11.7483 12.6965 11.7226L12.9791 12.4173L13.2616 13.1121C13.5452 12.9968 13.7326 12.803 13.8698 12.6193C13.995 12.4516 14.1172 12.2371 14.2375 12.0283L13.5877 11.6538ZM12.0116 12.2948L11.8068 13.0163C12.0384 13.082 12.2754 13.1506 12.482 13.1834C12.7085 13.2194 12.978 13.2274 13.2617 13.1121L12.9791 12.4173L12.6965 11.7226C12.7599 11.6968 12.7948 11.7143 12.7172 11.702C12.6196 11.6865 12.483 11.649 12.2164 11.5733L12.0116 12.2948ZM13.93 11.0598L14.5798 11.4343C14.6925 11.2387 14.8095 11.0379 14.8883 10.856C14.9747 10.6565 15.0465 10.4126 15.0163 10.1256L14.2704 10.204L13.5245 10.2823C13.5179 10.2194 13.5408 10.193 13.5118 10.26C13.475 10.3448 13.4101 10.4598 13.2801 10.6854L13.93 11.0598ZM13.7596 9.4379L13.2019 9.93938C13.3759 10.1329 13.4633 10.2318 13.5168 10.307C13.559 10.3664 13.5311 10.3452 13.5245 10.2823L14.2704 10.204L15.0163 10.1256C14.9861 9.83852 14.8652 9.61495 14.7392 9.43768C14.6244 9.27623 14.4681 9.10414 14.3173 8.93642L13.7596 9.4379ZM11.1654 3.31343L10.9968 2.58261C10.8515 2.61614 10.6989 2.59715 10.566 2.52886L10.2233 3.19596L9.8805 3.86306C10.3284 4.09319 10.8432 4.15741 11.3339 4.04425L11.1654 3.31343ZM13.0445 6.73145L12.456 6.26656C12.1588 6.64278 11.9957 7.20078 11.9957 7.68489H12.7457H13.4957C13.4957 7.47572 13.5807 7.26259 13.6331 7.19633L13.0445 6.73145ZM13.93 4.31014L13.2801 4.68459C13.4101 4.91018 13.475 5.02516 13.5118 5.10995C13.5408 5.17696 13.5179 5.15051 13.5245 5.08763L14.2704 5.16598L15.0163 5.24434C15.0465 4.9573 14.9747 4.71349 14.8883 4.5139C14.8095 4.33209 14.6925 4.13122 14.5798 3.93569L13.93 4.31014ZM13.7596 5.93204L14.3173 6.43352C14.4681 6.2658 14.6244 6.09371 14.7392 5.93226C14.8652 5.75499 14.9861 5.53142 15.0163 5.24434L14.2704 5.16598L13.5245 5.08762C13.5311 5.0247 13.559 5.00352 13.5168 5.06293C13.4633 5.13815 13.3759 5.23702 13.2019 5.43057L13.7596 5.93204ZM13.5877 3.71609L14.2375 3.34164C14.1171 3.13279 13.995 2.91829 13.8698 2.75066C13.7326 2.56697 13.5452 2.37318 13.2617 2.25787L12.9791 2.9526L12.6965 3.64734C12.6332 3.6216 12.6207 3.58492 12.668 3.64826C12.7273 3.72766 12.7993 3.85011 12.9378 4.09054L13.5877 3.71609ZM12.0116 3.07508L12.2164 3.79659C12.483 3.72092 12.6196 3.68345 12.7172 3.66796C12.7948 3.65564 12.7599 3.67313 12.6965 3.64734L12.9791 2.9526L13.2617 2.25787C12.978 2.14251 12.7085 2.15055 12.482 2.18652C12.2754 2.21932 12.0384 2.28787 11.8069 2.35356L12.0116 3.07508ZM9.44304 2.39008L8.74278 2.65867C8.90606 3.08436 9.20114 3.4468 9.58512 3.69273L9.98963 3.06116L10.3941 2.42959C10.2801 2.35654 10.1921 2.24864 10.1433 2.12149L9.44304 2.39008ZM7.89819 0.75V1.5C8.15627 1.5 8.28672 1.50114 8.37734 1.5115C8.44871 1.51967 8.41407 1.52605 8.36266 1.48893L8.80176 0.880904L9.24086 0.27288C9.00819 0.104851 8.76254 0.0457846 8.54782 0.0212224C8.35235 -0.00113755 8.12165 0 7.89819 0V0.75ZM9.21144 1.69839L9.92309 1.46164C9.8524 1.24915 9.7806 1.02975 9.69772 0.851251C9.60677 0.655351 9.47341 0.440821 9.24086 0.27288L8.80176 0.880904L8.36266 1.48893C8.31138 1.45189 8.30672 1.41724 8.33721 1.48293C8.37579 1.56602 8.4182 1.68991 8.49978 1.93514L9.21144 1.69839ZM9.44306 12.9799L10.1433 13.2484C10.1921 13.1213 10.2801 13.0134 10.3941 12.9404L9.98954 12.3088L9.58497 11.6773C9.20107 11.9232 8.90605 12.2856 8.7428 12.7113L9.44306 12.9799ZM7.89819 14.62V15.37C8.12165 15.37 8.35235 15.3711 8.54782 15.3488C8.76253 15.3242 9.00819 15.2652 9.24086 15.0971L8.80176 14.4891L8.36266 13.8811C8.41407 13.8439 8.44871 13.8503 8.37734 13.8585C8.28672 13.8689 8.15627 13.87 7.89819 13.87V14.62ZM9.21144 13.6716L8.49979 13.4349C8.4182 13.6801 8.37579 13.804 8.33721 13.8871C8.30672 13.9528 8.31137 13.9181 8.36266 13.8811L8.80176 14.4891L9.24086 15.0971C9.47341 14.9292 9.60677 14.7146 9.69772 14.5187C9.7806 14.3403 9.8524 14.1209 9.92309 13.9084L9.21144 13.6716ZM9.21144 1.69839L8.50024 1.93652L8.73184 2.62821L9.44304 2.39008L10.1542 2.15195L9.92263 1.46026L9.21144 1.69839ZM10.2233 3.19596L10.5981 2.54634L10.3644 2.41154L9.98963 3.06116L9.6148 3.71078L9.84843 3.84558L10.2233 3.19596ZM11.1654 3.31343L11.3687 4.03534L12.2149 3.79699L12.0116 3.07508L11.8083 2.35317L10.962 2.59152L11.1654 3.31343ZM13.7596 5.93204L13.2006 5.43204L12.4855 6.23144L13.0445 6.73145L13.6035 7.23145L14.3186 6.43205L13.7596 5.93204ZM13.0445 8.63848L12.4855 9.13849L13.2006 9.93791L13.7596 9.4379L14.3186 8.93789L13.6035 8.13847L13.0445 8.63848ZM11.1654 12.0565L10.9621 12.7784L11.8082 13.0167L12.0116 12.2948L12.2149 11.5729L11.3688 11.3346L11.1654 12.0565ZM9.98954 12.3088L10.3644 12.9584L10.598 12.8236L10.2231 12.174L9.84824 11.5244L9.61465 11.6592L9.98954 12.3088ZM9.44306 12.9799L8.73186 12.7417L8.50024 13.4335L9.21144 13.6716L9.92263 13.9097L10.1543 13.218L9.44306 12.9799ZM1.43563 3.71609L0.785795 3.34164L0.443491 3.93569L1.09333 4.31014L1.74316 4.68459L2.08547 4.09054L1.43563 3.71609ZM1.09333 11.0598L0.443492 11.4343L0.785784 12.0283L1.43562 11.6538L2.08546 11.2794L1.74317 10.6854L1.09333 11.0598ZM1.97876 8.63848L2.56731 9.10336C2.86453 8.72707 3.02758 8.16917 3.02758 7.68489H2.27758H1.52758C1.52758 7.89433 1.44256 8.10734 1.39022 8.1736L1.97876 8.63848ZM3.85788 12.0565L4.02642 12.7873C4.17182 12.7538 4.32441 12.7728 4.45733 12.8411L4.80016 12.174L5.14298 11.507C4.69502 11.2767 4.18013 11.2125 3.68934 11.3257L3.85788 12.0565ZM1.43562 11.6538L0.785785 12.0283C0.906126 12.2371 1.02829 12.4516 1.15349 12.6193C1.29069 12.803 1.4781 12.9968 1.76164 13.1121L2.04419 12.4173L2.32674 11.7226C2.39004 11.7483 2.40261 11.785 2.3553 11.7217C2.29599 11.6423 2.22399 11.5198 2.08546 11.2794L1.43562 11.6538ZM3.01169 12.2948L2.80693 11.5733C2.54027 11.649 2.40365 11.6865 2.3061 11.702C2.2285 11.7143 2.26334 11.6968 2.32675 11.7226L2.04419 12.4173L1.76163 13.1121C2.04528 13.2274 2.31478 13.2194 2.54133 13.1834C2.74792 13.1506 2.98493 13.082 3.21645 13.0163L3.01169 12.2948ZM1.09333 11.0598L1.74317 10.6854C1.61317 10.4598 1.54824 10.3448 1.51152 10.26C1.48251 10.193 1.50539 10.2194 1.49878 10.2823L0.752885 10.204L0.00698948 10.1256C-0.0231663 10.4126 0.0486073 10.6565 0.135033 10.856C0.213763 11.0379 0.330825 11.2387 0.443492 11.4343L1.09333 11.0598ZM1.26372 9.4379L0.706029 8.93642C0.55521 9.10414 0.398933 9.27623 0.284113 9.43768C0.158043 9.61495 0.0371484 9.83852 0.00698948 10.1256L0.752885 10.204L1.49878 10.2823C1.49217 10.3452 1.46426 10.3664 1.50651 10.307C1.56001 10.2318 1.64737 10.1329 1.82141 9.93938L1.26372 9.4379ZM3.85791 3.31343L3.68938 4.04425C4.18008 4.15741 4.69488 4.09319 5.14278 3.86306L4.80003 3.19596L4.45728 2.52886C4.32438 2.59715 4.17182 2.61614 4.02644 2.58261L3.85791 3.31343ZM1.97874 6.73145L1.3902 7.19633C1.44254 7.26259 1.52758 7.47572 1.52758 7.68489H2.27758H3.02758C3.02758 7.20078 2.86446 6.64278 2.56729 6.26656L1.97874 6.73145ZM1.09333 4.31014L0.443491 3.93569C0.330822 4.13122 0.213761 4.33209 0.135031 4.5139C0.0486049 4.71349 -0.0231659 4.9573 0.00698769 5.24434L0.752883 5.16598L1.49878 5.08763C1.50538 5.15051 1.48251 5.17696 1.51152 5.10995C1.54824 5.02516 1.61317 4.91018 1.74316 4.68459L1.09333 4.31014ZM1.26372 5.93204L1.82141 5.43057C1.64737 5.23702 1.56 5.13815 1.50651 5.06293C1.46426 5.00352 1.49217 5.0247 1.49878 5.08762L0.752883 5.16598L0.00698817 5.24434C0.037147 5.53142 0.15804 5.75499 0.28411 5.93226C0.39893 6.09371 0.555207 6.2658 0.706026 6.43352L1.26372 5.93204ZM1.43563 3.71609L2.08547 4.09054C2.224 3.85011 2.296 3.72766 2.3553 3.64826C2.4026 3.58492 2.39004 3.6216 2.32675 3.64734L2.04419 2.9526L1.76163 2.25787C1.4781 2.37318 1.2907 2.56697 1.1535 2.75066C1.0283 2.91829 0.906138 3.13279 0.785795 3.34164L1.43563 3.71609ZM3.01167 3.07508L3.21642 2.35356C2.98491 2.28787 2.7479 2.21932 2.54131 2.18652C2.31477 2.15055 2.04526 2.14251 1.76163 2.25787L2.04419 2.9526L2.32675 3.64734C2.26335 3.67313 2.22851 3.65564 2.3061 3.66796C2.40366 3.68345 2.54028 3.72092 2.80693 3.79659L3.01167 3.07508ZM5.58025 2.39008L4.87999 2.12149C4.83122 2.24864 4.74322 2.35654 4.62916 2.42959L5.03366 3.06116L5.43816 3.69273C5.82214 3.4468 6.11723 3.08436 6.28051 2.65867L5.58025 2.39008ZM7.12509 0.75V0C6.90163 0 6.67093 -0.00113755 6.47547 0.0212224C6.26075 0.0457847 6.0151 0.104851 5.78243 0.27288L6.22152 0.880904L6.66062 1.48893C6.60921 1.52605 6.57458 1.51967 6.64594 1.5115C6.73656 1.50114 6.86702 1.5 7.12509 1.5V0.75ZM5.81185 1.69839L6.5235 1.93514C6.60508 1.68991 6.64749 1.56602 6.68607 1.48293C6.71657 1.41724 6.71191 1.45189 6.66062 1.48893L6.22152 0.880904L5.78243 0.27288C5.54988 0.440821 5.41652 0.655351 5.32556 0.851252C5.24269 1.02975 5.17089 1.24915 5.1002 1.46164L5.81185 1.69839ZM5.58023 12.9799L6.28049 12.7113C6.11724 12.2856 5.82222 11.9232 5.43831 11.6773L5.03375 12.3088L4.62918 12.9404C4.74323 13.0134 4.8312 13.1213 4.87997 13.2484L5.58023 12.9799ZM7.12509 14.62V13.87C6.86702 13.87 6.73656 13.8689 6.64594 13.8585C6.57458 13.8503 6.60921 13.8439 6.66062 13.8811L6.22152 14.4891L5.78243 15.0971C6.0151 15.2651 6.26075 15.3242 6.47547 15.3488C6.67094 15.3711 6.90163 15.37 7.12509 15.37V14.62ZM5.81185 13.6716L5.1002 13.9084C5.17089 14.1209 5.24269 14.3403 5.32556 14.5187C5.41652 14.7146 5.54988 14.9292 5.78242 15.0971L6.22152 14.4891L6.66062 13.8811C6.71191 13.9181 6.71657 13.9528 6.68607 13.8871C6.64749 13.804 6.60508 13.6801 6.5235 13.4349L5.81185 13.6716ZM5.81185 1.69839L5.10066 1.46026L4.86906 2.15195L5.58025 2.39008L6.29144 2.62821L6.52304 1.93652L5.81185 1.69839ZM4.80003 3.19596L5.17485 3.84558L5.40848 3.71078L5.03366 3.06116L4.65884 2.41154L4.42521 2.54634L4.80003 3.19596ZM3.85791 3.31343L4.06125 2.59152L3.21501 2.35317L3.01167 3.07508L2.80834 3.79699L3.65457 4.03534L3.85791 3.31343ZM1.26372 5.93204L0.704708 6.43205L1.41974 7.23145L1.97874 6.73145L2.53775 6.23144L1.82273 5.43204L1.26372 5.93204ZM1.97876 8.63848L1.41975 8.13847L0.704711 8.93789L1.26372 9.4379L1.82273 9.93791L2.53777 9.13849L1.97876 8.63848ZM3.85788 12.0565L3.65453 11.3346L2.80834 11.5729L3.01169 12.2948L3.21504 13.0167L4.06123 12.7784L3.85788 12.0565ZM5.03375 12.3088L5.40864 11.6592L5.17505 11.5244L4.80016 12.174L4.42527 12.8236L4.65886 12.9584L5.03375 12.3088ZM5.58023 12.9799L4.86903 13.218L5.10065 13.9097L5.81185 13.6716L6.52304 13.4335L6.29142 12.7417L5.58023 12.9799ZM7.89819 14.62V13.87H7.12509V14.62V15.37H7.89819V14.62ZM7.12509 0.75V1.5H7.89819V0.75V0H7.12509V0.75ZM9.90908 7.67958H9.15908C9.15908 8.6059 8.40815 9.35683 7.48183 9.35683V10.1068V10.8568C9.23657 10.8568 10.6591 9.43433 10.6591 7.67958H9.90908ZM7.48183 10.1068V9.35683C6.55551 9.35683 5.80458 8.6059 5.80458 7.67958H5.05458H4.30458C4.30458 9.43433 5.72708 10.8568 7.48183 10.8568V10.1068ZM5.05458 7.67958H5.80458C5.80458 6.75326 6.55551 6.00233 7.48183 6.00233V5.25233V4.50233C5.72708 4.50233 4.30458 5.92484 4.30458 7.67958H5.05458ZM7.48183 5.25233V6.00233C8.40815 6.00233 9.15908 6.75326 9.15908 7.67958H9.90908H10.6591C10.6591 5.92484 9.23657 4.50233 7.48183 4.50233V5.25233Z" fill="currentColor" />
+                                                </svg>
+                                                Change Password
+                                            </a>
+                                        </li>
+                                        <li class=" dropdown-divider"></li>
+                                        <li>
+                                            <a class="dropdown-item fz-14px d-flex align-items-center gap-2 px-5" href="auth-login-basic.html">
+                                                <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M10.75 12.9375C10.6887 14.4808 9.40258 15.7912 7.6797 15.749C7.27887 15.7392 6.78344 15.5995 5.7926 15.32C3.40801 14.6474 1.33796 13.517 0.841296 10.9846C0.75 10.5191 0.75 9.99532 0.75 8.94771L0.75 7.55229C0.75 6.50468 0.75 5.98087 0.841296 5.51538C1.33796 2.98304 3.40801 1.85263 5.7926 1.18002C6.78345 0.900537 7.27887 0.760795 7.6797 0.750989C9.40257 0.708841 10.6887 2.01923 10.75 3.56251" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                                                    <path d="M15.7499 8.25008H6.58325M15.7499 8.25008C15.7499 7.66656 14.088 6.57636 13.6666 6.16675M15.7499 8.25008C15.7499 8.8336 14.088 9.92381 13.6666 10.3334" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                                </svg>
+                                                Logout
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <!-- User Options -->
+
+                    </ul>
+            </div>
+        </div>
+
+        <div class="app-content-wrapper pt-13 pb-13 px-5">
+            <div class="container-fluid">
+                <div class="portal-hero d-flex align-items-center justify-content-between flex-wrap gap-4">
+                    <div>
+                        <!-- <span class="portal-hero-kicker">Asset search portal</span> -->
+                        <h2 class="fw-semibold fs-7 mb-2">Pending Cases</h2>
+                        <p class="mb-0">Review deceased customer details and confirm whether records are held.</p>
+                    </div>
+                    <div class="portal-hero-badge">4 awaiting review</div>
+                </div>
+
+                <div class="row g-3 row-cols-xxl-3 row-cols-lg-3 row-cols-md-2 row-cols-1 mb-6">
+                    <div class="col">
+                        <div class="card shadow-custom rounded-custom">
+                            <div class="card-body p-6 position-relative">
+                                <div class="btn-icon bg-label-primary rounded-pill btn-lg mb-3">
+                                    <svg width="22" height="16" viewBox="0 0 22 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M10.9508 10.5399C7.5008 10.5399 4.58984 11.1037 4.58984 13.2794C4.58984 15.4561 7.5196 16 10.9508 16C14.4008 16 17.3117 15.4362 17.3117 13.2605C17.3117 11.0839 14.382 10.5399 10.9508 10.5399Z" fill="currentColor" />
+                                        <path opacity="0.4" d="M10.9476 8.46703C13.2837 8.46703 15.1569 6.58307 15.1569 4.23351C15.1569 1.88306 13.2837 0 10.9476 0C8.61146 0 6.73828 1.88306 6.73828 4.23351C6.73828 6.58307 8.61146 8.46703 10.9476 8.46703Z" fill="currentColor" />
+                                        <path opacity="0.4" d="M20.0886 5.21926C20.693 2.84179 18.9209 0.706573 16.6645 0.706573C16.4192 0.706573 16.1846 0.73359 15.9554 0.779519C15.9249 0.786723 15.8909 0.802032 15.873 0.829049C15.8524 0.86327 15.8676 0.909199 15.89 0.938917C16.5678 1.89531 16.9573 3.05973 16.9573 4.3097C16.9573 5.50744 16.6001 6.62413 15.9733 7.5508C15.9088 7.64626 15.9661 7.77504 16.0798 7.79485C16.2374 7.82277 16.3986 7.83718 16.5634 7.84168C18.2064 7.88491 19.6811 6.82135 20.0886 5.21926Z" fill="currentColor" />
+                                        <path d="M21.8094 10.8169C21.5086 10.1721 20.7824 9.72996 19.6783 9.51292C19.1572 9.38504 17.747 9.20493 16.4352 9.22925C16.4155 9.23195 16.4048 9.24546 16.403 9.25446C16.4003 9.26707 16.4057 9.28868 16.4316 9.30219C17.0378 9.60388 19.3811 10.916 19.0865 13.6834C19.074 13.8032 19.1698 13.9067 19.2888 13.8887C19.8655 13.8059 21.3492 13.4853 21.8094 12.4866C22.0637 11.9588 22.0637 11.3456 21.8094 10.8169Z" fill="currentColor" />
+                                        <path opacity="0.4" d="M6.04508 0.779793C5.81675 0.732964 5.58126 0.706848 5.33592 0.706848C3.0795 0.706848 1.3075 2.84207 1.91279 5.21953C2.31931 6.82162 3.79403 7.88518 5.4371 7.84195C5.60185 7.83745 5.76392 7.82214 5.92062 7.79513C6.03433 7.77531 6.09164 7.64653 6.02717 7.55107C5.40039 6.6235 5.04312 5.50771 5.04312 4.30997C5.04312 3.0591 5.43352 1.89468 6.11134 0.939192C6.13283 0.909473 6.14894 0.863545 6.12745 0.829324C6.10954 0.801407 6.07641 0.786998 6.04508 0.779793Z" fill="currentColor" />
+                                        <path d="M2.32156 9.51267C1.21752 9.7297 0.492248 10.1719 0.191392 10.8167C-0.0637974 11.3453 -0.0637974 11.9586 0.191392 12.4872C0.651629 13.485 2.13531 13.8065 2.71195 13.8885C2.83104 13.9065 2.92595 13.8038 2.91342 13.6831C2.61883 10.9166 4.9621 9.60453 5.56918 9.30284C5.59425 9.28843 5.59962 9.26772 5.59694 9.25421C5.59515 9.2452 5.5853 9.2317 5.5656 9.22989C4.25294 9.20468 2.84358 9.38479 2.32156 9.51267Z" fill="currentColor" />
+                                    </svg>
+                                </div>
+                                <span class="fz-12px fw-medium d-block">Pending cases</span>
+                                <h3 class="h6 fs-9 mb-1">4</h3>
+                                <div class="p-px-2 pr-px-10 border rounded-pill d-inline-flex align-items-center gap-2">
+                                    <span class="bg-label-success px-px-8 py-px-1 rounded-pill d-inline-flex align-items-center gap-1 fz-12px fw-medium">
+                                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M6 11V1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                            <path d="M1 6L6 1L11 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                        12.5%
+                                    </span>
+                                    <span class="fz-12px fw-medium">This week</span>
+                                </div>
+                                <div class="position-absolute top-9 end-3 p-1">
+                                    <img src="assets/img/icons/dashboard/chart-up.png" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card shadow-custom rounded-custom">
+                            <div class="card-body p-6 position-relative">
+                                <div class="btn-icon bg-label-warning rounded-pill btn-lg mb-3">
+                                    <svg width="18" height="17" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M17.3721 16.7442H0.627907C0.284651 16.7442 0 16.4595 0 16.1162C0 15.773 0.284651 15.4883 0.627907 15.4883H17.3721C17.7153 15.4883 18 15.773 18 16.1162C18 16.4595 17.7153 16.7442 17.3721 16.7442Z" fill="currentColor" />
+                                        <path d="M7.11719 1.67442V16.7442H10.8846V1.67442C10.8846 0.753488 10.5079 0 9.37765 0H8.62416C7.49393 0 7.11719 0.753488 7.11719 1.67442Z" fill="currentColor" />
+                                        <path opacity="0.4" d="M1.46484 6.6977V16.7442H4.81368V6.6977C4.81368 5.77677 4.4788 5.02328 3.47415 5.02328H2.80438C1.79973 5.02328 1.46484 5.77677 1.46484 6.6977Z" fill="currentColor" />
+                                        <path opacity="0.4" d="M13.1875 10.8838V16.7442H16.5363V10.8838C16.5363 9.96284 16.2015 9.20935 15.1968 9.20935H14.527C13.5224 9.20935 13.1875 9.96284 13.1875 10.8838Z" fill="currentColor" />
+                                    </svg>
+                                </div>
+                                <span class="fz-12px fw-medium d-block">Received this week</span>
+                                <h3 class="h6 fs-9 mb-1">2</h3>
+                                <div class="p-px-2 pr-px-10 border rounded-pill d-inline-flex align-items-center gap-2">
+                                    <span class="bg-label-success px-px-8 py-px-1 rounded-pill d-inline-flex align-items-center gap-1 fz-12px fw-medium">
+                                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M6 11V1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                            <path d="M1 6L6 1L11 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                        8.2%
+                                    </span>
+                                    <span class="fz-12px fw-medium">This month</span>
+                                </div>
+                                <div class="position-absolute top-9 end-3 p-1">
+                                    <img src="assets/img/icons/dashboard/chart-up.png" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card shadow-custom rounded-custom">
+                            <div class="card-body p-6 position-relative">
+                                <div class="btn-icon bg-label-success rounded-pill btn-lg mb-3">
+                                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path opacity="0.4" d="M4.88256 14.9003C5.62898 14.9003 6.2405 15.5118 6.2405 16.2672C6.2405 17.0137 5.62898 17.6252 4.88256 17.6252C4.12715 17.6252 3.51562 17.0137 3.51562 16.2672C3.51562 15.5118 4.12715 14.9003 4.88256 14.9003ZM14.9997 14.9003C15.7461 14.9003 16.3576 15.5118 16.3576 16.2672C16.3576 17.0137 15.7461 17.6252 14.9997 17.6252C14.2443 17.6252 13.6327 17.0137 13.6327 16.2672C13.6327 15.5118 14.2443 14.9003 14.9997 14.9003Z" fill="currentColor" />
+                                        <path d="M0.792051 0.0074916L2.93688 0.331239C3.24264 0.386097 3.46747 0.637001 3.49444 0.942763L3.66531 2.95719C3.69229 3.24587 3.92611 3.4617 4.21388 3.4617H16.3589C16.9075 3.4617 17.2672 3.65055 17.6269 4.06423C17.9867 4.47791 18.0496 5.07145 17.9687 5.61013L17.1143 11.5095C16.9525 12.6435 15.9812 13.479 14.8391 13.479H5.02775C3.83168 13.479 2.84245 12.5617 2.74353 11.3755L1.91617 1.57227L0.558233 1.33845C0.198513 1.2755 -0.0532905 0.924777 0.0096604 0.565057C0.0726113 0.196344 0.423338 -0.0464664 0.792051 0.0074916ZM13.4002 6.78821H10.9092C10.5315 6.78821 10.2347 7.08498 10.2347 7.46268C10.2347 7.83139 10.5315 8.13716 10.9092 8.13716H13.4002C13.7779 8.13716 14.0747 7.83139 14.0747 7.46268C14.0747 7.08498 13.7779 6.78821 13.4002 6.78821Z" fill="currentColor" />
+                                    </svg>
+                                </div>
+                                <span class="fz-12px fw-medium d-block">Reviewed this month</span>
+                                <h3 class="h6 fs-9 mb-1">18</h3>
+                                <div class="p-px-2 pr-px-10 border rounded-pill d-inline-flex align-items-center gap-2">
+                                    <span class="bg-label-danger px-px-8 py-px-1 rounded-pill d-inline-flex align-items-center gap-1 fz-12px fw-medium">
+                                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M6 1V11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                            <path d="M1 6L6 11L11 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                        3.5%
+                                    </span>
+                                    <span class="fz-12px fw-medium">This month</span>
+                                </div>
+                                <div class="position-absolute top-9 end-3 p-1">
+                                    <img src="assets/img/icons/dashboard/chart-down.png" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card shadow-custom rounded-custom">
+                    <div class="card-body p-6">
+                        <div class="mb-5">
+                            <h5 class="portal-section-title mb-1">Case list</h5>
+                            <p class="text-muted mb-0">Deceased personal details supplied for asset and liability search.</p>
+                        </div>
+                        <table id="casesTable" class="table align-middle portal-table mb-0 w-100">
+                            <thead class="table-light">
+                                <tr>
+                                    <th class="fw-medium">Title</th>
+                                    <th class="fw-medium">Forename</th>
+                                    <th class="fw-medium">Middle Names</th>
+                                    <th class="fw-medium">Surname</th>
+                                    <th class="fw-medium">Alias</th>
+                                    <th class="fw-medium">Date of Birth</th>
+                                    <th class="fw-medium">Last known address</th>
+                                    <th class="fw-medium">Previous Address</th>
+                                    <th class="fw-medium">National Insurance Number</th>
+                                    <th class="fw-medium">Further Details</th>
+                                    <th class="fw-medium text-end">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Mr</td>
+                                    <td><div class="portal-name"><span>James</span></div></td>
+                                    <td>Edward</td>
+                                    <td>Whitaker</td>
+                                    <td>Jim Whitaker</td>
+                                    <td>12 Mar 1948</td>
+                                    <td>14 Church Lane, Leeds, LS2 8HD</td>
+                                    <td>9 Albert Street, York, YO1 6JT</td>
+                                    <td><span class="portal-ni">QQ 12 34 56 C</span></td>
+                                    <td class="text-nowrap">
+                                        <a href="case-details.html" target="_blank" rel="noopener" class="btn-case btn-case-details">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                                            Details
                                         </a>
-                                    </div>
-                                </div>
-                            </li>
-                            <!-- Language -->
-
-
-                            <!-- User Options -->
-                            <li class="header-nav-item header-user me-2">
-                                <a class="header-nav-link" href="javascript:void(0);" data-bs-toggle="dropdown">
-                                    <img src="assets/img/avatar/10.jpg" alt="" width="34" height="34" class="rounded-circle">
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-end dropdown-menu-lg py-0">
-                                    <div class="dropdown-header d-flex align-items-center border-bottom py-4">
-                                        <div class="me-3 flex-shrink-0">
-                                            <div class="avatar avatar-md">
-                                                <img src="assets/img/avatar/10.jpg" alt="" class="rounded-circle">
-                                            </div>
+                                    </td>
+                                    <td class="text-nowrap">
+                                        <div class="portal-actions">
+                                            <button type="button" class="btn-case btn-case-none">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M15 9l-6 6M9 9l6 6"/></svg>
+                                                No Records
+                                            </button>
+                                            <button type="button" class="btn-case btn-case-found" data-bs-toggle="modal" data-bs-target="#recordsFoundModal">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>
+                                                Records Found
+                                            </button>
                                         </div>
-                                        <div class="flex-grow-1 text-start">
-                                            <h6 class="mb-0">Joel Becker</h6>
-                                            <span class="text-muted">Administration</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Mrs</td>
+                                    <td><div class="portal-name"><span>Margaret</span></div></td>
+                                    <td>Anne</td>
+                                    <td>Collins</td>
+                                    <td>-</td>
+                                    <td>04 Jul 1939</td>
+                                    <td>22 Westfield Road, Manchester, M20 6QB</td>
+                                    <td>5 Park View, Stockport, SK1 4DN</td>
+                                    <td><span class="portal-ni">AB 98 76 54 A</span></td>
+                                    <td class="text-nowrap">
+                                        <a href="case-details.html" target="_blank" rel="noopener" class="btn-case btn-case-details">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                                            Details
+                                        </a>
+                                    </td>
+                                    <td class="text-nowrap">
+                                        <div class="portal-actions">
+                                            <button type="button" class="btn-case btn-case-none">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M15 9l-6 6M9 9l6 6"/></svg>
+                                                No Records
+                                            </button>
+                                            <button type="button" class="btn-case btn-case-found" data-bs-toggle="modal" data-bs-target="#recordsFoundModal">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>
+                                                Records Found
+                                            </button>
                                         </div>
-                                    </div>
-                                    <div class="dropdown-body py-1">
-                                        <ul class="list-unstyled dropdown-list">
-                                           
-                                           
-                                          
-                                            <li>
-                                                <a class="dropdown-item fz-14px d-flex align-items-center gap-2 px-5" href="user-settings.html">
-                                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M13.5877 3.71609L14.2375 3.34164H14.2375L13.5877 3.71609ZM13.93 4.31014L13.2801 4.68459L13.2801 4.68459L13.93 4.31014ZM13.93 11.0598L13.2801 10.6854L13.93 11.0598ZM13.5877 11.6538L14.2375 12.0283L14.2375 12.0283L13.5877 11.6538ZM13.0445 8.63848L12.456 9.10336L12.4702 9.12138L12.4855 9.13849L13.0445 8.63848ZM11.1654 12.0565L11.3688 11.3346L11.3515 11.3297L11.3339 11.3257L11.1654 12.0565ZM10.2231 12.174L9.8803 11.507L9.86406 11.5153L9.84824 11.5244L10.2231 12.174ZM12.9791 12.4173L12.6965 11.7226L12.6965 11.7226L12.9791 12.4173ZM12.0116 12.2948L12.2164 11.5733L12.2149 11.5729L12.0116 12.2948ZM13.7596 9.4379L13.2006 9.93791L13.2019 9.93938L13.7596 9.4379ZM11.1654 3.31343L11.3339 4.04425L11.3514 4.04021L11.3687 4.03534L11.1654 3.31343ZM10.2233 3.19596L9.84843 3.84558L9.86425 3.85471L9.8805 3.86306L10.2233 3.19596ZM13.0445 6.73145L12.4855 6.23144L12.4702 6.24855L12.456 6.26656L13.0445 6.73145ZM14.2704 5.16598L15.0163 5.24434L15.0163 5.24434L14.2704 5.16598ZM13.7596 5.93204L13.2019 5.43056L13.2006 5.43204L13.7596 5.93204ZM12.0116 3.07508L12.2149 3.79699L12.2164 3.79659L12.0116 3.07508ZM9.44304 2.39008L8.73184 2.62821L8.73698 2.64356L8.74278 2.65867L9.44304 2.39008ZM9.98963 3.06116L9.58512 3.69273L9.59976 3.7021L9.6148 3.71078L9.98963 3.06116ZM9.21144 1.69839L8.49978 1.93514L8.50024 1.93652L9.21144 1.69839ZM9.44306 12.9799L8.7428 12.7113L8.737 12.7264L8.73186 12.7417L9.44306 12.9799ZM9.98954 12.3088L9.61465 11.6592L9.5996 11.6679L9.58497 11.6773L9.98954 12.3088ZM8.80176 14.4891L9.24086 15.0971L9.24086 15.0971L8.80176 14.4891ZM9.21144 13.6716L8.50024 13.4335L8.49979 13.4349L9.21144 13.6716ZM1.43563 3.71609L0.785795 3.34164L0.785795 3.34164L1.43563 3.71609ZM1.09333 4.31014L1.74316 4.68459L1.74316 4.68459L1.09333 4.31014ZM1.09333 11.0598L1.74317 10.6854L1.09333 11.0598ZM1.43562 11.6538L0.785784 12.0283L0.785785 12.0283L1.43562 11.6538ZM1.97876 8.63848L2.53777 9.13849L2.55308 9.12138L2.56731 9.10336L1.97876 8.63848ZM3.85788 12.0565L3.68934 11.3257L3.67183 11.3297L3.65453 11.3346L3.85788 12.0565ZM4.80016 12.174L5.17505 11.5244L5.15923 11.5153L5.14298 11.507L4.80016 12.174ZM2.04419 12.4173L2.32675 11.7226L2.32674 11.7226L2.04419 12.4173ZM3.01169 12.2948L2.80834 11.5729L2.80693 11.5733L3.01169 12.2948ZM1.26372 9.4379L1.82141 9.93938L1.82273 9.93791L1.26372 9.4379ZM3.85791 3.31343L3.65457 4.03534L3.67187 4.04021L3.68938 4.04425L3.85791 3.31343ZM4.80003 3.19596L5.14278 3.86306L5.15903 3.85471L5.17485 3.84558L4.80003 3.19596ZM1.97874 6.73145L2.56729 6.26656L2.55306 6.24855L2.53775 6.23144L1.97874 6.73145ZM0.752883 5.16598L0.00698769 5.24434L0.00698817 5.24434L0.752883 5.16598ZM1.26372 5.93204L1.82273 5.43203L1.82141 5.43057L1.26372 5.93204ZM3.01167 3.07508L2.80693 3.79659L2.80834 3.79699L3.01167 3.07508ZM5.58025 2.39008L6.28051 2.65867L6.2863 2.64356L6.29144 2.62821L5.58025 2.39008ZM5.03366 3.06116L5.40848 3.71078L5.42353 3.7021L5.43816 3.69273L5.03366 3.06116ZM5.81185 1.69839L6.52304 1.93652L6.5235 1.93514L5.81185 1.69839ZM5.58023 12.9799L6.29142 12.7417L6.28628 12.7264L6.28049 12.7113L5.58023 12.9799ZM5.03375 12.3088L5.43831 11.6773L5.42369 11.6679L5.40864 11.6592L5.03375 12.3088ZM6.22152 14.4891L5.78242 15.0971L5.78243 15.0971L6.22152 14.4891ZM5.81185 13.6716L6.5235 13.4349L6.52304 13.4335L5.81185 13.6716ZM13.5877 3.71609L12.9378 4.09054L13.2801 4.68459L13.93 4.31014L14.5798 3.93569L14.2375 3.34164L13.5877 3.71609ZM13.93 11.0598L13.2801 10.6854L12.9378 11.2794L13.5877 11.6538L14.2375 12.0283L14.5798 11.4343L13.93 11.0598ZM13.0445 8.63848L13.6331 8.1736C13.5807 8.10734 13.4957 7.89433 13.4957 7.68489H12.7457H11.9957C11.9957 8.16917 12.1588 8.72707 12.456 9.10336L13.0445 8.63848ZM11.1654 12.0565L11.3339 11.3257C10.8432 11.2125 10.3283 11.2767 9.8803 11.507L10.2231 12.174L10.566 12.8411C10.6989 12.7728 10.8515 12.7538 10.9969 12.7873L11.1654 12.0565ZM13.5877 11.6538L12.9378 11.2794C12.7993 11.5198 12.7273 11.6423 12.668 11.7217C12.6207 11.785 12.6332 11.7483 12.6965 11.7226L12.9791 12.4173L13.2616 13.1121C13.5452 12.9968 13.7326 12.803 13.8698 12.6193C13.995 12.4516 14.1172 12.2371 14.2375 12.0283L13.5877 11.6538ZM12.0116 12.2948L11.8068 13.0163C12.0384 13.082 12.2754 13.1506 12.482 13.1834C12.7085 13.2194 12.978 13.2274 13.2617 13.1121L12.9791 12.4173L12.6965 11.7226C12.7599 11.6968 12.7948 11.7143 12.7172 11.702C12.6196 11.6865 12.483 11.649 12.2164 11.5733L12.0116 12.2948ZM13.93 11.0598L14.5798 11.4343C14.6925 11.2387 14.8095 11.0379 14.8883 10.856C14.9747 10.6565 15.0465 10.4126 15.0163 10.1256L14.2704 10.204L13.5245 10.2823C13.5179 10.2194 13.5408 10.193 13.5118 10.26C13.475 10.3448 13.4101 10.4598 13.2801 10.6854L13.93 11.0598ZM13.7596 9.4379L13.2019 9.93938C13.3759 10.1329 13.4633 10.2318 13.5168 10.307C13.559 10.3664 13.5311 10.3452 13.5245 10.2823L14.2704 10.204L15.0163 10.1256C14.9861 9.83852 14.8652 9.61495 14.7392 9.43768C14.6244 9.27623 14.4681 9.10414 14.3173 8.93642L13.7596 9.4379ZM11.1654 3.31343L10.9968 2.58261C10.8515 2.61614 10.6989 2.59715 10.566 2.52886L10.2233 3.19596L9.8805 3.86306C10.3284 4.09319 10.8432 4.15741 11.3339 4.04425L11.1654 3.31343ZM13.0445 6.73145L12.456 6.26656C12.1588 6.64278 11.9957 7.20078 11.9957 7.68489H12.7457H13.4957C13.4957 7.47572 13.5807 7.26259 13.6331 7.19633L13.0445 6.73145ZM13.93 4.31014L13.2801 4.68459C13.4101 4.91018 13.475 5.02516 13.5118 5.10995C13.5408 5.17696 13.5179 5.15051 13.5245 5.08763L14.2704 5.16598L15.0163 5.24434C15.0465 4.9573 14.9747 4.71349 14.8883 4.5139C14.8095 4.33209 14.6925 4.13122 14.5798 3.93569L13.93 4.31014ZM13.7596 5.93204L14.3173 6.43352C14.4681 6.2658 14.6244 6.09371 14.7392 5.93226C14.8652 5.75499 14.9861 5.53142 15.0163 5.24434L14.2704 5.16598L13.5245 5.08762C13.5311 5.0247 13.559 5.00352 13.5168 5.06293C13.4633 5.13815 13.3759 5.23702 13.2019 5.43057L13.7596 5.93204ZM13.5877 3.71609L14.2375 3.34164C14.1171 3.13279 13.995 2.91829 13.8698 2.75066C13.7326 2.56697 13.5452 2.37318 13.2617 2.25787L12.9791 2.9526L12.6965 3.64734C12.6332 3.6216 12.6207 3.58492 12.668 3.64826C12.7273 3.72766 12.7993 3.85011 12.9378 4.09054L13.5877 3.71609ZM12.0116 3.07508L12.2164 3.79659C12.483 3.72092 12.6196 3.68345 12.7172 3.66796C12.7948 3.65564 12.7599 3.67313 12.6965 3.64734L12.9791 2.9526L13.2617 2.25787C12.978 2.14251 12.7085 2.15055 12.482 2.18652C12.2754 2.21932 12.0384 2.28787 11.8069 2.35356L12.0116 3.07508ZM9.44304 2.39008L8.74278 2.65867C8.90606 3.08436 9.20114 3.4468 9.58512 3.69273L9.98963 3.06116L10.3941 2.42959C10.2801 2.35654 10.1921 2.24864 10.1433 2.12149L9.44304 2.39008ZM7.89819 0.75V1.5C8.15627 1.5 8.28672 1.50114 8.37734 1.5115C8.44871 1.51967 8.41407 1.52605 8.36266 1.48893L8.80176 0.880904L9.24086 0.27288C9.00819 0.104851 8.76254 0.0457846 8.54782 0.0212224C8.35235 -0.00113755 8.12165 0 7.89819 0V0.75ZM9.21144 1.69839L9.92309 1.46164C9.8524 1.24915 9.7806 1.02975 9.69772 0.851251C9.60677 0.655351 9.47341 0.440821 9.24086 0.27288L8.80176 0.880904L8.36266 1.48893C8.31138 1.45189 8.30672 1.41724 8.33721 1.48293C8.37579 1.56602 8.4182 1.68991 8.49978 1.93514L9.21144 1.69839ZM9.44306 12.9799L10.1433 13.2484C10.1921 13.1213 10.2801 13.0134 10.3941 12.9404L9.98954 12.3088L9.58497 11.6773C9.20107 11.9232 8.90605 12.2856 8.7428 12.7113L9.44306 12.9799ZM7.89819 14.62V15.37C8.12165 15.37 8.35235 15.3711 8.54782 15.3488C8.76253 15.3242 9.00819 15.2652 9.24086 15.0971L8.80176 14.4891L8.36266 13.8811C8.41407 13.8439 8.44871 13.8503 8.37734 13.8585C8.28672 13.8689 8.15627 13.87 7.89819 13.87V14.62ZM9.21144 13.6716L8.49979 13.4349C8.4182 13.6801 8.37579 13.804 8.33721 13.8871C8.30672 13.9528 8.31137 13.9181 8.36266 13.8811L8.80176 14.4891L9.24086 15.0971C9.47341 14.9292 9.60677 14.7146 9.69772 14.5187C9.7806 14.3403 9.8524 14.1209 9.92309 13.9084L9.21144 13.6716ZM9.21144 1.69839L8.50024 1.93652L8.73184 2.62821L9.44304 2.39008L10.1542 2.15195L9.92263 1.46026L9.21144 1.69839ZM10.2233 3.19596L10.5981 2.54634L10.3644 2.41154L9.98963 3.06116L9.6148 3.71078L9.84843 3.84558L10.2233 3.19596ZM11.1654 3.31343L11.3687 4.03534L12.2149 3.79699L12.0116 3.07508L11.8083 2.35317L10.962 2.59152L11.1654 3.31343ZM13.7596 5.93204L13.2006 5.43204L12.4855 6.23144L13.0445 6.73145L13.6035 7.23145L14.3186 6.43205L13.7596 5.93204ZM13.0445 8.63848L12.4855 9.13849L13.2006 9.93791L13.7596 9.4379L14.3186 8.93789L13.6035 8.13847L13.0445 8.63848ZM11.1654 12.0565L10.9621 12.7784L11.8082 13.0167L12.0116 12.2948L12.2149 11.5729L11.3688 11.3346L11.1654 12.0565ZM9.98954 12.3088L10.3644 12.9584L10.598 12.8236L10.2231 12.174L9.84824 11.5244L9.61465 11.6592L9.98954 12.3088ZM9.44306 12.9799L8.73186 12.7417L8.50024 13.4335L9.21144 13.6716L9.92263 13.9097L10.1543 13.218L9.44306 12.9799ZM1.43563 3.71609L0.785795 3.34164L0.443491 3.93569L1.09333 4.31014L1.74316 4.68459L2.08547 4.09054L1.43563 3.71609ZM1.09333 11.0598L0.443492 11.4343L0.785784 12.0283L1.43562 11.6538L2.08546 11.2794L1.74317 10.6854L1.09333 11.0598ZM1.97876 8.63848L2.56731 9.10336C2.86453 8.72707 3.02758 8.16917 3.02758 7.68489H2.27758H1.52758C1.52758 7.89433 1.44256 8.10734 1.39022 8.1736L1.97876 8.63848ZM3.85788 12.0565L4.02642 12.7873C4.17182 12.7538 4.32441 12.7728 4.45733 12.8411L4.80016 12.174L5.14298 11.507C4.69502 11.2767 4.18013 11.2125 3.68934 11.3257L3.85788 12.0565ZM1.43562 11.6538L0.785785 12.0283C0.906126 12.2371 1.02829 12.4516 1.15349 12.6193C1.29069 12.803 1.4781 12.9968 1.76164 13.1121L2.04419 12.4173L2.32674 11.7226C2.39004 11.7483 2.40261 11.785 2.3553 11.7217C2.29599 11.6423 2.22399 11.5198 2.08546 11.2794L1.43562 11.6538ZM3.01169 12.2948L2.80693 11.5733C2.54027 11.649 2.40365 11.6865 2.3061 11.702C2.2285 11.7143 2.26334 11.6968 2.32675 11.7226L2.04419 12.4173L1.76163 13.1121C2.04528 13.2274 2.31478 13.2194 2.54133 13.1834C2.74792 13.1506 2.98493 13.082 3.21645 13.0163L3.01169 12.2948ZM1.09333 11.0598L1.74317 10.6854C1.61317 10.4598 1.54824 10.3448 1.51152 10.26C1.48251 10.193 1.50539 10.2194 1.49878 10.2823L0.752885 10.204L0.00698948 10.1256C-0.0231663 10.4126 0.0486073 10.6565 0.135033 10.856C0.213763 11.0379 0.330825 11.2387 0.443492 11.4343L1.09333 11.0598ZM1.26372 9.4379L0.706029 8.93642C0.55521 9.10414 0.398933 9.27623 0.284113 9.43768C0.158043 9.61495 0.0371484 9.83852 0.00698948 10.1256L0.752885 10.204L1.49878 10.2823C1.49217 10.3452 1.46426 10.3664 1.50651 10.307C1.56001 10.2318 1.64737 10.1329 1.82141 9.93938L1.26372 9.4379ZM3.85791 3.31343L3.68938 4.04425C4.18008 4.15741 4.69488 4.09319 5.14278 3.86306L4.80003 3.19596L4.45728 2.52886C4.32438 2.59715 4.17182 2.61614 4.02644 2.58261L3.85791 3.31343ZM1.97874 6.73145L1.3902 7.19633C1.44254 7.26259 1.52758 7.47572 1.52758 7.68489H2.27758H3.02758C3.02758 7.20078 2.86446 6.64278 2.56729 6.26656L1.97874 6.73145ZM1.09333 4.31014L0.443491 3.93569C0.330822 4.13122 0.213761 4.33209 0.135031 4.5139C0.0486049 4.71349 -0.0231659 4.9573 0.00698769 5.24434L0.752883 5.16598L1.49878 5.08763C1.50538 5.15051 1.48251 5.17696 1.51152 5.10995C1.54824 5.02516 1.61317 4.91018 1.74316 4.68459L1.09333 4.31014ZM1.26372 5.93204L1.82141 5.43057C1.64737 5.23702 1.56 5.13815 1.50651 5.06293C1.46426 5.00352 1.49217 5.0247 1.49878 5.08762L0.752883 5.16598L0.00698817 5.24434C0.037147 5.53142 0.15804 5.75499 0.28411 5.93226C0.39893 6.09371 0.555207 6.2658 0.706026 6.43352L1.26372 5.93204ZM1.43563 3.71609L2.08547 4.09054C2.224 3.85011 2.296 3.72766 2.3553 3.64826C2.4026 3.58492 2.39004 3.6216 2.32675 3.64734L2.04419 2.9526L1.76163 2.25787C1.4781 2.37318 1.2907 2.56697 1.1535 2.75066C1.0283 2.91829 0.906138 3.13279 0.785795 3.34164L1.43563 3.71609ZM3.01167 3.07508L3.21642 2.35356C2.98491 2.28787 2.7479 2.21932 2.54131 2.18652C2.31477 2.15055 2.04526 2.14251 1.76163 2.25787L2.04419 2.9526L2.32675 3.64734C2.26335 3.67313 2.22851 3.65564 2.3061 3.66796C2.40366 3.68345 2.54028 3.72092 2.80693 3.79659L3.01167 3.07508ZM5.58025 2.39008L4.87999 2.12149C4.83122 2.24864 4.74322 2.35654 4.62916 2.42959L5.03366 3.06116L5.43816 3.69273C5.82214 3.4468 6.11723 3.08436 6.28051 2.65867L5.58025 2.39008ZM7.12509 0.75V0C6.90163 0 6.67093 -0.00113755 6.47547 0.0212224C6.26075 0.0457847 6.0151 0.104851 5.78243 0.27288L6.22152 0.880904L6.66062 1.48893C6.60921 1.52605 6.57458 1.51967 6.64594 1.5115C6.73656 1.50114 6.86702 1.5 7.12509 1.5V0.75ZM5.81185 1.69839L6.5235 1.93514C6.60508 1.68991 6.64749 1.56602 6.68607 1.48293C6.71657 1.41724 6.71191 1.45189 6.66062 1.48893L6.22152 0.880904L5.78243 0.27288C5.54988 0.440821 5.41652 0.655351 5.32556 0.851252C5.24269 1.02975 5.17089 1.24915 5.1002 1.46164L5.81185 1.69839ZM5.58023 12.9799L6.28049 12.7113C6.11724 12.2856 5.82222 11.9232 5.43831 11.6773L5.03375 12.3088L4.62918 12.9404C4.74323 13.0134 4.8312 13.1213 4.87997 13.2484L5.58023 12.9799ZM7.12509 14.62V13.87C6.86702 13.87 6.73656 13.8689 6.64594 13.8585C6.57458 13.8503 6.60921 13.8439 6.66062 13.8811L6.22152 14.4891L5.78243 15.0971C6.0151 15.2651 6.26075 15.3242 6.47547 15.3488C6.67094 15.3711 6.90163 15.37 7.12509 15.37V14.62ZM5.81185 13.6716L5.1002 13.9084C5.17089 14.1209 5.24269 14.3403 5.32556 14.5187C5.41652 14.7146 5.54988 14.9292 5.78242 15.0971L6.22152 14.4891L6.66062 13.8811C6.71191 13.9181 6.71657 13.9528 6.68607 13.8871C6.64749 13.804 6.60508 13.6801 6.5235 13.4349L5.81185 13.6716ZM5.81185 1.69839L5.10066 1.46026L4.86906 2.15195L5.58025 2.39008L6.29144 2.62821L6.52304 1.93652L5.81185 1.69839ZM4.80003 3.19596L5.17485 3.84558L5.40848 3.71078L5.03366 3.06116L4.65884 2.41154L4.42521 2.54634L4.80003 3.19596ZM3.85791 3.31343L4.06125 2.59152L3.21501 2.35317L3.01167 3.07508L2.80834 3.79699L3.65457 4.03534L3.85791 3.31343ZM1.26372 5.93204L0.704708 6.43205L1.41974 7.23145L1.97874 6.73145L2.53775 6.23144L1.82273 5.43204L1.26372 5.93204ZM1.97876 8.63848L1.41975 8.13847L0.704711 8.93789L1.26372 9.4379L1.82273 9.93791L2.53777 9.13849L1.97876 8.63848ZM3.85788 12.0565L3.65453 11.3346L2.80834 11.5729L3.01169 12.2948L3.21504 13.0167L4.06123 12.7784L3.85788 12.0565ZM5.03375 12.3088L5.40864 11.6592L5.17505 11.5244L4.80016 12.174L4.42527 12.8236L4.65886 12.9584L5.03375 12.3088ZM5.58023 12.9799L4.86903 13.218L5.10065 13.9097L5.81185 13.6716L6.52304 13.4335L6.29142 12.7417L5.58023 12.9799ZM7.89819 14.62V13.87H7.12509V14.62V15.37H7.89819V14.62ZM7.12509 0.75V1.5H7.89819V0.75V0H7.12509V0.75ZM9.90908 7.67958H9.15908C9.15908 8.6059 8.40815 9.35683 7.48183 9.35683V10.1068V10.8568C9.23657 10.8568 10.6591 9.43433 10.6591 7.67958H9.90908ZM7.48183 10.1068V9.35683C6.55551 9.35683 5.80458 8.6059 5.80458 7.67958H5.05458H4.30458C4.30458 9.43433 5.72708 10.8568 7.48183 10.8568V10.1068ZM5.05458 7.67958H5.80458C5.80458 6.75326 6.55551 6.00233 7.48183 6.00233V5.25233V4.50233C5.72708 4.50233 4.30458 5.92484 4.30458 7.67958H5.05458ZM7.48183 5.25233V6.00233C8.40815 6.00233 9.15908 6.75326 9.15908 7.67958H9.90908H10.6591C10.6591 5.92484 9.23657 4.50233 7.48183 4.50233V5.25233Z" fill="currentColor" />
-                                                    </svg>
-                                                    Change Password
-                                                </a>
-                                            </li>
-                                            <li class=" dropdown-divider"></li>
-                                            <li>
-                                                <a class="dropdown-item fz-14px d-flex align-items-center gap-2 px-5" href="auth-login-basic.html">
-                                                    <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M10.75 12.9375C10.6887 14.4808 9.40258 15.7912 7.6797 15.749C7.27887 15.7392 6.78344 15.5995 5.7926 15.32C3.40801 14.6474 1.33796 13.517 0.841296 10.9846C0.75 10.5191 0.75 9.99532 0.75 8.94771L0.75 7.55229C0.75 6.50468 0.75 5.98087 0.841296 5.51538C1.33796 2.98304 3.40801 1.85263 5.7926 1.18002C6.78345 0.900537 7.27887 0.760795 7.6797 0.750989C9.40257 0.708841 10.6887 2.01923 10.75 3.56251" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
-                                                        <path d="M15.7499 8.25008H6.58325M15.7499 8.25008C15.7499 7.66656 14.088 6.57636 13.6666 6.16675M15.7499 8.25008C15.7499 8.8336 14.088 9.92381 13.6666 10.3334" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                                    </svg>
-                                                    Logout
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </li>
-                            <!-- User Options -->
-
-                        </ul>
-                </div>
-            </div>
-
-            <div class="app-content-wrapper pt-13 pb-13 px-5">
-                <div class="container-fluid">
-                    <div class="portal-hero d-flex align-items-center justify-content-between flex-wrap gap-4">
-                        <div>
-                            <!-- <span class="portal-hero-kicker">Asset search portal</span> -->
-                            <h2 class="fw-semibold fs-7 mb-2">Pending Cases</h2>
-                            <p class="mb-0">Review deceased customer details and confirm whether records are held.</p>
-                        </div>
-                        <div class="portal-hero-badge">4 awaiting review</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Ms</td>
+                                    <td><div class="portal-name"><span>Priya</span></div></td>
+                                    <td>Lakshmi</td>
+                                    <td>Sharma</td>
+                                    <td>-</td>
+                                    <td>22 Nov 1961</td>
+                                    <td>8 Victoria Gardens, Birmingham, B15 2TT</td>
+                                    <td>31 High Street, Coventry, CV1 5RE</td>
+                                    <td><span class="portal-ni">JX 45 67 89 D</span></td>
+                                    <td class="text-nowrap">
+                                        <a href="case-details.html" target="_blank" rel="noopener" class="btn-case btn-case-details">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                                            Details
+                                        </a>
+                                    </td>
+                                    <td class="text-nowrap">
+                                        <div class="portal-actions">
+                                            <button type="button" class="btn-case btn-case-none">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M15 9l-6 6M9 9l6 6"/></svg>
+                                                No Records
+                                            </button>
+                                            <button type="button" class="btn-case btn-case-found" data-bs-toggle="modal" data-bs-target="#recordsFoundModal">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>
+                                                Records Found
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Mr</td>
+                                    <td><div class="portal-name"><span>Robert</span></div></td>
+                                    <td>-</td>
+                                    <td>Hughes</td>
+                                    <td>Bob Hughes</td>
+                                    <td>18 Jan 1955</td>
+                                    <td>3 Harbour View, Cardiff, CF10 1EP</td>
+                                    <td>17 Station Road, Newport, NP20 1AA</td>
+                                    <td><span class="portal-ni">NW 11 22 33 B</span></td>
+                                    <td class="text-nowrap">
+                                        <a href="case-details.html" target="_blank" rel="noopener" class="btn-case btn-case-details">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                                            Details
+                                        </a>
+                                    </td>
+                                    <td class="text-nowrap">
+                                        <div class="portal-actions">
+                                            <button type="button" class="btn-case btn-case-none">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M15 9l-6 6M9 9l6 6"/></svg>
+                                                No Records
+                                            </button>
+                                            <button type="button" class="btn-case btn-case-found" data-bs-toggle="modal" data-bs-target="#recordsFoundModal">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>
+                                                Records Found
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Mrs</td>
+                                    <td><div class="portal-name"><span>Eleanor</span></div></td>
+                                    <td>Grace</td>
+                                    <td>Bennett</td>
+                                    <td>Ellie Bennett</td>
+                                    <td>09 Sep 1942</td>
+                                    <td>41 Queen Square, Bristol, BS1 4LH</td>
+                                    <td>12 Pulteney Street, Bath, BA2 4BZ</td>
+                                    <td><span class="portal-ni">CE 33 44 55 A</span></td>
+                                    <td class="text-nowrap">
+                                        <a href="case-details.html" target="_blank" rel="noopener" class="btn-case btn-case-details">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                                            Details
+                                        </a>
+                                    </td>
+                                    <td class="text-nowrap">
+                                        <div class="portal-actions">
+                                            <button type="button" class="btn-case btn-case-none">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M15 9l-6 6M9 9l6 6"/></svg>
+                                                No Records
+                                            </button>
+                                            <button type="button" class="btn-case btn-case-found" data-bs-toggle="modal" data-bs-target="#recordsFoundModal">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>
+                                                Records Found
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Mr</td>
+                                    <td><div class="portal-name"><span>Thomas</span></div></td>
+                                    <td>William</td>
+                                    <td>Price</td>
+                                    <td>-</td>
+                                    <td>15 Apr 1950</td>
+                                    <td>6 Rodney Street, Liverpool, L1 2TE</td>
+                                    <td>21 Marine Drive, Wirral, CH48 5DE</td>
+                                    <td><span class="portal-ni">YP 22 11 00 C</span></td>
+                                    <td class="text-nowrap">
+                                        <a href="case-details.html" target="_blank" rel="noopener" class="btn-case btn-case-details">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                                            Details
+                                        </a>
+                                    </td>
+                                    <td class="text-nowrap">
+                                        <div class="portal-actions">
+                                            <button type="button" class="btn-case btn-case-none">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M15 9l-6 6M9 9l6 6"/></svg>
+                                                No Records
+                                            </button>
+                                            <button type="button" class="btn-case btn-case-found" data-bs-toggle="modal" data-bs-target="#recordsFoundModal">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>
+                                                Records Found
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Ms</td>
+                                    <td><div class="portal-name"><span>Aisha</span></div></td>
+                                    <td>Noor</td>
+                                    <td>Khan</td>
+                                    <td>-</td>
+                                    <td>28 Feb 1968</td>
+                                    <td>19 New Walk, Leicester, LE1 6TE</td>
+                                    <td>4 Friar Gate, Derby, DE1 1BU</td>
+                                    <td><span class="portal-ni">AK 77 88 99 D</span></td>
+                                    <td class="text-nowrap">
+                                        <a href="case-details.html" target="_blank" rel="noopener" class="btn-case btn-case-details">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                                            Details
+                                        </a>
+                                    </td>
+                                    <td class="text-nowrap">
+                                        <div class="portal-actions">
+                                            <button type="button" class="btn-case btn-case-none">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M15 9l-6 6M9 9l6 6"/></svg>
+                                                No Records
+                                            </button>
+                                            <button type="button" class="btn-case btn-case-found" data-bs-toggle="modal" data-bs-target="#recordsFoundModal">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>
+                                                Records Found
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Mr</td>
+                                    <td><div class="portal-name"><span>David</span></div></td>
+                                    <td>Alan</td>
+                                    <td>Foster</td>
+                                    <td>Dave Foster</td>
+                                    <td>03 Jun 1945</td>
+                                    <td>27 Fargate, Sheffield, S1 2HD</td>
+                                    <td>8 Moorgate, Rotherham, S60 2EN</td>
+                                    <td><span class="portal-ni">DF 12 21 34 B</span></td>
+                                    <td class="text-nowrap">
+                                        <a href="case-details.html" target="_blank" rel="noopener" class="btn-case btn-case-details">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                                            Details
+                                        </a>
+                                    </td>
+                                    <td class="text-nowrap">
+                                        <div class="portal-actions">
+                                            <button type="button" class="btn-case btn-case-none">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M15 9l-6 6M9 9l6 6"/></svg>
+                                                No Records
+                                            </button>
+                                            <button type="button" class="btn-case btn-case-found" data-bs-toggle="modal" data-bs-target="#recordsFoundModal">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>
+                                                Records Found
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Mrs</td>
+                                    <td><div class="portal-name"><span>Catherine</span></div></td>
+                                    <td>Mary</td>
+                                    <td>Walsh</td>
+                                    <td>Kate Walsh</td>
+                                    <td>19 Aug 1936</td>
+                                    <td>15 Sauchiehall Street, Glasgow, G2 3ER</td>
+                                    <td>9 Princes Street, Edinburgh, EH2 2AN</td>
+                                    <td><span class="portal-ni">CW 56 78 90 A</span></td>
+                                    <td class="text-nowrap">
+                                        <a href="case-details.html" target="_blank" rel="noopener" class="btn-case btn-case-details">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                                            Details
+                                        </a>
+                                    </td>
+                                    <td class="text-nowrap">
+                                        <div class="portal-actions">
+                                            <button type="button" class="btn-case btn-case-none">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M15 9l-6 6M9 9l6 6"/></svg>
+                                                No Records
+                                            </button>
+                                            <button type="button" class="btn-case btn-case-found" data-bs-toggle="modal" data-bs-target="#recordsFoundModal">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>
+                                                Records Found
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Mr</td>
+                                    <td><div class="portal-name"><span>Henry</span></div></td>
+                                    <td>James</td>
+                                    <td>Osborne</td>
+                                    <td>Harry Osborne</td>
+                                    <td>11 Dec 1958</td>
+                                    <td>2 Above Bar Street, Southampton, SO14 7DW</td>
+                                    <td>18 Commercial Road, Portsmouth, PO1 1AA</td>
+                                    <td><span class="portal-ni">HO 90 12 34 C</span></td>
+                                    <td class="text-nowrap">
+                                        <a href="case-details.html" target="_blank" rel="noopener" class="btn-case btn-case-details">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                                            Details
+                                        </a>
+                                    </td>
+                                    <td class="text-nowrap">
+                                        <div class="portal-actions">
+                                            <button type="button" class="btn-case btn-case-none">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M15 9l-6 6M9 9l6 6"/></svg>
+                                                No Records
+                                            </button>
+                                            <button type="button" class="btn-case btn-case-found" data-bs-toggle="modal" data-bs-target="#recordsFoundModal">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>
+                                                Records Found
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Ms</td>
+                                    <td><div class="portal-name"><span>Sophie</span></div></td>
+                                    <td>Louise</td>
+                                    <td>Grant</td>
+                                    <td>-</td>
+                                    <td>07 May 1972</td>
+                                    <td>11 Market Square, Nottingham, NG1 6HX</td>
+                                    <td>3 Castle Hill, Lincoln, LN1 3AA</td>
+                                    <td><span class="portal-ni">SG 45 23 11 D</span></td>
+                                    <td class="text-nowrap">
+                                        <a href="case-details.html" target="_blank" rel="noopener" class="btn-case btn-case-details">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                                            Details
+                                        </a>
+                                    </td>
+                                    <td class="text-nowrap">
+                                        <div class="portal-actions">
+                                            <button type="button" class="btn-case btn-case-none">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M15 9l-6 6M9 9l6 6"/></svg>
+                                                No Records
+                                            </button>
+                                            <button type="button" class="btn-case btn-case-found" data-bs-toggle="modal" data-bs-target="#recordsFoundModal">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>
+                                                Records Found
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Mr</td>
+                                    <td><div class="portal-name"><span>Michael</span></div></td>
+                                    <td>Patrick</td>
+                                    <td>O'Neill</td>
+                                    <td>Mick O'Neill</td>
+                                    <td>25 Oct 1949</td>
+                                    <td>7 Donegall Square, Belfast, BT1 5GS</td>
+                                    <td>14 Strand Road, Derry, BT48 7AB</td>
+                                    <td><span class="portal-ni">MO 67 89 01 B</span></td>
+                                    <td class="text-nowrap">
+                                        <a href="case-details.html" target="_blank" rel="noopener" class="btn-case btn-case-details">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                                            Details
+                                        </a>
+                                    </td>
+                                    <td class="text-nowrap">
+                                        <div class="portal-actions">
+                                            <button type="button" class="btn-case btn-case-none">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M15 9l-6 6M9 9l6 6"/></svg>
+                                                No Records
+                                            </button>
+                                            <button type="button" class="btn-case btn-case-found" data-bs-toggle="modal" data-bs-target="#recordsFoundModal">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>
+                                                Records Found
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
-
-                    <div class="row g-3 row-cols-xxl-3 row-cols-lg-3 row-cols-md-2 row-cols-1 mb-6">
-                        <div class="col">
-                            <div class="card shadow-custom rounded-custom">
-                                <div class="card-body p-6 position-relative">
-                                    <div class="btn-icon bg-label-primary rounded-pill btn-lg mb-3">
-                                        <svg width="22" height="16" viewBox="0 0 22 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M10.9508 10.5399C7.5008 10.5399 4.58984 11.1037 4.58984 13.2794C4.58984 15.4561 7.5196 16 10.9508 16C14.4008 16 17.3117 15.4362 17.3117 13.2605C17.3117 11.0839 14.382 10.5399 10.9508 10.5399Z" fill="currentColor" />
-                                            <path opacity="0.4" d="M10.9476 8.46703C13.2837 8.46703 15.1569 6.58307 15.1569 4.23351C15.1569 1.88306 13.2837 0 10.9476 0C8.61146 0 6.73828 1.88306 6.73828 4.23351C6.73828 6.58307 8.61146 8.46703 10.9476 8.46703Z" fill="currentColor" />
-                                            <path opacity="0.4" d="M20.0886 5.21926C20.693 2.84179 18.9209 0.706573 16.6645 0.706573C16.4192 0.706573 16.1846 0.73359 15.9554 0.779519C15.9249 0.786723 15.8909 0.802032 15.873 0.829049C15.8524 0.86327 15.8676 0.909199 15.89 0.938917C16.5678 1.89531 16.9573 3.05973 16.9573 4.3097C16.9573 5.50744 16.6001 6.62413 15.9733 7.5508C15.9088 7.64626 15.9661 7.77504 16.0798 7.79485C16.2374 7.82277 16.3986 7.83718 16.5634 7.84168C18.2064 7.88491 19.6811 6.82135 20.0886 5.21926Z" fill="currentColor" />
-                                            <path d="M21.8094 10.8169C21.5086 10.1721 20.7824 9.72996 19.6783 9.51292C19.1572 9.38504 17.747 9.20493 16.4352 9.22925C16.4155 9.23195 16.4048 9.24546 16.403 9.25446C16.4003 9.26707 16.4057 9.28868 16.4316 9.30219C17.0378 9.60388 19.3811 10.916 19.0865 13.6834C19.074 13.8032 19.1698 13.9067 19.2888 13.8887C19.8655 13.8059 21.3492 13.4853 21.8094 12.4866C22.0637 11.9588 22.0637 11.3456 21.8094 10.8169Z" fill="currentColor" />
-                                            <path opacity="0.4" d="M6.04508 0.779793C5.81675 0.732964 5.58126 0.706848 5.33592 0.706848C3.0795 0.706848 1.3075 2.84207 1.91279 5.21953C2.31931 6.82162 3.79403 7.88518 5.4371 7.84195C5.60185 7.83745 5.76392 7.82214 5.92062 7.79513C6.03433 7.77531 6.09164 7.64653 6.02717 7.55107C5.40039 6.6235 5.04312 5.50771 5.04312 4.30997C5.04312 3.0591 5.43352 1.89468 6.11134 0.939192C6.13283 0.909473 6.14894 0.863545 6.12745 0.829324C6.10954 0.801407 6.07641 0.786998 6.04508 0.779793Z" fill="currentColor" />
-                                            <path d="M2.32156 9.51267C1.21752 9.7297 0.492248 10.1719 0.191392 10.8167C-0.0637974 11.3453 -0.0637974 11.9586 0.191392 12.4872C0.651629 13.485 2.13531 13.8065 2.71195 13.8885C2.83104 13.9065 2.92595 13.8038 2.91342 13.6831C2.61883 10.9166 4.9621 9.60453 5.56918 9.30284C5.59425 9.28843 5.59962 9.26772 5.59694 9.25421C5.59515 9.2452 5.5853 9.2317 5.5656 9.22989C4.25294 9.20468 2.84358 9.38479 2.32156 9.51267Z" fill="currentColor" />
-                                        </svg>
-                                    </div>
-                                    <span class="fz-12px fw-medium d-block">Pending cases</span>
-                                    <h3 class="h6 fs-9 mb-1">4</h3>
-                                    <div class="p-px-2 pr-px-10 border rounded-pill d-inline-flex align-items-center gap-2">
-                                        <span class="bg-label-success px-px-8 py-px-1 rounded-pill d-inline-flex align-items-center gap-1 fz-12px fw-medium">
-                                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M6 11V1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                                <path d="M1 6L6 1L11 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                            </svg>
-                                            12.5%
-                                        </span>
-                                        <span class="fz-12px fw-medium">This week</span>
-                                    </div>
-                                    <div class="position-absolute top-9 end-3 p-1">
-                                        <img src="assets/img/icons/dashboard/chart-up.png" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card shadow-custom rounded-custom">
-                                <div class="card-body p-6 position-relative">
-                                    <div class="btn-icon bg-label-warning rounded-pill btn-lg mb-3">
-                                        <svg width="18" height="17" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M17.3721 16.7442H0.627907C0.284651 16.7442 0 16.4595 0 16.1162C0 15.773 0.284651 15.4883 0.627907 15.4883H17.3721C17.7153 15.4883 18 15.773 18 16.1162C18 16.4595 17.7153 16.7442 17.3721 16.7442Z" fill="currentColor" />
-                                            <path d="M7.11719 1.67442V16.7442H10.8846V1.67442C10.8846 0.753488 10.5079 0 9.37765 0H8.62416C7.49393 0 7.11719 0.753488 7.11719 1.67442Z" fill="currentColor" />
-                                            <path opacity="0.4" d="M1.46484 6.6977V16.7442H4.81368V6.6977C4.81368 5.77677 4.4788 5.02328 3.47415 5.02328H2.80438C1.79973 5.02328 1.46484 5.77677 1.46484 6.6977Z" fill="currentColor" />
-                                            <path opacity="0.4" d="M13.1875 10.8838V16.7442H16.5363V10.8838C16.5363 9.96284 16.2015 9.20935 15.1968 9.20935H14.527C13.5224 9.20935 13.1875 9.96284 13.1875 10.8838Z" fill="currentColor" />
-                                        </svg>
-                                    </div>
-                                    <span class="fz-12px fw-medium d-block">Received this week</span>
-                                    <h3 class="h6 fs-9 mb-1">2</h3>
-                                    <div class="p-px-2 pr-px-10 border rounded-pill d-inline-flex align-items-center gap-2">
-                                        <span class="bg-label-success px-px-8 py-px-1 rounded-pill d-inline-flex align-items-center gap-1 fz-12px fw-medium">
-                                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M6 11V1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                                <path d="M1 6L6 1L11 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                            </svg>
-                                            8.2%
-                                        </span>
-                                        <span class="fz-12px fw-medium">This month</span>
-                                    </div>
-                                    <div class="position-absolute top-9 end-3 p-1">
-                                        <img src="assets/img/icons/dashboard/chart-up.png" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card shadow-custom rounded-custom">
-                                <div class="card-body p-6 position-relative">
-                                    <div class="btn-icon bg-label-success rounded-pill btn-lg mb-3">
-                                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path opacity="0.4" d="M4.88256 14.9003C5.62898 14.9003 6.2405 15.5118 6.2405 16.2672C6.2405 17.0137 5.62898 17.6252 4.88256 17.6252C4.12715 17.6252 3.51562 17.0137 3.51562 16.2672C3.51562 15.5118 4.12715 14.9003 4.88256 14.9003ZM14.9997 14.9003C15.7461 14.9003 16.3576 15.5118 16.3576 16.2672C16.3576 17.0137 15.7461 17.6252 14.9997 17.6252C14.2443 17.6252 13.6327 17.0137 13.6327 16.2672C13.6327 15.5118 14.2443 14.9003 14.9997 14.9003Z" fill="currentColor" />
-                                            <path d="M0.792051 0.0074916L2.93688 0.331239C3.24264 0.386097 3.46747 0.637001 3.49444 0.942763L3.66531 2.95719C3.69229 3.24587 3.92611 3.4617 4.21388 3.4617H16.3589C16.9075 3.4617 17.2672 3.65055 17.6269 4.06423C17.9867 4.47791 18.0496 5.07145 17.9687 5.61013L17.1143 11.5095C16.9525 12.6435 15.9812 13.479 14.8391 13.479H5.02775C3.83168 13.479 2.84245 12.5617 2.74353 11.3755L1.91617 1.57227L0.558233 1.33845C0.198513 1.2755 -0.0532905 0.924777 0.0096604 0.565057C0.0726113 0.196344 0.423338 -0.0464664 0.792051 0.0074916ZM13.4002 6.78821H10.9092C10.5315 6.78821 10.2347 7.08498 10.2347 7.46268C10.2347 7.83139 10.5315 8.13716 10.9092 8.13716H13.4002C13.7779 8.13716 14.0747 7.83139 14.0747 7.46268C14.0747 7.08498 13.7779 6.78821 13.4002 6.78821Z" fill="currentColor" />
-                                        </svg>
-                                    </div>
-                                    <span class="fz-12px fw-medium d-block">Reviewed this month</span>
-                                    <h3 class="h6 fs-9 mb-1">18</h3>
-                                    <div class="p-px-2 pr-px-10 border rounded-pill d-inline-flex align-items-center gap-2">
-                                        <span class="bg-label-danger px-px-8 py-px-1 rounded-pill d-inline-flex align-items-center gap-1 fz-12px fw-medium">
-                                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M6 1V11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                                <path d="M1 6L6 11L11 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                            </svg>
-                                            3.5%
-                                        </span>
-                                        <span class="fz-12px fw-medium">This month</span>
-                                    </div>
-                                    <div class="position-absolute top-9 end-3 p-1">
-                                        <img src="assets/img/icons/dashboard/chart-down.png" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card shadow-custom rounded-custom">
-                        <div class="card-body p-6">
-                            <div class="mb-5">
-                                <h5 class="portal-section-title mb-1">Case list</h5>
-                                <p class="text-muted mb-0">Deceased personal details supplied for asset and liability search.</p>
-                            </div>
-                            <table id="casesTable" class="table align-middle portal-table mb-0 w-100">
-                                <thead class="table-light">
-                                    <tr>
-                                        <th class="fw-medium">Title</th>
-                                        <th class="fw-medium">Forename</th>
-                                        <th class="fw-medium">Middle Names</th>
-                                        <th class="fw-medium">Surname</th>
-                                        <th class="fw-medium">Alias</th>
-                                        <th class="fw-medium">Date of Birth</th>
-                                        <th class="fw-medium">Last known address</th>
-                                        <th class="fw-medium">Previous Address</th>
-                                        <th class="fw-medium">National Insurance Number</th>
-                                        <th class="fw-medium">Further Details</th>
-                                        <th class="fw-medium text-end">Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Mr</td>
-                                        <td><div class="portal-name"><span>James</span></div></td>
-                                        <td>Edward</td>
-                                        <td>Whitaker</td>
-                                        <td>Jim Whitaker</td>
-                                        <td>12 Mar 1948</td>
-                                        <td>14 Church Lane, Leeds, LS2 8HD</td>
-                                        <td>9 Albert Street, York, YO1 6JT</td>
-                                        <td><span class="portal-ni">QQ 12 34 56 C</span></td>
-                                        <td class="text-nowrap">
-                                            <a href="case-details.html" target="_blank" rel="noopener" class="btn-case btn-case-details">
-                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                                                Details
-                                            </a>
-                                        </td>
-                                        <td class="text-nowrap">
-                                            <div class="portal-actions">
-                                                <button type="button" class="btn-case btn-case-none">
-                                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M15 9l-6 6M9 9l6 6"/></svg>
-                                                    No Records
-                                                </button>
-                                                <button type="button" class="btn-case btn-case-found" data-bs-toggle="modal" data-bs-target="#recordsFoundModal">
-                                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>
-                                                    Records Found
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Mrs</td>
-                                        <td><div class="portal-name"><span>Margaret</span></div></td>
-                                        <td>Anne</td>
-                                        <td>Collins</td>
-                                        <td>-</td>
-                                        <td>04 Jul 1939</td>
-                                        <td>22 Westfield Road, Manchester, M20 6QB</td>
-                                        <td>5 Park View, Stockport, SK1 4DN</td>
-                                        <td><span class="portal-ni">AB 98 76 54 A</span></td>
-                                        <td class="text-nowrap">
-                                            <a href="case-details.html" target="_blank" rel="noopener" class="btn-case btn-case-details">
-                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                                                Details
-                                            </a>
-                                        </td>
-                                        <td class="text-nowrap">
-                                            <div class="portal-actions">
-                                                <button type="button" class="btn-case btn-case-none">
-                                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M15 9l-6 6M9 9l6 6"/></svg>
-                                                    No Records
-                                                </button>
-                                                <button type="button" class="btn-case btn-case-found" data-bs-toggle="modal" data-bs-target="#recordsFoundModal">
-                                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>
-                                                    Records Found
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Ms</td>
-                                        <td><div class="portal-name"><span>Priya</span></div></td>
-                                        <td>Lakshmi</td>
-                                        <td>Sharma</td>
-                                        <td>-</td>
-                                        <td>22 Nov 1961</td>
-                                        <td>8 Victoria Gardens, Birmingham, B15 2TT</td>
-                                        <td>31 High Street, Coventry, CV1 5RE</td>
-                                        <td><span class="portal-ni">JX 45 67 89 D</span></td>
-                                        <td class="text-nowrap">
-                                            <a href="case-details.html" target="_blank" rel="noopener" class="btn-case btn-case-details">
-                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                                                Details
-                                            </a>
-                                        </td>
-                                        <td class="text-nowrap">
-                                            <div class="portal-actions">
-                                                <button type="button" class="btn-case btn-case-none">
-                                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M15 9l-6 6M9 9l6 6"/></svg>
-                                                    No Records
-                                                </button>
-                                                <button type="button" class="btn-case btn-case-found" data-bs-toggle="modal" data-bs-target="#recordsFoundModal">
-                                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>
-                                                    Records Found
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Mr</td>
-                                        <td><div class="portal-name"><span>Robert</span></div></td>
-                                        <td>-</td>
-                                        <td>Hughes</td>
-                                        <td>Bob Hughes</td>
-                                        <td>18 Jan 1955</td>
-                                        <td>3 Harbour View, Cardiff, CF10 1EP</td>
-                                        <td>17 Station Road, Newport, NP20 1AA</td>
-                                        <td><span class="portal-ni">NW 11 22 33 B</span></td>
-                                        <td class="text-nowrap">
-                                            <a href="case-details.html" target="_blank" rel="noopener" class="btn-case btn-case-details">
-                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                                                Details
-                                            </a>
-                                        </td>
-                                        <td class="text-nowrap">
-                                            <div class="portal-actions">
-                                                <button type="button" class="btn-case btn-case-none">
-                                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M15 9l-6 6M9 9l6 6"/></svg>
-                                                    No Records
-                                                </button>
-                                                <button type="button" class="btn-case btn-case-found" data-bs-toggle="modal" data-bs-target="#recordsFoundModal">
-                                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>
-                                                    Records Found
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Mrs</td>
-                                        <td><div class="portal-name"><span>Eleanor</span></div></td>
-                                        <td>Grace</td>
-                                        <td>Bennett</td>
-                                        <td>Ellie Bennett</td>
-                                        <td>09 Sep 1942</td>
-                                        <td>41 Queen Square, Bristol, BS1 4LH</td>
-                                        <td>12 Pulteney Street, Bath, BA2 4BZ</td>
-                                        <td><span class="portal-ni">CE 33 44 55 A</span></td>
-                                        <td class="text-nowrap">
-                                            <a href="case-details.html" target="_blank" rel="noopener" class="btn-case btn-case-details">
-                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                                                Details
-                                            </a>
-                                        </td>
-                                        <td class="text-nowrap">
-                                            <div class="portal-actions">
-                                                <button type="button" class="btn-case btn-case-none">
-                                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M15 9l-6 6M9 9l6 6"/></svg>
-                                                    No Records
-                                                </button>
-                                                <button type="button" class="btn-case btn-case-found" data-bs-toggle="modal" data-bs-target="#recordsFoundModal">
-                                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>
-                                                    Records Found
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Mr</td>
-                                        <td><div class="portal-name"><span>Thomas</span></div></td>
-                                        <td>William</td>
-                                        <td>Price</td>
-                                        <td>-</td>
-                                        <td>15 Apr 1950</td>
-                                        <td>6 Rodney Street, Liverpool, L1 2TE</td>
-                                        <td>21 Marine Drive, Wirral, CH48 5DE</td>
-                                        <td><span class="portal-ni">YP 22 11 00 C</span></td>
-                                        <td class="text-nowrap">
-                                            <a href="case-details.html" target="_blank" rel="noopener" class="btn-case btn-case-details">
-                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                                                Details
-                                            </a>
-                                        </td>
-                                        <td class="text-nowrap">
-                                            <div class="portal-actions">
-                                                <button type="button" class="btn-case btn-case-none">
-                                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M15 9l-6 6M9 9l6 6"/></svg>
-                                                    No Records
-                                                </button>
-                                                <button type="button" class="btn-case btn-case-found" data-bs-toggle="modal" data-bs-target="#recordsFoundModal">
-                                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>
-                                                    Records Found
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Ms</td>
-                                        <td><div class="portal-name"><span>Aisha</span></div></td>
-                                        <td>Noor</td>
-                                        <td>Khan</td>
-                                        <td>-</td>
-                                        <td>28 Feb 1968</td>
-                                        <td>19 New Walk, Leicester, LE1 6TE</td>
-                                        <td>4 Friar Gate, Derby, DE1 1BU</td>
-                                        <td><span class="portal-ni">AK 77 88 99 D</span></td>
-                                        <td class="text-nowrap">
-                                            <a href="case-details.html" target="_blank" rel="noopener" class="btn-case btn-case-details">
-                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                                                Details
-                                            </a>
-                                        </td>
-                                        <td class="text-nowrap">
-                                            <div class="portal-actions">
-                                                <button type="button" class="btn-case btn-case-none">
-                                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M15 9l-6 6M9 9l6 6"/></svg>
-                                                    No Records
-                                                </button>
-                                                <button type="button" class="btn-case btn-case-found" data-bs-toggle="modal" data-bs-target="#recordsFoundModal">
-                                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>
-                                                    Records Found
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Mr</td>
-                                        <td><div class="portal-name"><span>David</span></div></td>
-                                        <td>Alan</td>
-                                        <td>Foster</td>
-                                        <td>Dave Foster</td>
-                                        <td>03 Jun 1945</td>
-                                        <td>27 Fargate, Sheffield, S1 2HD</td>
-                                        <td>8 Moorgate, Rotherham, S60 2EN</td>
-                                        <td><span class="portal-ni">DF 12 21 34 B</span></td>
-                                        <td class="text-nowrap">
-                                            <a href="case-details.html" target="_blank" rel="noopener" class="btn-case btn-case-details">
-                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                                                Details
-                                            </a>
-                                        </td>
-                                        <td class="text-nowrap">
-                                            <div class="portal-actions">
-                                                <button type="button" class="btn-case btn-case-none">
-                                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M15 9l-6 6M9 9l6 6"/></svg>
-                                                    No Records
-                                                </button>
-                                                <button type="button" class="btn-case btn-case-found" data-bs-toggle="modal" data-bs-target="#recordsFoundModal">
-                                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>
-                                                    Records Found
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Mrs</td>
-                                        <td><div class="portal-name"><span>Catherine</span></div></td>
-                                        <td>Mary</td>
-                                        <td>Walsh</td>
-                                        <td>Kate Walsh</td>
-                                        <td>19 Aug 1936</td>
-                                        <td>15 Sauchiehall Street, Glasgow, G2 3ER</td>
-                                        <td>9 Princes Street, Edinburgh, EH2 2AN</td>
-                                        <td><span class="portal-ni">CW 56 78 90 A</span></td>
-                                        <td class="text-nowrap">
-                                            <a href="case-details.html" target="_blank" rel="noopener" class="btn-case btn-case-details">
-                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                                                Details
-                                            </a>
-                                        </td>
-                                        <td class="text-nowrap">
-                                            <div class="portal-actions">
-                                                <button type="button" class="btn-case btn-case-none">
-                                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M15 9l-6 6M9 9l6 6"/></svg>
-                                                    No Records
-                                                </button>
-                                                <button type="button" class="btn-case btn-case-found" data-bs-toggle="modal" data-bs-target="#recordsFoundModal">
-                                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>
-                                                    Records Found
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Mr</td>
-                                        <td><div class="portal-name"><span>Henry</span></div></td>
-                                        <td>James</td>
-                                        <td>Osborne</td>
-                                        <td>Harry Osborne</td>
-                                        <td>11 Dec 1958</td>
-                                        <td>2 Above Bar Street, Southampton, SO14 7DW</td>
-                                        <td>18 Commercial Road, Portsmouth, PO1 1AA</td>
-                                        <td><span class="portal-ni">HO 90 12 34 C</span></td>
-                                        <td class="text-nowrap">
-                                            <a href="case-details.html" target="_blank" rel="noopener" class="btn-case btn-case-details">
-                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                                                Details
-                                            </a>
-                                        </td>
-                                        <td class="text-nowrap">
-                                            <div class="portal-actions">
-                                                <button type="button" class="btn-case btn-case-none">
-                                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M15 9l-6 6M9 9l6 6"/></svg>
-                                                    No Records
-                                                </button>
-                                                <button type="button" class="btn-case btn-case-found" data-bs-toggle="modal" data-bs-target="#recordsFoundModal">
-                                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>
-                                                    Records Found
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Ms</td>
-                                        <td><div class="portal-name"><span>Sophie</span></div></td>
-                                        <td>Louise</td>
-                                        <td>Grant</td>
-                                        <td>-</td>
-                                        <td>07 May 1972</td>
-                                        <td>11 Market Square, Nottingham, NG1 6HX</td>
-                                        <td>3 Castle Hill, Lincoln, LN1 3AA</td>
-                                        <td><span class="portal-ni">SG 45 23 11 D</span></td>
-                                        <td class="text-nowrap">
-                                            <a href="case-details.html" target="_blank" rel="noopener" class="btn-case btn-case-details">
-                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                                                Details
-                                            </a>
-                                        </td>
-                                        <td class="text-nowrap">
-                                            <div class="portal-actions">
-                                                <button type="button" class="btn-case btn-case-none">
-                                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M15 9l-6 6M9 9l6 6"/></svg>
-                                                    No Records
-                                                </button>
-                                                <button type="button" class="btn-case btn-case-found" data-bs-toggle="modal" data-bs-target="#recordsFoundModal">
-                                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>
-                                                    Records Found
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Mr</td>
-                                        <td><div class="portal-name"><span>Michael</span></div></td>
-                                        <td>Patrick</td>
-                                        <td>O'Neill</td>
-                                        <td>Mick O'Neill</td>
-                                        <td>25 Oct 1949</td>
-                                        <td>7 Donegall Square, Belfast, BT1 5GS</td>
-                                        <td>14 Strand Road, Derry, BT48 7AB</td>
-                                        <td><span class="portal-ni">MO 67 89 01 B</span></td>
-                                        <td class="text-nowrap">
-                                            <a href="case-details.html" target="_blank" rel="noopener" class="btn-case btn-case-details">
-                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                                                Details
-                                            </a>
-                                        </td>
-                                        <td class="text-nowrap">
-                                            <div class="portal-actions">
-                                                <button type="button" class="btn-case btn-case-none">
-                                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M15 9l-6 6M9 9l6 6"/></svg>
-                                                    No Records
-                                                </button>
-                                                <button type="button" class="btn-case btn-case-found" data-bs-toggle="modal" data-bs-target="#recordsFoundModal">
-                                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>
-                                                    Records Found
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <footer class="app-footer mt-auto py-3 text-center">
-                <div class="container">
-                    <span class="text-muted">Copyright © <span id="footer-year"></span> EPIC Investment Partners</span>
-                </div>
-            </footer>
-            <div class="app-backdrop"></div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="recordsFoundModal" tabindex="-1" aria-labelledby="recordsFoundModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="recordsFoundModalLabel">Records Found</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <p class="text-muted">Enter the details of the assets found for this case.</p>
-                    <div class="row g-4">
-                        <div class="col-md-6">
-                            <label class="form-label" for="assetType">Asset type</label>
-                            <select class="form-select" id="assetType">
-                                <option>Bank / current account</option>
-                                <option>Savings / ISA</option>
-                                <option>Investment / shares</option>
-                                <option>Pension</option>
-                                <option>Life insurance / policy</option>
-                                <option>Property / mortgage</option>
-                                <option>Loan / credit card / overdraft</option>
-                                <option>Other</option>
-                            </select>
-                        </div>
-                        <div class="col-md-6">
-                            <label class="form-label" for="assetInstitution">Institution / product name</label>
-                            <input type="text" class="form-control" id="assetInstitution" placeholder="e.g. Barclays Current Account">
-                        </div>
-                        <div class="col-md-6">
-                            <label class="form-label" for="assetReference">Account / policy number</label>
-                            <input type="text" class="form-control" id="assetReference" placeholder="Reference number">
-                        </div>
-                        <div class="col-md-6">
-                            <label class="form-label" for="assetValue">Estimated value</label>
-                            <input type="text" class="form-control" id="assetValue" placeholder="£0.00">
-                        </div>
-                        <div class="col-12">
-                            <label class="form-label" for="assetNotes">Notes</label>
-                            <textarea class="form-control" id="assetNotes" rows="4" placeholder="Add details of the assets found"></textarea>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-portal" data-bs-dismiss="modal">Submit match</button>
                 </div>
             </div>
         </div>
+
+        <footer class="app-footer mt-auto py-3 text-center">
+            <div class="container">
+                <span class="text-muted">Copyright © <span id="footer-year"></span> EPIC Investment Partners</span>
+            </div>
+        </footer>
+        <div class="app-backdrop"></div>
     </div>
+</div>
 
-    <script src="assets/js/jquery.js"></script>
-    <script src="assets/js/perfect-scrollbar.js"></script>
-    <script src="assets/js/bootstrap.js"></script>
-    <script src="assets/vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="assets/vendor/datatables/dataTables.bootstrap5.min.js"></script>
-    <script src="assets/js/sidebar.js"></script>
-    <script src="assets/js/custom.js"></script>
-    <script src="assets/js/cases-table.js"></script>
-</body>
-
-</html>
+<?php include_once 'inc/footer.php' ?>
