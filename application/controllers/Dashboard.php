@@ -16,6 +16,10 @@
 
 		function index()
 		{
+			if ($this->checkLogin('E') == '') {
+				redirect('login');
+			}
+
 			// View page link
 			$this->load->view('dashboard', $this->data);
 		}

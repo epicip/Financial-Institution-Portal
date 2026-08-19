@@ -17,7 +17,14 @@
 </head>
 
 <body class="login-page">
-
+    <?php if ($this->session->flashdata('sErrMSG') != '') { ?>
+        <div class="alert alert-<?= $this->session->flashdata('sErrMSGType') ?> page-alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">x</span>
+            </button>
+            <?= $this->session->flashdata('sErrMSG') ?>
+        </div>
+    <?php } ?>
 
     <div class="auth-wrapper auth-cover min-vh-100 d-flex align-items-center justify-content-center">
         <span class="login-orb login-orb-1"></span>
@@ -38,7 +45,8 @@
                     <p class="login-subtitle">Sign in with your email address and password.</p>
                 </div>
 
-                <form method="post" novalidate action="<?= base_url() ?>users/login_process">
+                <form method="post" novalidate action="<?= base_url('login-process') ?>">
+                    <input type="hidden" name="token" id="token" value="">
                     <div class="login-field mb-4">
                         <label for="loginEmail" class="form-label">Email Address <span class="text-danger">*</span></label>
                         <div class="login-field-control">
@@ -57,7 +65,7 @@
                                 <path d="M7.5 10.5V8.25a4.5 4.5 0 1 1 9 0V10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
                                 <rect x="5.25" y="10.5" width="13.5" height="9" rx="2" stroke="currentColor" stroke-width="1.5" />
                             </svg>
-                            <input type="password" class="form-control pe-5" placeholder="**********" id="loginPassword" type="password" required>
+                            <input type="password" class="form-control pe-5" placeholder="**********" id="loginPassword" name="password" required>
                             <span class="password-toggle" role="button" tabindex="0" aria-label="Show password">
                                 <span class="close-eye password-eye">
                                     <svg width="22" height="10" viewBox="0 0 22 10" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -93,13 +101,13 @@
     <script src="assets/js/perfect-scrollbar.js"></script>
     <script src="assets/js/bootstrap.js"></script>
     <script src="assets/js/custom.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js?render=6Ld-YakaAAAAAO4HAQzTpECYGe5M0hj4Pqr9UFo-"></script>
 
     <script>
         grecaptcha.ready(function() {
             grecaptcha.execute('6Ld-YakaAAAAAO4HAQzTpECYGe5M0hj4Pqr9UFo-', {
                 action: 'userLogin'
             }).then(function(token) {
-                // console.log(token);
                 document.getElementById("token").value = token;
             });
         });
