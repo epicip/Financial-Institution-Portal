@@ -46,18 +46,17 @@ class Login extends My_Controller
 					// check if password is correct
 					if (password_verify($password, $user_details->password)) {
 
-						echo 'password is correct';
-
 						$institutiondata = array(
 							'fc_session_institution_id' => $user_details->institutions_id,
-							'fc_session_user_id' => $user_details->id,
+							'fc_session_user_id' => $user_details->user_id,
+							'fc_session_user_name' => $user_details->name,
 						);
 						$this->session->sess_regenerate(TRUE);
 						$this->session->set_userdata($institutiondata);
 						if ($this->input->post('remember') != '') {
 							$cookie = array(
 								'name'   => 'institution_session',
-								'value'  => $user_details->id,
+								'value'  => $user_details->user_id,
 								'expire' => 86400,
 								'secure' => TRUE,
 								'httponly' => TRUE
