@@ -2,8 +2,7 @@
     <div class="app-sidebar-wrapper">
         <div class="app-sidebar-header d-flex align-items-center justify-content-between">
             <a href="./cases.html" class="app-sidebar-logo">
-                <img class="app-main-logo logo-black" src="<?= base_url('assets/img/logo/epic-logo.svg') ?>" alt="EPIC Investment Partners">
-                <img class="app-main-logo logo-white d-none" src="<?= base_url('assets/img/logo/epic-logo-white.svg') ?>" alt="EPIC Investment Partners">
+                <img class="app-main-logo logo-black" src="<?= base_url('assets/img/logo/logo.png') ?>" alt="EPIC Investment Partners">
             </a>
             <button type="button" class="app-sidebar-close-btn app-sidebar-mobile-close d-xl-none">
                 <svg width="20" height="12" viewBox="0 0 20 12" fill="none" xmlns="http://www.w3.org/2000/svg">
