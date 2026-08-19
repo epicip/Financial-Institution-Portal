@@ -18,5 +18,8 @@ class Cases extends My_Controller
     }
 
 
-    
+    function index()
+    {
+        $this->load->view('all-cases', $this->data);
+    }
 }
