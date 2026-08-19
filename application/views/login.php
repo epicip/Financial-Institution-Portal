@@ -28,11 +28,11 @@
             <div class="login-card-inner">
                 <div class="mb-6 text-center">
                     <div class="d-flex align-items-center justify-content-center mb-4">
-                        <img class="app-main-logo logo-black" src="assets/img/logo/epic-logo.svg" alt="EPIC Investment Partners">
+                        <img class="app-main-logo logo-black" src="assets/img/logo/logo.png" alt="LegalAds Advertisement Agency">
                     </div>
                     <span class="login-kicker">
                         <span class="login-kicker-dot"></span>
-                        Secure portal
+                        Financial Institution Portal
                     </span>
                     <h4 class="login-title mb-1">Welcome back</h4>
                     <p class="login-subtitle">Sign in with your email address and password.</p>

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pending Cases | EPIC Investment Partners</title>
+    <title>Pending Cases | LegalAds Advertisement Agency</title>
     <link rel="shortcut icon" href="assets/img/logo/favicon.png" type="image/png">
     <link id="bootstrap-css" rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="assets/css/perfect-scrollbar.css">

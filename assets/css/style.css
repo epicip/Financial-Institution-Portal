@@ -1278,7 +1278,7 @@ button {
   display: none;
 }
 .app-sidebar-logo .app-main-logo {
-  height: 32px;
+  height: 50px;
   width: auto;
   max-width: 180px;
   object-fit: contain;
@@ -1337,7 +1337,7 @@ button {
 }
 .app-sidebar-menu ul li a.menu-current {
   /* background-color: var(--bs-primary); */
-  background: linear-gradient(135deg, #1A1549 0%, #2A2468 55%, #3a3480 100%);
+  background: linear-gradient(135deg, #302c5b 0%, #2A2468 55%, #3a3480 100%);
   color: var(--bs-white);
   box-shadow: 0 1px 2px 0 rgba(55, 17, 184, 0.25), 0 0 1px 0 #3E18BE;
 }
@@ -1617,8 +1617,8 @@ button {
   }
 }
 .auth-cover-wrapper {
-  background-color: #1A1549;
-  background-image: linear-gradient(165deg, #1A1549 0%, #2A2468 55%, #1A1549 100%);
+  background-color: #302c5b;
+  background-image: linear-gradient(165deg, #302c5b 0%, #2A2468 55%, #302c5b 100%);
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -1645,9 +1645,9 @@ button {
   object-fit: contain;
 }
 .auth-wrapper .btn-primary {
-  background-color: #1A1549;
-  border-color: #1A1549;
-  box-shadow: 0 1px 2px 0 rgba(26, 21, 73, 0.25), 0 0 1px 0 #1A1549;
+  background-color: #302c5b;
+  border-color: #302c5b;
+  box-shadow: 0 1px 2px 0 rgba(26, 21, 73, 0.25), 0 0 1px 0 #302c5b;
 }
 .auth-wrapper .btn-primary:hover,
 .auth-wrapper .btn-primary:focus,
@@ -1658,13 +1658,13 @@ button {
   box-shadow: none;
 }
 .auth-wrapper .form-control:focus {
-  border-color: #1A1549;
+  border-color: #302c5b;
   box-shadow: 0 0 0 0.25rem rgba(26, 21, 73, 0.2);
 }
 
 .login-page {
   min-height: 100vh;
-  background: #1A1549;
+  background: #302c5b;
 }
 
 .login-page .auth-wrapper {
@@ -1675,7 +1675,7 @@ button {
   background:
     radial-gradient(ellipse 90% 70% at 8% 12%, rgba(92, 82, 180, 0.42), transparent 55%),
     radial-gradient(ellipse 70% 55% at 96% 88%, rgba(42, 36, 104, 0.7), transparent 52%),
-    linear-gradient(160deg, #110d32 0%, #1A1549 48%, #241e5c 100%);
+    linear-gradient(160deg, #110d32 0%, #302c5b 48%, #241e5c 100%);
 }
 
 .login-page .auth-wrapper::before {
@@ -1737,7 +1737,7 @@ button {
 }
 
 .login-page .login-card-inner {
-  padding: 44px 40px 40px;
+  padding: 30px 40px 30px;
 }
 
 .login-page .login-kicker {
@@ -1748,7 +1748,7 @@ button {
   padding: 5px 10px;
   border-radius: 999px;
   background: rgba(26, 21, 73, 0.08);
-  color: #1A1549;
+  color: #302c5b;
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.06em;
@@ -1759,11 +1759,11 @@ button {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: #1A1549;
+  background: #302c5b;
 }
 
 .login-page .auth-wrapper .app-main-logo {
-  height: 52px;
+  height: 72px;
   max-width: 240px;
 }
 
@@ -1776,7 +1776,7 @@ button {
 }
 
 .login-page .login-title {
-  color: #1A1549;
+  color: #302c5b;
   font-size: 1.5rem;
   font-weight: 700;
 }
@@ -1792,7 +1792,7 @@ button {
 
 .login-field .form-label {
   font-weight: 600;
-  color: #1A1549;
+  color: #302c5b;
   margin-bottom: 8px;
 }
 
@@ -1811,7 +1811,7 @@ button {
 
 .login-field .form-control:focus {
   background-color: #fff;
-  border-color: #1A1549;
+  border-color: #302c5b;
   box-shadow: 0 0 0 4px rgba(26, 21, 73, 0.12);
 }
 
@@ -1843,7 +1843,7 @@ button {
 }
 
 .login-field .password-toggle:hover {
-  color: #1A1549;
+  color: #302c5b;
   background: rgba(26, 21, 73, 0.06);
 }
 
@@ -1865,7 +1865,7 @@ button {
 }
 
 .login-page .login-link {
-  color: #1A1549;
+  color: #302c5b;
   font-size: 0.8125rem;
   font-weight: 600;
   text-decoration: none;
@@ -1889,7 +1889,7 @@ button {
 }
 
 .login-page .login-back:hover {
-  color: #1A1549;
+  color: #302c5b;
 }
 
 .login-success {
@@ -1905,7 +1905,7 @@ button {
   justify-content: center;
   border-radius: 50%;
   background: rgba(26, 21, 73, 0.08);
-  color: #1A1549;
+  color: #302c5b;
 }
 
 @media (max-width: 575px) {
@@ -2867,8 +2867,8 @@ button {
 }
 
 .btn-portal {
-  background-color: #1A1549;
-  border-color: #1A1549;
+  background-color: #302c5b;
+  border-color: #302c5b;
   color: #fff;
 }
 .btn-portal:hover,
@@ -2879,14 +2879,14 @@ button {
   color: #fff !important;
 }
 .btn-outline-portal {
-  color: #1A1549;
-  border-color: #1A1549;
+  color: #302c5b;
+  border-color: #302c5b;
   background: transparent;
 }
 .btn-outline-portal:hover,
 .btn-outline-portal:focus {
-  background-color: #1A1549 !important;
-  border-color: #1A1549 !important;
+  background-color: #302c5b !important;
+  border-color: #302c5b !important;
   color: #fff !important;
 }
 .portal-actions {
@@ -2918,14 +2918,14 @@ button {
   flex-shrink: 0;
 }
 .btn-case-details {
-  color: #1A1549;
+  color: #302c5b;
   background: rgba(26, 21, 73, 0.07);
   border-color: rgba(26, 21, 73, 0.14);
 }
 .btn-case-details:hover {
   color: #fff;
-  background: #1A1549;
-  border-color: #1A1549;
+  background: #302c5b;
+  border-color: #302c5b;
 }
 .btn-case-none {
   color: #5f5e6c;
@@ -2938,8 +2938,8 @@ button {
 }
 .btn-case-found {
   color: #fff;
-  background: #1A1549;
-  border-color: #1A1549;
+  background: #302c5b;
+  border-color: #302c5b;
 }
 .btn-case-found:hover {
   color: #fff;
@@ -2970,7 +2970,7 @@ button {
   min-height: 38px;
   padding: 6px 32px 6px 12px;
   font-size: 13px;
-  color: #1A1549;
+  color: #302c5b;
   background-color: #fff;
   border: 1px solid #eceaf4;
   border-radius: 10px;
@@ -3038,14 +3038,14 @@ button {
   padding: 0 10px;
   border-radius: 8px !important;
   border: 1px solid #eceaf4;
-  color: #1A1549;
+  color: #302c5b;
   font-size: 13px;
   font-weight: 600;
   background: #fff;
 }
 #casesTable_wrapper .pagination .page-item.active .page-link {
-  background: #1A1549;
-  border-color: #1A1549;
+  background: #302c5b;
+  border-color: #302c5b;
   color: #fff;
 }
 #casesTable_wrapper .pagination .page-item.disabled .page-link {
@@ -3055,10 +3055,10 @@ button {
 #casesTable_wrapper .pagination .page-link:hover {
   background: rgba(26, 21, 73, 0.07);
   border-color: #d8d4ea;
-  color: #1A1549;
+  color: #302c5b;
 }
 #casesTable_wrapper .pagination .page-item.active .page-link:hover {
-  background: #1A1549;
+  background: #302c5b;
   color: #fff;
 }
 .portal-detail-label {
@@ -3076,7 +3076,7 @@ button {
   margin-bottom: 0;
 }
 .portal-section-title {
-  color: #1A1549;
+  color: #302c5b;
   font-weight: 700;
 }
 .portal-page .app-content-wrapper {
@@ -3085,7 +3085,7 @@ button {
     var(--app-main-bg);
 }
 .portal-hero {
-  background: linear-gradient(135deg, #1A1549 0%, #2A2468 55%, #3a3480 100%);
+  background: linear-gradient(135deg, #302c5b 0%, #2A2468 55%, #3a3480 100%);
   border-radius: 18px;
   padding: 28px 32px;
   color: #fff;
@@ -3118,7 +3118,7 @@ button {
 }
 .portal-hero .btn-light {
   background: #fff;
-  color: #1A1549;
+  color: #302c5b;
   border: 0;
   font-weight: 600;
 }
@@ -3142,7 +3142,7 @@ button {
   cursor: pointer;
 }
 .portal-choice:has(input:checked) {
-  border-color: #1A1549;
+  border-color: #302c5b;
   box-shadow: 0 0 0 3px rgba(26, 21, 73, 0.08);
 }
 .portal-stat .card-body {
@@ -3151,11 +3151,11 @@ button {
 .portal-stat-value {
   font-size: 28px;
   font-weight: 700;
-  color: #1A1549;
+  color: #302c5b;
   line-height: 1.1;
 }
 .eachfinancial-ins .portal-avatar {
-    background: linear-gradient(135deg, #1A1549 0%, #2A2468 55%, #3a3480 100%);
+    background: linear-gradient(135deg, #302c5b 0%, #2A2468 55%, #3a3480 100%);
 }
 .portal-table thead th {
   white-space: nowrap;
@@ -3206,7 +3206,7 @@ button {
   display: block;
   font-size: 13px;
   font-weight: 700;
-  color: #1A1549;
+  color: #302c5b;
   margin-bottom: 8px;
 }
 .portal-readonly,
@@ -3235,7 +3235,7 @@ button {
   text-decoration: none;
 }
 .portal-file-link:hover {
-  color: #1A1549;
+  color: #302c5b;
   text-decoration: underline;
 }
 .portal-search-item {
@@ -3292,7 +3292,7 @@ button {
   cursor: pointer;
 }
 .portal-password-toggle:hover {
-  color: #1A1549;
+  color: #302c5b;
 }
 .portal-password-toggle .icon-eye-off {
   display: none;
@@ -3323,8 +3323,8 @@ button {
   cursor: pointer;
 }
 .portal-choice .form-check-input:checked {
-  background-color: #1A1549;
-  border-color: #1A1549;
+  background-color: #302c5b;
+  border-color: #302c5b;
 }
 .portal-email-preview {
   background: linear-gradient(180deg, #f7f6fb 0%, #fff 100%);
