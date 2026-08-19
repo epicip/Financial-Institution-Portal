@@ -17,14 +17,7 @@
 </head>
 
 <body class="login-page">
-    <?php if ($this->session->flashdata('sErrMSG') != '') { ?>
-        <div class="alert alert-<?= $this->session->flashdata('sErrMSGType') ?> page-alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">x</span>
-            </button>
-            <?= $this->session->flashdata('sErrMSG') ?>
-        </div>
-    <?php } ?>
+
 
     <div class="auth-wrapper auth-cover min-vh-100 d-flex align-items-center justify-content-center">
         <span class="login-orb login-orb-1"></span>
@@ -44,6 +37,15 @@
                     <h4 class="login-title mb-1">Welcome back</h4>
                     <p class="login-subtitle">Sign in with your email address and password.</p>
                 </div>
+
+                <?php if ($this->session->flashdata('sErrMSG') != '') { ?>
+                    <div class="alert alert-<?= $this->session->flashdata('sErrMSGType') ?> page-alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">x</span>
+                        </button>
+                        <?= $this->session->flashdata('sErrMSG') ?>
+                    </div>
+                <?php } ?>
 
                 <form method="post" novalidate action="<?= base_url('login-process') ?>">
                     <input type="hidden" name="token" id="token" value="">

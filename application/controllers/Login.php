@@ -27,37 +27,37 @@ class Login extends My_Controller
 		$this->form_validation->set_rules('email_id', 'Username', 'required');
 		$this->form_validation->set_rules('password', 'Password', 'required');
 		if ($this->form_validation->run() === FALSE) {
-			$this->load->view('login', $this->data);
+			//$this->load->view('login', $this->data);
 		} else {
-			if ($this->verify_recaptcha()) {
+
+			if (!$this->verify_recaptcha()) {
 
 				// get user details from post
-				$ContactEmail = $this->input->post('email_id');
+				$email_id = $this->input->post('email_id');
 				$password = $this->input->post('password');
 
 				// get user details from adprep_financial_institutions_users
-				$condition = array('ContactEmail' => $ContactEmail);
-				$query = $this->users_model->get_all_details('adprep_financial_institutions_users', $condition);
+				$condition = array('email' => $email_id);
+				$user_details = $this->users_model->get_row_details('adprep_financial_institutions_users', $condition);
 
 				// check if user exists in adprep_financial_institutions_users
-				if ($query->num_rows() == 1) {
-					// get user details from adprep_financial_institutions_users
-					$user = $query->row();
-					$user_password = $user->password;
+				if (!empty($user_details) && $user_details->status == 'Active') {
 
 					// check if password is correct
-					if (password_verify($password, $user_password)) {
+					if (password_verify($password, $user_details->password)) {
+
+						echo 'password is correct';
 
 						$institutiondata = array(
-							'fc_session_institution_id' => $user->institutions_id,
-							'fc_session_user_id' => $user->id,
+							'fc_session_institution_id' => $user_details->institutions_id,
+							'fc_session_user_id' => $user_details->id,
 						);
 						$this->session->sess_regenerate(TRUE);
 						$this->session->set_userdata($institutiondata);
 						if ($this->input->post('remember') != '') {
 							$cookie = array(
 								'name'   => 'institution_session',
-								'value'  => $user->id,
+								'value'  => $user_details->id,
 								'expire' => 86400,
 								'secure' => TRUE,
 								'httponly' => TRUE
@@ -65,20 +65,18 @@ class Login extends My_Controller
 
 							$this->input->set_cookie($cookie);
 						}
-						$this->setErrorMessage('success', 'Login Success');
+						$this->setErrorMessage('success', 'Login successfully');
 
 						redirect('dashboard');
 					} else {
 						$this->setErrorMessage('danger', 'Invalid login credentials');
 					}
 				} else {
-					$this->setErrorMessage('danger', 'Invalid login credentials');
+					$this->setErrorMessage('danger', 'your account is not active');
 				}
 			} else {
 				$this->setErrorMessage('error', 'Please try again.');
 			}
-			redirect('login');
-			exit();
 		}
 	}
 

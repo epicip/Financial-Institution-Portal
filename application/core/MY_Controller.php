@@ -34,12 +34,12 @@ class MY_Controller extends CI_Controller
 
 
 		if ($this->checkLogin('E') != '') {
-			$clientDetails = $this->db->query(
+			$userDetails = $this->db->query(
 				'SELECT * FROM adprep_financial_institutions_users WHERE id = ?',
 				array($this->checkLogin('E'))
 			);
-			if ($clientDetails->num_rows() == 1) {
-				$this->data['client_id'] = $clientDetails->row()->id;
+			if ($userDetails->num_rows() == 1) {
+				$this->data['institution_user_id'] = $userDetails->row()->id;
 			}
 		}
 
@@ -57,7 +57,7 @@ class MY_Controller extends CI_Controller
 	public function checkLogin($type = '')
 	{
 		if ($type == 'E') {
-			return $this->session->userdata('fc_session_client_id');
+			return $this->session->userdata('fc_session_user_id');
 		}
 	}
 
