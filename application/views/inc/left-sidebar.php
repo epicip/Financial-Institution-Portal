@@ -52,7 +52,7 @@
                     </a>
                 </li>
                 <li class="app-sidebar-menu-item">
-                    <a href="./settings.html" class="menu-link d-flex align-items-center">
+                    <a href="<?= base_url('users') ?>" class="menu-link d-flex align-items-center">
                         <span class="menu-icon flex-shrink-0">
                             <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M14.5962 4.21155H1.90385C1.26659 4.21155 0.75 4.72814 0.75 5.36539V13.4423C0.75 14.0796 1.26659 14.5962 1.90385 14.5962H14.5962C15.2334 14.5962 15.75 14.0796 15.75 13.4423V5.36539C15.75 4.72814 15.2334 4.21155 14.5962 4.21155Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
@@ -61,7 +61,7 @@
                                 <path d="M11.7117 4.21153C11.7117 3.29348 11.347 2.41302 10.6978 1.76386C10.0486 1.1147 9.16817 0.75 8.25011 0.75V0.75C7.33206 0.75 6.4516 1.1147 5.80244 1.76386C5.15327 2.41302 4.78857 3.29348 4.78857 4.21153" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                             </svg>
                         </span>
-                        <span class="menu-title flex-grow-1">User Settings</span>
+                        <span class="menu-title flex-grow-1">User List</span>
                     </a>
                 </li>
             </ul>
