@@ -47,14 +47,14 @@
         </div>
     </div>
 
-    <script src="assets/js/jquery.js"></script>
-    <script src="assets/js/perfect-scrollbar.js"></script>
-    <script src="assets/js/bootstrap.js"></script>
-    <script src="assets/vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="assets/vendor/datatables/dataTables.bootstrap5.min.js"></script>
-    <script src="assets/js/sidebar.js"></script>
-    <script src="assets/js/custom.js"></script>
-    <script src="assets/js/cases-table.js"></script>
+    <script src="<?= base_url('assets/js/jquery.js') ?>"></script>
+    <script src="<?= base_url('assets/js/perfect-scrollbar.js') ?>"></script>
+    <script src="<?= base_url('assets/js/bootstrap.js') ?>"></script>
+    <script src="<?= base_url('assets/vendor/datatables/jquery.dataTables.min.js') ?>"></script>
+    <script src="<?= base_url('assets/vendor/datatables/dataTables.bootstrap5.min.js') ?>"></script>
+    <script src="<?= base_url('assets/js/sidebar.js') ?>"></script>
+    <script src="<?= base_url('assets/js/custom.js') ?>"></script>
+    <script src="<?= base_url('assets/js/cases-table.js') ?>"></script>
 </body>
 
 </html>

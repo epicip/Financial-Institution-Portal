@@ -22,4 +22,9 @@ class Cases extends My_Controller
     {
         $this->load->view('all-cases', $this->data);
     }
+
+    function pending()
+    {
+        $this->load->view('pending-cases', $this->data);
+    }
 }
