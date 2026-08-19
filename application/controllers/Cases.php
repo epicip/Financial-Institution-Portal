@@ -14,7 +14,7 @@ class Cases extends My_Controller
 
         $this->load->helper(array('cookie', 'date', 'form'));
         $this->load->library(array('form_validation'));
-        $this->load->model('orders_model');
+        $this->load->model('Cases_model');
     }
 
 
