@@ -4,15 +4,18 @@
 	class Dashboard extends My_Controller
 	{
 
-		/**
-		 * Display the client dashboard with order statistics.
-		 *
-		 * This function retrieves active, total, and published client orders
-		 * from the Users model, stores them in the data array, and loads
-		 * the dashboard view with the retrieved information.
-		 *
-		 * @return void
-		 */
+		public function __construct()
+		{
+			parent::__construct();
+
+			if ($this->checkLogin('E') == '') {
+				redirect('login');
+			}
+
+			$this->load->helper(array('cookie', 'date', 'form'));
+			$this->load->library(array('form_validation'));
+			$this->load->model('dashboard_model');
+		}
 
 		function index()
 		{
