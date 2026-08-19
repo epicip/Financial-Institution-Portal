@@ -7,23 +7,6 @@ class Login extends My_Controller
 	{
 		parent::__construct();
 
-		$exempted_path = [
-			'login',
-			'login-process',
-			'logout',
-			'forgot-password',
-			'forgot-password-process',
-		];
-
-		$path = $this->uri->uri_string();
-
-		if (!in_array($path, $exempted_path)) {
-			// if user is not logged in, redirect to login page for all methods
-			if ($this->checkLogin('E') == '') {
-				redirect('login');
-			}
-		}
-
 		$this->load->helper(array('cookie', 'date', 'form'));
 		$this->load->library(array('form_validation'));
 		$this->load->model('users_model');
@@ -33,9 +16,9 @@ class Login extends My_Controller
 	function index()
 	{
 		if ($this->checkLogin('E') == '') {
-			$this->load->view('login');
+			$this->load->view('login', $this->data);
 		} else {
-			redirect('orders/track_order');
+			redirect('dashboard');
 		}
 	}
 
@@ -44,57 +27,37 @@ class Login extends My_Controller
 		$this->form_validation->set_rules('email_id', 'Username', 'required');
 		$this->form_validation->set_rules('password', 'Password', 'required');
 		if ($this->form_validation->run() === FALSE) {
-			$this->load->view('users', $this->data);
+			//$this->load->view('login', $this->data);
 		} else {
-			$url = "https://www.google.com/recaptcha/api/siteverify";
-			$data = [
-				'secret' => "6Ld-YakaAAAAADRsHLmgYJtrJhQDYlKs8xhjz_CU",
-				'response' => $_POST['token'],
-				'remoteip' => $_SERVER['REMOTE_ADDR']
-			];
 
-			$options = array(
-				'http' => array(
-					'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
-					'method'  => 'POST',
-					'content' => http_build_query($data)
-				)
-			);
-
-			$context  = stream_context_create($options);
-			$response = file_get_contents($url, false, $context);
-
-			$res = json_decode($response, true);
-			$captcha = (!empty(captcha) ? false : true);
-			if ($res['success'] == $captcha) {
+			if (!$this->verify_recaptcha()) {
 
 				// get user details from post
-				$ContactEmail = $this->input->post('email_id');
+				$email_id = $this->input->post('email_id');
 				$password = $this->input->post('password');
 
 				// get user details from adprep_financial_institutions_users
-				$query = $this->users_model->getUserDetails('adprep_financial_institutions_users', $ContactEmail);
-
+				$condition = array('email' => $email_id);
+				$user_details = $this->users_model->get_row_details('adprep_financial_institutions_users', $condition);
 
 				// check if user exists in adprep_financial_institutions_users
-				if ($query->num_rows() == 1) {
-					// get user details from adprep_financial_institutions_users
-					$user = $query->row();
-					$user_password = $user->password;
+				if (!empty($user_details) && $user_details->status == 'Active') {
 
 					// check if password is correct
-					if (password_verify($password, $user_password)) {
+					if (password_verify($password, $user_details->password)) {
 
-						$clientdata = array(
-							'fc_session_institution_id' => $user->institutions_id,
-							'fc_session_user_id' => $user->id,
+						echo 'password is correct';
+
+						$institutiondata = array(
+							'fc_session_institution_id' => $user_details->institutions_id,
+							'fc_session_user_id' => $user_details->id,
 						);
-						$this->session->set_userdata($clientdata);
 						$this->session->sess_regenerate(TRUE);
+						$this->session->set_userdata($institutiondata);
 						if ($this->input->post('remember') != '') {
 							$cookie = array(
 								'name'   => 'institution_session',
-								'value'  => $user->id,
+								'value'  => $user_details->id,
 								'expire' => 86400,
 								'secure' => TRUE,
 								'httponly' => TRUE
@@ -102,20 +65,18 @@ class Login extends My_Controller
 
 							$this->input->set_cookie($cookie);
 						}
-						$this->setErrorMessage('success', 'Login Success');
+						$this->setErrorMessage('success', 'Login successfully');
 
 						redirect('dashboard');
 					} else {
 						$this->setErrorMessage('danger', 'Invalid login credentials');
 					}
 				} else {
-					$this->setErrorMessage('danger', 'Invalid login credentials');
+					$this->setErrorMessage('danger', 'your account is not active');
 				}
 			} else {
 				$this->setErrorMessage('error', 'Please try again.');
 			}
-			redirect('login');
-			exit();
 		}
 	}
 
@@ -158,41 +119,19 @@ class Login extends My_Controller
 	 */
 	function forgot_password()
 	{
-		$this->load->view('forgot-password');
+		$this->load->view('forgot-password', $this->data);
 	}
 
 	function forgot_password_process()
 	{
-
-		$url = "https://www.google.com/recaptcha/api/siteverify";
-		$data = [
-			'secret' => "6Ld-YakaAAAAADRsHLmgYJtrJhQDYlKs8xhjz_CU",
-			'response' => $_POST['token'],
-			'remoteip' => $_SERVER['REMOTE_ADDR']
-		];
-
-		$options = array(
-			'http' => array(
-				'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
-				'method'  => 'POST',
-				'content' => http_build_query($data)
-			)
-		);
-
-		$context  = stream_context_create($options);
-		$response = file_get_contents($url, false, $context);
-
-		$res = json_decode($response, true);
-		$captcha = (!empty(captcha) ? false : true);
-		if ($res['success'] == $captcha) {
-			$email = $this->input->post('email_id');
-			$condition = array('ContactEmail' => $email);
-			$query = $this->users_model->getUserDetails('adprep_financial_institutions_users', $email);
+		if ($this->verify_recaptcha()) {
+			$condition = array('email' => $this->input->post('email_id'));
+			$query = $this->users_model->get_row_details('adprep_financial_institutions_users', $condition);
 			if ($query->num_rows() == 1) {
 				$password = $this->generate_strong_password(8);
 				$hashed_password = password_hash($password, PASSWORD_DEFAULT);
 				$newdata = array('password' => $hashed_password);
-				$condition = array('ContactEmail' => $query->row()->ContactEmail);
+				$condition = array('email' => $query->email);
 				$this->users_model->update_details('adprep_financial_institutions_users', $newdata, $condition);
 
 				$message = "<strong>New password:</strong> " . $password . "<br /><br />";
@@ -215,5 +154,34 @@ class Login extends My_Controller
 			$this->setErrorMessage('error', 'Please try again.');
 		}
 		redirect('login');
+	}
+
+	/**
+	 * Verify Google reCAPTCHA v3 token from the posted form.
+	 *
+	 * @return bool
+	 */
+	private function verify_recaptcha()
+	{
+		$url = "https://www.google.com/recaptcha/api/siteverify";
+		$data = [
+			'secret' => "6Ld-YakaAAAAADRsHLmgYJtrJhQDYlKs8xhjz_CU",
+			'response' => $this->input->post('token'),
+			'remoteip' => $_SERVER['REMOTE_ADDR']
+		];
+
+		$options = array(
+			'http' => array(
+				'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+				'method'  => 'POST',
+				'content' => http_build_query($data)
+			)
+		);
+
+		$context  = stream_context_create($options);
+		$response = @file_get_contents($url, false, $context);
+
+		$res = json_decode($response, true);
+		return is_array($res) && !empty($res['success']);
 	}
 }

@@ -55,6 +55,7 @@ $route['login'] = 'login/index';
 $route['login-process'] = 'login/check_login_process';
 $route['logout'] = 'login/logout';
 $route['forgot-password'] = 'login/forgot_password';
+$route['forgot-password-process'] = 'login/forgot_password_process';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 $route['client-error'] = 'client_error/store';

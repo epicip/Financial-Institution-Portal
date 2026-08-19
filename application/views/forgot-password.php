@@ -42,10 +42,11 @@
                         Account recovery
                     </span>
                     <h4 class="login-title mb-1">Forgot password</h4>
-                    <p class="login-subtitle">Enter your email address and we will send you a reset link.</p>
+                    <p class="login-subtitle">Enter your email address and we will send you a new password.</p>
                 </div>
 
-                <form id="forgotPasswordForm" action="<?= base_url() ?>forgot-password-process" method="post">
+                <form id="forgotPasswordForm" action="<?= base_url('forgot-password-process') ?>" method="post">
+                    <input type="hidden" name="token" id="token" value="">
                     <div class="login-field mb-5">
                         <label for="forgotEmail" class="form-label">Email Address <span class="text-danger">*</span></label>
                         <div class="login-field-control">
@@ -57,18 +58,8 @@
                         </div>
                     </div>
 
-                    <button type="submit" class="btn btn-primary w-100">Send reset link</button>
+                    <button type="submit" class="btn btn-primary w-100">Send new password</button>
                 </form>
-
-                <div id="forgotPasswordSuccess" class="login-success d-none">
-                    <div class="login-success-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                            <path d="M20 6.5 9.5 17 4 11.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                    </div>
-                    <h4 class="login-title mb-2">Check your email</h4>
-                    <p class="login-subtitle mb-0">If an account exists for that address, a password reset link has been sent.</p>
-                </div>
 
                 <div class="text-center">
                     <a href="<?= base_url() ?>login" class="login-back">
@@ -87,20 +78,12 @@
     <script src="assets/js/perfect-scrollbar.js"></script>
     <script src="assets/js/bootstrap.js"></script>
     <script src="assets/js/custom.js"></script>
-    <script>
-        document.getElementById('forgotPasswordForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            this.classList.add('d-none');
-            document.getElementById('forgotPasswordSuccess').classList.remove('d-none');
-        });
-    </script>
-
+    <script src="https://www.google.com/recaptcha/api.js?render=6Ld-YakaAAAAAO4HAQzTpECYGe5M0hj4Pqr9UFo-"></script>
     <script>
         grecaptcha.ready(function() {
             grecaptcha.execute('6Ld-YakaAAAAAO4HAQzTpECYGe5M0hj4Pqr9UFo-', {
                 action: 'userLogin'
             }).then(function(token) {
-                // console.log(token);
                 document.getElementById("token").value = token;
             });
         });

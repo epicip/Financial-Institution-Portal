@@ -22,7 +22,7 @@ class Users extends My_Controller
      *
      * @return void
      */
-    function users_list()
+    function index()
     {
 
         // Get Published orders number
@@ -135,7 +135,13 @@ class Users extends My_Controller
         redirect('users/users_list', $this->data);
     }
 
-    public function change_password()
+    // View Change Password 
+    function change_password()
+    {
+        $this->load->view('change-password', $this->data);
+    }
+
+    public function change_password_process()
     {
         $this->form_validation->set_rules('password', 'Password', 'required');
         $this->form_validation->set_rules('new_password', 'New Password', 'required');
@@ -218,47 +224,5 @@ class Users extends My_Controller
 
             redirect('users/view_profile');
         }
-    }
-
-    public function verified_email($id)
-    {
-
-        if (!empty($id)) {
-            $condition = array('id' => $id);
-            $query = $this->users_model->get_all_details('admake_customers', $condition);
-
-            if ($query->num_rows() == 1) {
-
-                $newdata = array('verified' => 'Yes');
-                $condition = array('id' => $query->row()->id);
-                $this->users_model->update_details('admake_customers', $newdata, $condition);
-
-                $message = "Dear " . current(explode(" ", $query->row()->AccountName)) . ", <br /><br />Thank you for registering as a client with us on the ordering platform.<br /><br />";
-                $message .= "Your account is under review and the onabording team will confirm shortly. <br /> <br />";
-                $message .= "Please use the credentials below to access the client portal. Remember, you will not be able to place the order until your registration is confirmed by the onboarding team.<br /><br />";
-                $message .= "<strong>Client login portal - https://www.legaladvertisers.co.uk/reynell-thorpe/users/login<br /><br />";
-                $message .= "<strong>Username:</strong> " . $query->row()->ContactEmail . "<br />";
-                $message .= "<strong>Password:</strong> " . $query->row()->password . "<br /><br />";
-                $message .= "We have attached the user manual for the client portal for your reference.<br /><br />If you have any concern with your account, please contact the onboarding team on 02085019730/ 01438 350990 or write statads@epe-reynell.co.uk  <br /><br />";
-                $message .= "Thanks & Regards,<br /><strong>EPE Legal and public notice advertising</strong>";
-
-                $subject = 'Welcome to EPE Legal and public notice advertising ordering portal';
-
-                $response = $this->users_model->common_mail_send($query->row()->ContactEmail, $subject, $message, NR_EPICADS_EMAIL);
-
-                if (!empty($response) && $response == 'sent') {
-                    $this->setErrorMessage('success', 'Thank you for verifying your email address.');
-                } else {
-                    $this->setErrorMessage("warning",    'Email not sent, please try after sometime.');
-                }
-            }
-        }
-        redirect(base_url() . 'users/login', $this->data);
-    }
-
-    // View Change Password 
-    function password_change()
-    {
-        $this->load->view('change-password', $this->data);
     }
 }
