@@ -7,6 +7,10 @@ class Users extends My_Controller
     {
         parent::__construct();
 
+        if ($this->checkLogin('E') == '') {
+            redirect('login');
+        }
+
         $this->load->helper(array('cookie', 'date', 'form'));
         $this->load->library(array('form_validation'));
         $this->load->model('users_model');
@@ -24,10 +28,6 @@ class Users extends My_Controller
      */
     function index()
     {
-
-        // Get Published orders number
-        $this->data['userList'] = $this->users_model->getUsersList();
-
         // View page link
         $this->load->view('users-list', $this->data);
     }
