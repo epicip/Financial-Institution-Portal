@@ -27,7 +27,7 @@ class Login extends My_Controller
 		$this->form_validation->set_rules('email_id', 'Username', 'required');
 		$this->form_validation->set_rules('password', 'Password', 'required');
 		if ($this->form_validation->run() === FALSE) {
-			//$this->load->view('login', $this->data);
+			$this->load->view('login', $this->data);
 		} else {
 
 			if (!$this->verify_recaptcha()) {
