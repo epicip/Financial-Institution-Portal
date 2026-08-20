@@ -6,9 +6,9 @@ $(function () {
         lengthMenu: [[5, 10, 25, -1], [5, 10, 25, 'All']],
         pagingType: 'full_numbers',
         order: [[3, 'asc']],
-        columnDefs: [
-            { orderable: false, targets: [9, 10] }
-        ],
+        // columnDefs: [
+        //     { orderable: false, targets: [9, 10] }
+        // ],
         language: {
             search: '',
             searchPlaceholder: 'Search name or National Insurance Number',

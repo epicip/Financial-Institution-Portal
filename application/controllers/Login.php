@@ -52,6 +52,7 @@ class Login extends My_Controller
 							'fc_session_institution_id' => $user_details->institutions_id,
 							'fc_session_user_id' => $user_details->user_id,
 							'fc_session_user_name' => $user_details->name,
+							'fc_session_user_type' => $user_details->type,
 						);
 						$this->session->sess_regenerate(TRUE);
 						$this->session->set_userdata($institutiondata);
@@ -97,6 +98,7 @@ class Login extends My_Controller
 			'fc_session_institution_id' => '',
 			'fc_session_user_id' => '',
 			'fc_session_user_name' => '',
+			'fc_session_user_type' => '',
 		);
 		$this->session->set_userdata($institutiondata);
 		$cookie = array(

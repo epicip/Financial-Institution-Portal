@@ -32,9 +32,18 @@ class MY_Controller extends CI_Controller
 		 */
 		$this->load->database();
 
+		$this->data['institution_name'] = '';
 		if ($this->checkLogin('E') != '') {
-			$clientDetails = $this->db->query('Select * from adprep_financial_institutions_users where user_id="' . $this->session->userdata('fc_session_user_id') . '"');
-			$this->data['user_id'] = $clientDetails->row()->user_id;
+			$institution_id = $this->session->userdata('fc_session_institution_id');
+			$institutions = $this->db
+				->select('name')
+				->from('adprep_financial_institutions_list')
+				->where('id', $institution_id)
+				->get()
+				->row();
+			if (!empty($institutions) && isset($institutions->name)) {
+				$this->data['institution_name'] = $institutions->name;
+			}
 		}
 
 		$this->data['flash_data'] = $this->session->flashdata('sErrMSG');
