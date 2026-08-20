@@ -1,14 +1,28 @@
 $(function () {
-    var table = $('#casesTable').DataTable({
+    var $table = $('#casesTable');
+    if (!$table.length) {
+        return;
+    }
+
+    var colCount = $table.find('thead th').length;
+    var nonOrderableTargets = [];
+    if (colCount >= 10) {
+        nonOrderableTargets.push(colCount - 1);
+    }
+    if (colCount >= 11) {
+        nonOrderableTargets.push(colCount - 2);
+    }
+
+    var table = $table.DataTable({
         autoWidth: false,
         scrollX: false,
         pageLength: 5,
         lengthMenu: [[5, 10, 25, -1], [5, 10, 25, 'All']],
         pagingType: 'full_numbers',
         order: [[3, 'asc']],
-        // columnDefs: [
-        //     { orderable: false, targets: [9, 10] }
-        // ],
+        columnDefs: nonOrderableTargets.length
+            ? [{ orderable: false, targets: nonOrderableTargets }]
+            : [],
         language: {
             search: '',
             searchPlaceholder: 'Search name or National Insurance Number',
@@ -16,6 +30,7 @@ $(function () {
             info: 'Showing _START_ to _END_ of _TOTAL_ cases',
             infoEmpty: 'No cases to show',
             infoFiltered: '(filtered from _MAX_ cases)',
+            emptyTable: 'No cases found for this user',
             zeroRecords: 'No matching cases found',
             paginate: {
                 first: 'First',

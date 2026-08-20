@@ -75,10 +75,6 @@
                                             </td>
                                         </tr>
                                     <?php } ?>
-                                <?php } else { ?>
-                                    <tr>
-                                        <td colspan="10" class="text-center">No cases found for this user</td>
-                                    </tr>
                                 <?php } ?>
 
                             </tbody>
