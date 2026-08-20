@@ -1284,6 +1284,13 @@ button {
   max-width: 180px;
   object-fit: contain;
 }
+.app-sidebar-logo .app-side-logo {
+  display: none;
+  height: 36px;
+  width: auto;
+  max-width: 44px;
+  object-fit: contain;
+}
 
 .app-sidebar-menu {
   padding: 18px 14px;
@@ -1689,15 +1696,90 @@ button {
   }
 }
 
+/* Mini / collapsed sidebar — icon-only, existing theme */
 .app-wrapper:has(.app-sidebar.collapsed) {
-  margin-inline-start: 0;
+  margin-inline-start: var(--app-sidebar-collapsed-width);
 }
 
-.app-wrapper .app-sidebar.collapsed {
-  transform: translateX(-100%);
+.app-sidebar.collapsed {
+  width: var(--app-sidebar-collapsed-width);
 }
-[dir=rtl] .app-wrapper .app-sidebar.collapsed {
-  transform: translateX(100%);
+
+.app-sidebar.collapsed .app-sidebar-wrapper {
+  width: var(--app-sidebar-collapsed-width);
+}
+
+.app-sidebar.collapsed .app-sidebar-header {
+  justify-content: center;
+  padding: 16px 8px;
+}
+
+.app-sidebar.collapsed .app-sidebar-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.app-sidebar.collapsed .app-sidebar-logo .app-main-logo {
+  display: none;
+}
+
+.app-sidebar.collapsed .app-sidebar-logo .app-side-logo {
+  display: block;
+}
+
+.app-sidebar.collapsed .app-sidebar-menu {
+  padding: 14px 10px;
+}
+
+.app-sidebar.collapsed .app-sidebar-menu ul li a {
+  justify-content: center;
+  padding: 8px;
+  margin-bottom: 8px;
+}
+
+.app-sidebar.collapsed .app-sidebar-menu ul li a .menu-icon {
+  margin-inline-end: 0;
+}
+
+.app-sidebar.collapsed .app-sidebar-menu ul li a .menu-title,
+.app-sidebar.collapsed .app-sidebar-menu ul li a .menu-arrow {
+  display: none;
+}
+
+.app-sidebar.collapsed .app-sidebar-menu ul li a.menu-current::before {
+  top: 8px;
+  bottom: 8px;
+}
+
+.app-sidebar.collapsed .app-sidebar-footer {
+  padding: 12px 10px;
+  justify-content: center;
+}
+
+.app-sidebar.collapsed .app-sidebar-user {
+  justify-content: center;
+  padding: 8px;
+  gap: 0;
+}
+
+.app-sidebar.collapsed .app-sidebar-user-meta {
+  display: none;
+}
+
+@media (max-width: 1199px) {
+  .app-wrapper:has(.app-sidebar.collapsed) {
+    margin-inline-start: 0;
+  }
+
+  .app-wrapper .app-sidebar.collapsed:not(.open) {
+    transform: translateX(-100%);
+  }
+
+  [dir=rtl] .app-wrapper .app-sidebar.collapsed:not(.open) {
+    transform: translateX(100%);
+  }
 }
 
 .app-wrapper .app-sidebar.open {

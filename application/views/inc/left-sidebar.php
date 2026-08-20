@@ -3,6 +3,7 @@
         <div class="app-sidebar-header d-flex align-items-center justify-content-between">
             <a href="<?= base_url() ?>" class="app-sidebar-logo">
                 <img class="app-main-logo logo-black" src="<?= base_url('assets/img/logo/logo.png') ?>" alt="EPIC Investment Partners">
+                <img class="app-side-logo" src="<?= base_url('assets/img/logo/sidelogo.png') ?>" alt="EPIC Investment Partners">
             </a>
             <button type="button" class="app-sidebar-close-btn app-sidebar-mobile-close d-xl-none">
                 <svg width="20" height="12" viewBox="0 0 20 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -14,7 +15,7 @@
         <div id="app-sidebar-menu" class="app-sidebar-menu">
             <ul>
                 <li class="app-sidebar-menu-item">
-                    <a href="<?= base_url('dashboard') ?>" class="menu-link d-flex align-items-center">
+                    <a href="<?= base_url('dashboard') ?>" class="menu-link d-flex align-items-center" title="Dashboard">
                         <span class="menu-icon flex-shrink-0">
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                                 <path d="M4 10.5L12 4l8 6.5V20a1 1 0 0 1-1 1h-5v-6H10v6H5a1 1 0 0 1-1-1v-9.5z" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
@@ -25,7 +26,7 @@
                 </li>
 
                 <li class="app-sidebar-menu-item">
-                    <a href="<?= base_url('pending') ?>" class="menu-link d-flex align-items-center">
+                    <a href="<?= base_url('pending') ?>" class="menu-link d-flex align-items-center" title="Pending Cases">
                         <span class="menu-icon flex-shrink-0">
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                                 <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.75" />
@@ -36,7 +37,7 @@
                     </a>
                 </li>
                 <li class="app-sidebar-menu-item">
-                    <a href="<?= base_url('cases') ?>" class="menu-link d-flex align-items-center">
+                    <a href="<?= base_url('cases') ?>" class="menu-link d-flex align-items-center" title="All Cases">
                         <span class="menu-icon flex-shrink-0">
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                                 <path d="M8 6h11a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round" />
@@ -48,7 +49,7 @@
                     </a>
                 </li>
                 <li class="app-sidebar-menu-item">
-                    <a href="<?= base_url('users') ?>" class="menu-link d-flex align-items-center">
+                    <a href="<?= base_url('users') ?>" class="menu-link d-flex align-items-center" title="Users">
                         <span class="menu-icon flex-shrink-0">
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                                 <path d="M16 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
