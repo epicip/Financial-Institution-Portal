@@ -14,12 +14,10 @@
         <div id="app-sidebar-menu" class="app-sidebar-menu">
             <ul>
                 <li class="app-sidebar-menu-item">
-                    <a href="<?= base_url('dashboard') ?>" class="menu-link d-flex align-items-center active">
+                    <a href="<?= base_url('dashboard') ?>" class="menu-link d-flex align-items-center">
                         <span class="menu-icon flex-shrink-0">
-                            <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M4.25 2.25h5.25L13.75 6.5V14.75H4.25V2.25Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
-                                <path d="M9.5 2.25V6.5H13.75" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
-                                <path d="M6.5 9.25h4M6.5 11.75h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path d="M4 10.5L12 4l8 6.5V20a1 1 0 0 1-1 1h-5v-6H10v6H5a1 1 0 0 1-1-1v-9.5z" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
                             </svg>
                         </span>
                         <span class="menu-title flex-grow-1">Dashboard</span>
@@ -27,24 +25,23 @@
                 </li>
 
                 <li class="app-sidebar-menu-item">
-                    <a href="<?= base_url('pending') ?>" class="menu-link d-flex align-items-center active">
+                    <a href="<?= base_url('pending') ?>" class="menu-link d-flex align-items-center">
                         <span class="menu-icon flex-shrink-0">
-                            <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M4.25 2.25h5.25L13.75 6.5V14.75H4.25V2.25Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
-                                <path d="M9.5 2.25V6.5H13.75" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
-                                <path d="M6.5 9.25h4M6.5 11.75h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.75" />
+                                <path d="M12 7v5l3 2" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
                             </svg>
                         </span>
                         <span class="menu-title flex-grow-1">Pending Cases</span>
                     </a>
                 </li>
                 <li class="app-sidebar-menu-item">
-                    <a href="<?= base_url('cases') ?>" class="menu-link d-flex align-items-center active">
+                    <a href="<?= base_url('cases') ?>" class="menu-link d-flex align-items-center">
                         <span class="menu-icon flex-shrink-0">
-                            <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M4.25 2.25h5.25L13.75 6.5V14.75H4.25V2.25Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
-                                <path d="M9.5 2.25V6.5H13.75" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
-                                <path d="M6.5 9.25h4M6.5 11.75h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path d="M8 6h11a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round" />
+                                <path d="M6 16H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M10 11h7M10 15h5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
                             </svg>
                         </span>
                         <span class="menu-title flex-grow-1">All Cases</span>
@@ -53,11 +50,10 @@
                 <li class="app-sidebar-menu-item">
                     <a href="<?= base_url('users') ?>" class="menu-link d-flex align-items-center">
                         <span class="menu-icon flex-shrink-0">
-                            <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M14.5962 4.21155H1.90385C1.26659 4.21155 0.75 4.72814 0.75 5.36539V13.4423C0.75 14.0796 1.26659 14.5962 1.90385 14.5962H14.5962C15.2334 14.5962 15.75 14.0796 15.75 13.4423V5.36539C15.75 4.72814 15.2334 4.21155 14.5962 4.21155Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                <path d="M0.75 8.82692H15.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                <path d="M8.25 7.67307V9.98076" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                <path d="M11.7117 4.21153C11.7117 3.29348 11.347 2.41302 10.6978 1.76386C10.0486 1.1147 9.16817 0.75 8.25011 0.75V0.75C7.33206 0.75 6.4516 1.1147 5.80244 1.76386C5.15327 2.41302 4.78857 3.29348 4.78857 4.21153" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path d="M16 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
+                                <circle cx="9.5" cy="7" r="3.5" stroke="currentColor" stroke-width="1.75" />
+                                <path d="M20 8v6M17 11h6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
                             </svg>
                         </span>
                         <span class="menu-title flex-grow-1">Users</span>
@@ -67,13 +63,16 @@
         </div>
 
         <div class="app-sidebar-footer">
-            <div class="d-flex align-items-center gap-3">
-                <div class="avatar rounded-pill">
-                    <img src="<?= base_url('assets/img/avatar/10.jpg') ?>" alt="EPIC">
+            <div class="app-sidebar-user">
+                <div class="app-sidebar-user-avatar">
+                    <svg width="18" height="18" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <path d="M8 7C9.65685 7 11 5.65685 11 4C11 2.34315 9.65685 1 8 1C6.34315 1 5 2.34315 5 4C5 5.65685 6.34315 7 8 7Z" fill="currentColor"></path>
+                        <path d="M14 12C14 10.3431 12.6569 9 11 9H5C3.34315 9 2 10.3431 2 12V15H14V12Z" fill="currentColor"></path>
+                    </svg>
                 </div>
-                <div>
+                <div class="app-sidebar-user-meta">
                     <h6 class="mb-0"><?= $this->session->userdata('fc_session_user_name') ?></h6>
-                    <span class="text-muted">Administration</span>
+                    <span>Administration</span>
                 </div>
             </div>
         </div>
@@ -219,18 +218,34 @@
 
             <!-- User Options -->
             <li class="header-nav-item header-user me-2">
-                <a class="header-nav-link" href="javascript:void(0);" data-bs-toggle="dropdown">
-                    <img src="<?= base_url('assets/img/avatar/10.jpg') ?>" alt="" width="34" height="34" class="rounded-circle">
+                <a class="header-nav-link header-user-toggle" href="javascript:void(0);" data-bs-toggle="dropdown" aria-expanded="false" aria-label="User menu">
+                    <div class="svguers">
+                        <div class="app-sidebar-user-avatar">
+                            <svg width="18" height="18" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path d="M8 7C9.65685 7 11 5.65685 11 4C11 2.34315 9.65685 1 8 1C6.34315 1 5 2.34315 5 4C5 5.65685 6.34315 7 8 7Z" fill="currentColor"></path>
+                                <path d="M14 12C14 10.3431 12.6569 9 11 9H5C3.34315 9 2 10.3431 2 12V15H14V12Z" fill="currentColor"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <svg class="header-user-caret" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <path d="M3.5 5.25L7 8.75L10.5 5.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-lg py-0">
                     <div class="dropdown-header d-flex align-items-center border-bottom py-4">
                         <div class="me-3 flex-shrink-0">
-                            <div class="avatar avatar-md">
-                                <img src="<?= base_url('assets/img/avatar/10.jpg') ?>" alt="" class="rounded-circle">
-                            </div>
+                            
+                            <div class="app-sidebar-user-avatar">
+                    <svg width="18" height="18" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <path d="M8 7C9.65685 7 11 5.65685 11 4C11 2.34315 9.65685 1 8 1C6.34315 1 5 2.34315 5 4C5 5.65685 6.34315 7 8 7Z" fill="currentColor"></path>
+                        <path d="M14 12C14 10.3431 12.6569 9 11 9H5C3.34315 9 2 10.3431 2 12V15H14V12Z" fill="currentColor"></path>
+                    </svg>
+                </div>
+                   
+                            
                         </div>
                         <div class="flex-grow-1 text-start">
-                            <h6 class="mb-0"><?= $this->session->userdata('fc_session_user_name') ?></h6>
+                            <h6 class="mb-0 header-user-name" title="<?= htmlspecialchars($this->session->userdata('fc_session_user_name'), ENT_QUOTES, 'UTF-8') ?>"><?= $this->session->userdata('fc_session_user_name') ?></h6>
                             <span class="text-muted">Administration</span>
                         </div>
                     </div>

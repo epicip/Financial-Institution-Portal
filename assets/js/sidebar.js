@@ -19,8 +19,8 @@
     
         // update sidebar menu height
         function update_sidebar_menu_height() {
-            let headerHeight = 60;
-            let footerHeight = 60;
+            let headerHeight = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--app-sidebar-header-height')) || 72;
+            let footerHeight = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--app-sidebar-footer-height')) || 84;
             let menuHeight = $(window).height() - (headerHeight + footerHeight)
             $('.app-sidebar-menu').css('height',  menuHeight + 'px');
         }
