@@ -5,8 +5,8 @@
 
         <?php include_once 'inc/left-sidebar.php' ?>
 
-        <div class="app-content-wrapper pt-3 pb-3 px-5">
-            <div class="container-fluid">
+        <div class="app-content-wrapper pt-5 pb-5 px-5">
+            <div class="container-fluid px-0">
                 <div class="portal-hero d-flex align-items-center justify-content-between flex-wrap gap-4">
                     <div>
                         <!-- <span class="portal-hero-kicker">Asset search portal</span> -->
@@ -16,10 +16,10 @@
                     <div class="portal-hero-badge">4 awaiting review</div>
                 </div>
 
-                <div class="row g-3 row-cols-xxl-3 row-cols-lg-3 row-cols-md-2 row-cols-1 mb-6">
+                <div class="row g-3 row-cols-xxl-3 row-cols-lg-3 row-cols-md-2 row-cols-1 mb-5">
                     <div class="col">
                         <div class="card shadow-custom rounded-custom">
-                            <div class="card-body p-6 position-relative">
+                            <div class="card-body p-3 position-relative">
                                 <div class="btn-icon bg-label-primary rounded-pill btn-lg mb-3">
                                     <svg width="22" height="16" viewBox="0 0 22 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M10.9508 10.5399C7.5008 10.5399 4.58984 11.1037 4.58984 13.2794C4.58984 15.4561 7.5196 16 10.9508 16C14.4008 16 17.3117 15.4362 17.3117 13.2605C17.3117 11.0839 14.382 10.5399 10.9508 10.5399Z" fill="currentColor" />
@@ -41,7 +41,7 @@
                     </div>
                     <div class="col">
                         <div class="card shadow-custom rounded-custom">
-                            <div class="card-body p-6 position-relative">
+                            <div class="card-body p-3 position-relative">
                                 <div class="btn-icon bg-label-warning rounded-pill btn-lg mb-3">
                                     <svg width="18" height="17" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M17.3721 16.7442H0.627907C0.284651 16.7442 0 16.4595 0 16.1162C0 15.773 0.284651 15.4883 0.627907 15.4883H17.3721C17.7153 15.4883 18 15.773 18 16.1162C18 16.4595 17.7153 16.7442 17.3721 16.7442Z" fill="currentColor" />
@@ -61,7 +61,7 @@
                     </div>
                     <div class="col">
                         <div class="card shadow-custom rounded-custom">
-                            <div class="card-body p-6 position-relative">
+                            <div class="card-body p-3 position-relative">
                                 <div class="btn-icon bg-label-success rounded-pill btn-lg mb-3">
                                     <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path opacity="0.4" d="M4.88256 14.9003C5.62898 14.9003 6.2405 15.5118 6.2405 16.2672C6.2405 17.0137 5.62898 17.6252 4.88256 17.6252C4.12715 17.6252 3.51562 17.0137 3.51562 16.2672C3.51562 15.5118 4.12715 14.9003 4.88256 14.9003ZM14.9997 14.9003C15.7461 14.9003 16.3576 15.5118 16.3576 16.2672C16.3576 17.0137 15.7461 17.6252 14.9997 17.6252C14.2443 17.6252 13.6327 17.0137 13.6327 16.2672C13.6327 15.5118 14.2443 14.9003 14.9997 14.9003Z" fill="currentColor" />
@@ -81,7 +81,7 @@
 
                 <div class="card shadow-custom rounded-custom">
                     <div class="card-body p-6">
-                        <div class="mb-5">
+                        <div class="mb-5 border-bottom pb-3">
                             <h5 class="portal-section-title mb-1">Case list</h5>
                             <p class="text-muted mb-0">Deceased personal details supplied for asset and liability search.</p>
                         </div>
