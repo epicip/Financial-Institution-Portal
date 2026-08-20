@@ -72,8 +72,13 @@
                     </svg>
                 </div>
                 <div class="app-sidebar-user-meta">
-                    <h6 class="mb-0"><?= $this->session->userdata('fc_session_user_name') ?></h6>
-                    <span>Administration</span>
+                    <h6 class="mb-0">
+                        <?php if ($this->session->userdata('fc_session_user_type') == 'user') { ?>
+                            <?= $this->session->userdata('fc_session_user_name') ?>
+                        <?php } else { ?>
+                            Admin
+                        <?php } ?>
+                        <span><?= html_escape($institution_name ?? '') ?></span>
                 </div>
             </div>
         </div>
@@ -235,19 +240,24 @@
                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-lg py-0">
                     <div class="dropdown-header d-flex align-items-center border-bottom py-4">
                         <div class="me-3 flex-shrink-0">
-                            
+
                             <div class="app-sidebar-user-avatar">
-                    <svg width="18" height="18" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                        <path d="M8 7C9.65685 7 11 5.65685 11 4C11 2.34315 9.65685 1 8 1C6.34315 1 5 2.34315 5 4C5 5.65685 6.34315 7 8 7Z" fill="currentColor"></path>
-                        <path d="M14 12C14 10.3431 12.6569 9 11 9H5C3.34315 9 2 10.3431 2 12V15H14V12Z" fill="currentColor"></path>
-                    </svg>
-                </div>
-                   
-                            
+                                <svg width="18" height="18" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                    <path d="M8 7C9.65685 7 11 5.65685 11 4C11 2.34315 9.65685 1 8 1C6.34315 1 5 2.34315 5 4C5 5.65685 6.34315 7 8 7Z" fill="currentColor"></path>
+                                    <path d="M14 12C14 10.3431 12.6569 9 11 9H5C3.34315 9 2 10.3431 2 12V15H14V12Z" fill="currentColor"></path>
+                                </svg>
+                            </div>
+
+
                         </div>
                         <div class="flex-grow-1 text-start">
-                            <h6 class="mb-0 header-user-name" title="<?= htmlspecialchars($this->session->userdata('fc_session_user_name'), ENT_QUOTES, 'UTF-8') ?>"><?= $this->session->userdata('fc_session_user_name') ?></h6>
-                            <span class="text-muted">Administration</span>
+                            <h6 class="mb-0 header-user-name">
+                                <?php if ($this->session->userdata('fc_session_user_type') == 'user') { ?>
+                                    <?= $this->session->userdata('fc_session_user_name') ?>
+                                <?php } else { ?>
+                                    Admin
+                                <?php } ?></h6>
+                            <span class="text-muted"><?= html_escape($institution_name ?? '') ?></span>
                         </div>
                     </div>
                     <div class="dropdown-body py-1">

@@ -21,11 +21,13 @@ class Cases extends My_Controller
 
     function index()
     {
+        $this->data['cases'] = $this->Cases_model->get_all_cases();
         $this->load->view('all-cases', $this->data);
     }
 
-    function pending()
+    function pending_cases()
     {
+        $this->data['cases'] = $this->Cases_model->get_pending_cases();
         $this->load->view('pending-cases', $this->data);
     }
 }
