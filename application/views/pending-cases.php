@@ -5,7 +5,7 @@
 
         <?php include_once 'inc/left-sidebar.php' ?>
 
-        <div class="app-content-wrapper pt-13 pb-13 px-5">
+        <div class="app-content-wrapper pt-3 pb-3 px-5">
             <div class="container-fluid">
 
                 <div class="card shadow-custom rounded-custom">

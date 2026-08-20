@@ -5,13 +5,13 @@
 
         <?php include_once 'inc/left-sidebar.php' ?>
 
-        <div class="app-content-wrapper pt-13 pb-13 px-5">
+        <div class="app-content-wrapper pt-3 pb-3 px-5">
             <div class="container-fluid">
 
                 <div class="card shadow-custom rounded-custom">
                     <div class="card-body p-6">
                         <div class="mb-5">
-                            <h5 class="portal-section-title mb-1">Case list</h5>
+                            <h5 class="portal-section-title mb-1">All Cases List</h5>
                             <p class="text-muted mb-0">Deceased personal details supplied for asset and liability search.</p>
                         </div>
                         <table id="casesTable" class="table align-middle portal-table mb-0 w-100">

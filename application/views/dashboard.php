@@ -5,7 +5,7 @@
 
         <?php include_once 'inc/left-sidebar.php' ?>
 
-        <div class="app-content-wrapper pt-13 pb-13 px-5">
+        <div class="app-content-wrapper pt-3 pb-3 px-5">
             <div class="container-fluid">
                 <div class="portal-hero d-flex align-items-center justify-content-between flex-wrap gap-4">
                     <div>
@@ -31,17 +31,8 @@
                                     </svg>
                                 </div>
                                 <span class="fz-12px fw-medium d-block">Pending cases</span>
-                                <h3 class="h6 fs-9 mb-1">4</h3>
-                                <div class="p-px-2 pr-px-10 border rounded-pill d-inline-flex align-items-center gap-2">
-                                    <span class="bg-label-success px-px-8 py-px-1 rounded-pill d-inline-flex align-items-center gap-1 fz-12px fw-medium">
-                                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M6 11V1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                            <path d="M1 6L6 1L11 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                        </svg>
-                                        12.5%
-                                    </span>
-                                    <span class="fz-12px fw-medium">This week</span>
-                                </div>
+                                <h3 class="h6 fs-9 mb-0">4</h3>
+                                
                                 <div class="position-absolute top-9 end-3 p-1">
                                     <img src="assets/img/icons/dashboard/chart-up.png" alt="">
                                 </div>
@@ -60,17 +51,8 @@
                                     </svg>
                                 </div>
                                 <span class="fz-12px fw-medium d-block">Received this week</span>
-                                <h3 class="h6 fs-9 mb-1">2</h3>
-                                <div class="p-px-2 pr-px-10 border rounded-pill d-inline-flex align-items-center gap-2">
-                                    <span class="bg-label-success px-px-8 py-px-1 rounded-pill d-inline-flex align-items-center gap-1 fz-12px fw-medium">
-                                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M6 11V1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                            <path d="M1 6L6 1L11 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                        </svg>
-                                        8.2%
-                                    </span>
-                                    <span class="fz-12px fw-medium">This month</span>
-                                </div>
+                                <h3 class="h6 fs-9 mb-0">2</h3>
+                                
                                 <div class="position-absolute top-9 end-3 p-1">
                                     <img src="assets/img/icons/dashboard/chart-up.png" alt="">
                                 </div>
@@ -87,17 +69,8 @@
                                     </svg>
                                 </div>
                                 <span class="fz-12px fw-medium d-block">Reviewed this month</span>
-                                <h3 class="h6 fs-9 mb-1">18</h3>
-                                <div class="p-px-2 pr-px-10 border rounded-pill d-inline-flex align-items-center gap-2">
-                                    <span class="bg-label-danger px-px-8 py-px-1 rounded-pill d-inline-flex align-items-center gap-1 fz-12px fw-medium">
-                                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M6 1V11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                            <path d="M1 6L6 11L11 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                        </svg>
-                                        3.5%
-                                    </span>
-                                    <span class="fz-12px fw-medium">This month</span>
-                                </div>
+                                <h3 class="h6 fs-9 mb-0">18</h3>
+                               
                                 <div class="position-absolute top-9 end-3 p-1">
                                     <img src="assets/img/icons/dashboard/chart-down.png" alt="">
                                 </div>

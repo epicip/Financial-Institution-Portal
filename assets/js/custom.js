@@ -249,6 +249,42 @@
     });
 
     $('#footer-year').text(new Date().getFullYear());
-    
+
+    const addUserModal = document.getElementById('addUserModal');
+    const addUserForm = document.getElementById('addUserForm');
+    if (addUserModal && addUserForm) {
+        addUserModal.addEventListener('hidden.bs.modal', () => {
+            addUserForm.reset();
+        });
+
+        addUserForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const modalInstance = bootstrap.Modal.getInstance(addUserModal);
+            if (modalInstance) {
+                modalInstance.hide();
+            }
+        });
+    }
+
+    const editUserModal = document.getElementById('editUserModal');
+    const editUserForm = document.getElementById('editUserForm');
+    if (editUserModal && editUserForm) {
+        editUserModal.addEventListener('show.bs.modal', (event) => {
+            const button = event.relatedTarget;
+            if (!button) return;
+
+            document.getElementById('editUserName').value = button.getAttribute('data-name') || '';
+            document.getElementById('editUserEmail').value = button.getAttribute('data-email') || '';
+            document.getElementById('editUserStatus').value = button.getAttribute('data-status') || 'active';
+        });
+
+        editUserForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const modalInstance = bootstrap.Modal.getInstance(editUserModal);
+            if (modalInstance) {
+                modalInstance.hide();
+            }
+        });
+    }
 
 }(jQuery))
