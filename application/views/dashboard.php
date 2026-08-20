@@ -4,13 +4,13 @@
     <div id="app-wrapper" class="app-wrapper d-flex flex-column align-items-stretch min-vh-100">
 
         <?php include_once 'inc/left-sidebar.php' ?>
-        
+
         <div class="app-content-wrapper pt-13 pb-13 px-5">
             <div class="container-fluid">
                 <div class="portal-hero d-flex align-items-center justify-content-between flex-wrap gap-4">
                     <div>
                         <!-- <span class="portal-hero-kicker">Asset search portal</span> -->
-                        <h2 class="fw-semibold fs-7 mb-2">Pending Cases <?= $this->session->userdata('fc_session_institution_id') ?></h2>
+                        <h2 class="fw-semibold fs-7 mb-2">Pending Cases </h2>
                         <p class="mb-0">Review deceased customer details and confirm whether records are held.</p>
                     </div>
                     <div class="portal-hero-badge">4 awaiting review</div>
@@ -131,7 +131,9 @@
                             <tbody>
                                 <tr>
                                     <td>Mr</td>
-                                    <td><div class="portal-name"><span>James</span></div></td>
+                                    <td>
+                                        <div class="portal-name"><span>James</span></div>
+                                    </td>
                                     <td>Edward</td>
                                     <td>Whitaker</td>
                                     <td>Jim Whitaker</td>
@@ -141,18 +143,28 @@
                                     <td><span class="portal-ni">QQ 12 34 56 C</span></td>
                                     <td class="text-nowrap">
                                         <a href="case-details.html" target="_blank" rel="noopener" class="btn-case btn-case-details">
-                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M18 13v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                                <polyline points="15 3 21 3 21 9" />
+                                                <line x1="10" y1="14" x2="21" y2="3" />
+                                            </svg>
                                             Details
                                         </a>
                                     </td>
                                     <td class="text-nowrap">
                                         <div class="portal-actions">
                                             <button type="button" class="btn-case btn-case-none">
-                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M15 9l-6 6M9 9l6 6"/></svg>
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <circle cx="12" cy="12" r="10" />
+                                                    <path d="M15 9l-6 6M9 9l6 6" />
+                                                </svg>
                                                 No Records
                                             </button>
                                             <button type="button" class="btn-case btn-case-found" data-bs-toggle="modal" data-bs-target="#recordsFoundModal">
-                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <circle cx="12" cy="12" r="10" />
+                                                    <path d="M8 12l3 3 5-6" />
+                                                </svg>
                                                 Records Found
                                             </button>
                                         </div>
@@ -160,7 +172,9 @@
                                 </tr>
                                 <tr>
                                     <td>Mrs</td>
-                                    <td><div class="portal-name"><span>Margaret</span></div></td>
+                                    <td>
+                                        <div class="portal-name"><span>Margaret</span></div>
+                                    </td>
                                     <td>Anne</td>
                                     <td>Collins</td>
                                     <td>-</td>
@@ -170,18 +184,28 @@
                                     <td><span class="portal-ni">AB 98 76 54 A</span></td>
                                     <td class="text-nowrap">
                                         <a href="case-details.html" target="_blank" rel="noopener" class="btn-case btn-case-details">
-                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M18 13v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                                <polyline points="15 3 21 3 21 9" />
+                                                <line x1="10" y1="14" x2="21" y2="3" />
+                                            </svg>
                                             Details
                                         </a>
                                     </td>
                                     <td class="text-nowrap">
                                         <div class="portal-actions">
                                             <button type="button" class="btn-case btn-case-none">
-                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M15 9l-6 6M9 9l6 6"/></svg>
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <circle cx="12" cy="12" r="10" />
+                                                    <path d="M15 9l-6 6M9 9l6 6" />
+                                                </svg>
                                                 No Records
                                             </button>
                                             <button type="button" class="btn-case btn-case-found" data-bs-toggle="modal" data-bs-target="#recordsFoundModal">
-                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <circle cx="12" cy="12" r="10" />
+                                                    <path d="M8 12l3 3 5-6" />
+                                                </svg>
                                                 Records Found
                                             </button>
                                         </div>
@@ -189,7 +213,9 @@
                                 </tr>
                                 <tr>
                                     <td>Ms</td>
-                                    <td><div class="portal-name"><span>Priya</span></div></td>
+                                    <td>
+                                        <div class="portal-name"><span>Priya</span></div>
+                                    </td>
                                     <td>Lakshmi</td>
                                     <td>Sharma</td>
                                     <td>-</td>
@@ -199,18 +225,28 @@
                                     <td><span class="portal-ni">JX 45 67 89 D</span></td>
                                     <td class="text-nowrap">
                                         <a href="case-details.html" target="_blank" rel="noopener" class="btn-case btn-case-details">
-                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M18 13v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                                <polyline points="15 3 21 3 21 9" />
+                                                <line x1="10" y1="14" x2="21" y2="3" />
+                                            </svg>
                                             Details
                                         </a>
                                     </td>
                                     <td class="text-nowrap">
                                         <div class="portal-actions">
                                             <button type="button" class="btn-case btn-case-none">
-                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M15 9l-6 6M9 9l6 6"/></svg>
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <circle cx="12" cy="12" r="10" />
+                                                    <path d="M15 9l-6 6M9 9l6 6" />
+                                                </svg>
                                                 No Records
                                             </button>
                                             <button type="button" class="btn-case btn-case-found" data-bs-toggle="modal" data-bs-target="#recordsFoundModal">
-                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <circle cx="12" cy="12" r="10" />
+                                                    <path d="M8 12l3 3 5-6" />
+                                                </svg>
                                                 Records Found
                                             </button>
                                         </div>
@@ -218,7 +254,9 @@
                                 </tr>
                                 <tr>
                                     <td>Mr</td>
-                                    <td><div class="portal-name"><span>Robert</span></div></td>
+                                    <td>
+                                        <div class="portal-name"><span>Robert</span></div>
+                                    </td>
                                     <td>-</td>
                                     <td>Hughes</td>
                                     <td>Bob Hughes</td>
@@ -228,18 +266,28 @@
                                     <td><span class="portal-ni">NW 11 22 33 B</span></td>
                                     <td class="text-nowrap">
                                         <a href="case-details.html" target="_blank" rel="noopener" class="btn-case btn-case-details">
-                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M18 13v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                                <polyline points="15 3 21 3 21 9" />
+                                                <line x1="10" y1="14" x2="21" y2="3" />
+                                            </svg>
                                             Details
                                         </a>
                                     </td>
                                     <td class="text-nowrap">
                                         <div class="portal-actions">
                                             <button type="button" class="btn-case btn-case-none">
-                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M15 9l-6 6M9 9l6 6"/></svg>
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <circle cx="12" cy="12" r="10" />
+                                                    <path d="M15 9l-6 6M9 9l6 6" />
+                                                </svg>
                                                 No Records
                                             </button>
                                             <button type="button" class="btn-case btn-case-found" data-bs-toggle="modal" data-bs-target="#recordsFoundModal">
-                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <circle cx="12" cy="12" r="10" />
+                                                    <path d="M8 12l3 3 5-6" />
+                                                </svg>
                                                 Records Found
                                             </button>
                                         </div>
@@ -247,7 +295,9 @@
                                 </tr>
                                 <tr>
                                     <td>Mrs</td>
-                                    <td><div class="portal-name"><span>Eleanor</span></div></td>
+                                    <td>
+                                        <div class="portal-name"><span>Eleanor</span></div>
+                                    </td>
                                     <td>Grace</td>
                                     <td>Bennett</td>
                                     <td>Ellie Bennett</td>
@@ -257,18 +307,28 @@
                                     <td><span class="portal-ni">CE 33 44 55 A</span></td>
                                     <td class="text-nowrap">
                                         <a href="case-details.html" target="_blank" rel="noopener" class="btn-case btn-case-details">
-                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M18 13v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                                <polyline points="15 3 21 3 21 9" />
+                                                <line x1="10" y1="14" x2="21" y2="3" />
+                                            </svg>
                                             Details
                                         </a>
                                     </td>
                                     <td class="text-nowrap">
                                         <div class="portal-actions">
                                             <button type="button" class="btn-case btn-case-none">
-                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M15 9l-6 6M9 9l6 6"/></svg>
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <circle cx="12" cy="12" r="10" />
+                                                    <path d="M15 9l-6 6M9 9l6 6" />
+                                                </svg>
                                                 No Records
                                             </button>
                                             <button type="button" class="btn-case btn-case-found" data-bs-toggle="modal" data-bs-target="#recordsFoundModal">
-                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <circle cx="12" cy="12" r="10" />
+                                                    <path d="M8 12l3 3 5-6" />
+                                                </svg>
                                                 Records Found
                                             </button>
                                         </div>
@@ -276,7 +336,9 @@
                                 </tr>
                                 <tr>
                                     <td>Mr</td>
-                                    <td><div class="portal-name"><span>Thomas</span></div></td>
+                                    <td>
+                                        <div class="portal-name"><span>Thomas</span></div>
+                                    </td>
                                     <td>William</td>
                                     <td>Price</td>
                                     <td>-</td>
@@ -286,18 +348,28 @@
                                     <td><span class="portal-ni">YP 22 11 00 C</span></td>
                                     <td class="text-nowrap">
                                         <a href="case-details.html" target="_blank" rel="noopener" class="btn-case btn-case-details">
-                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M18 13v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                                <polyline points="15 3 21 3 21 9" />
+                                                <line x1="10" y1="14" x2="21" y2="3" />
+                                            </svg>
                                             Details
                                         </a>
                                     </td>
                                     <td class="text-nowrap">
                                         <div class="portal-actions">
                                             <button type="button" class="btn-case btn-case-none">
-                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M15 9l-6 6M9 9l6 6"/></svg>
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <circle cx="12" cy="12" r="10" />
+                                                    <path d="M15 9l-6 6M9 9l6 6" />
+                                                </svg>
                                                 No Records
                                             </button>
                                             <button type="button" class="btn-case btn-case-found" data-bs-toggle="modal" data-bs-target="#recordsFoundModal">
-                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <circle cx="12" cy="12" r="10" />
+                                                    <path d="M8 12l3 3 5-6" />
+                                                </svg>
                                                 Records Found
                                             </button>
                                         </div>
@@ -305,7 +377,9 @@
                                 </tr>
                                 <tr>
                                     <td>Ms</td>
-                                    <td><div class="portal-name"><span>Aisha</span></div></td>
+                                    <td>
+                                        <div class="portal-name"><span>Aisha</span></div>
+                                    </td>
                                     <td>Noor</td>
                                     <td>Khan</td>
                                     <td>-</td>
@@ -315,18 +389,28 @@
                                     <td><span class="portal-ni">AK 77 88 99 D</span></td>
                                     <td class="text-nowrap">
                                         <a href="case-details.html" target="_blank" rel="noopener" class="btn-case btn-case-details">
-                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M18 13v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                                <polyline points="15 3 21 3 21 9" />
+                                                <line x1="10" y1="14" x2="21" y2="3" />
+                                            </svg>
                                             Details
                                         </a>
                                     </td>
                                     <td class="text-nowrap">
                                         <div class="portal-actions">
                                             <button type="button" class="btn-case btn-case-none">
-                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M15 9l-6 6M9 9l6 6"/></svg>
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <circle cx="12" cy="12" r="10" />
+                                                    <path d="M15 9l-6 6M9 9l6 6" />
+                                                </svg>
                                                 No Records
                                             </button>
                                             <button type="button" class="btn-case btn-case-found" data-bs-toggle="modal" data-bs-target="#recordsFoundModal">
-                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <circle cx="12" cy="12" r="10" />
+                                                    <path d="M8 12l3 3 5-6" />
+                                                </svg>
                                                 Records Found
                                             </button>
                                         </div>
@@ -334,7 +418,9 @@
                                 </tr>
                                 <tr>
                                     <td>Mr</td>
-                                    <td><div class="portal-name"><span>David</span></div></td>
+                                    <td>
+                                        <div class="portal-name"><span>David</span></div>
+                                    </td>
                                     <td>Alan</td>
                                     <td>Foster</td>
                                     <td>Dave Foster</td>
@@ -344,18 +430,28 @@
                                     <td><span class="portal-ni">DF 12 21 34 B</span></td>
                                     <td class="text-nowrap">
                                         <a href="case-details.html" target="_blank" rel="noopener" class="btn-case btn-case-details">
-                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M18 13v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                                <polyline points="15 3 21 3 21 9" />
+                                                <line x1="10" y1="14" x2="21" y2="3" />
+                                            </svg>
                                             Details
                                         </a>
                                     </td>
                                     <td class="text-nowrap">
                                         <div class="portal-actions">
                                             <button type="button" class="btn-case btn-case-none">
-                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M15 9l-6 6M9 9l6 6"/></svg>
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <circle cx="12" cy="12" r="10" />
+                                                    <path d="M15 9l-6 6M9 9l6 6" />
+                                                </svg>
                                                 No Records
                                             </button>
                                             <button type="button" class="btn-case btn-case-found" data-bs-toggle="modal" data-bs-target="#recordsFoundModal">
-                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <circle cx="12" cy="12" r="10" />
+                                                    <path d="M8 12l3 3 5-6" />
+                                                </svg>
                                                 Records Found
                                             </button>
                                         </div>
@@ -363,7 +459,9 @@
                                 </tr>
                                 <tr>
                                     <td>Mrs</td>
-                                    <td><div class="portal-name"><span>Catherine</span></div></td>
+                                    <td>
+                                        <div class="portal-name"><span>Catherine</span></div>
+                                    </td>
                                     <td>Mary</td>
                                     <td>Walsh</td>
                                     <td>Kate Walsh</td>
@@ -373,18 +471,28 @@
                                     <td><span class="portal-ni">CW 56 78 90 A</span></td>
                                     <td class="text-nowrap">
                                         <a href="case-details.html" target="_blank" rel="noopener" class="btn-case btn-case-details">
-                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M18 13v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                                <polyline points="15 3 21 3 21 9" />
+                                                <line x1="10" y1="14" x2="21" y2="3" />
+                                            </svg>
                                             Details
                                         </a>
                                     </td>
                                     <td class="text-nowrap">
                                         <div class="portal-actions">
                                             <button type="button" class="btn-case btn-case-none">
-                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M15 9l-6 6M9 9l6 6"/></svg>
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <circle cx="12" cy="12" r="10" />
+                                                    <path d="M15 9l-6 6M9 9l6 6" />
+                                                </svg>
                                                 No Records
                                             </button>
                                             <button type="button" class="btn-case btn-case-found" data-bs-toggle="modal" data-bs-target="#recordsFoundModal">
-                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <circle cx="12" cy="12" r="10" />
+                                                    <path d="M8 12l3 3 5-6" />
+                                                </svg>
                                                 Records Found
                                             </button>
                                         </div>
@@ -392,7 +500,9 @@
                                 </tr>
                                 <tr>
                                     <td>Mr</td>
-                                    <td><div class="portal-name"><span>Henry</span></div></td>
+                                    <td>
+                                        <div class="portal-name"><span>Henry</span></div>
+                                    </td>
                                     <td>James</td>
                                     <td>Osborne</td>
                                     <td>Harry Osborne</td>
@@ -402,18 +512,28 @@
                                     <td><span class="portal-ni">HO 90 12 34 C</span></td>
                                     <td class="text-nowrap">
                                         <a href="case-details.html" target="_blank" rel="noopener" class="btn-case btn-case-details">
-                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M18 13v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                                <polyline points="15 3 21 3 21 9" />
+                                                <line x1="10" y1="14" x2="21" y2="3" />
+                                            </svg>
                                             Details
                                         </a>
                                     </td>
                                     <td class="text-nowrap">
                                         <div class="portal-actions">
                                             <button type="button" class="btn-case btn-case-none">
-                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M15 9l-6 6M9 9l6 6"/></svg>
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <circle cx="12" cy="12" r="10" />
+                                                    <path d="M15 9l-6 6M9 9l6 6" />
+                                                </svg>
                                                 No Records
                                             </button>
                                             <button type="button" class="btn-case btn-case-found" data-bs-toggle="modal" data-bs-target="#recordsFoundModal">
-                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <circle cx="12" cy="12" r="10" />
+                                                    <path d="M8 12l3 3 5-6" />
+                                                </svg>
                                                 Records Found
                                             </button>
                                         </div>
@@ -421,7 +541,9 @@
                                 </tr>
                                 <tr>
                                     <td>Ms</td>
-                                    <td><div class="portal-name"><span>Sophie</span></div></td>
+                                    <td>
+                                        <div class="portal-name"><span>Sophie</span></div>
+                                    </td>
                                     <td>Louise</td>
                                     <td>Grant</td>
                                     <td>-</td>
@@ -431,18 +553,28 @@
                                     <td><span class="portal-ni">SG 45 23 11 D</span></td>
                                     <td class="text-nowrap">
                                         <a href="case-details.html" target="_blank" rel="noopener" class="btn-case btn-case-details">
-                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M18 13v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                                <polyline points="15 3 21 3 21 9" />
+                                                <line x1="10" y1="14" x2="21" y2="3" />
+                                            </svg>
                                             Details
                                         </a>
                                     </td>
                                     <td class="text-nowrap">
                                         <div class="portal-actions">
                                             <button type="button" class="btn-case btn-case-none">
-                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M15 9l-6 6M9 9l6 6"/></svg>
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <circle cx="12" cy="12" r="10" />
+                                                    <path d="M15 9l-6 6M9 9l6 6" />
+                                                </svg>
                                                 No Records
                                             </button>
                                             <button type="button" class="btn-case btn-case-found" data-bs-toggle="modal" data-bs-target="#recordsFoundModal">
-                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <circle cx="12" cy="12" r="10" />
+                                                    <path d="M8 12l3 3 5-6" />
+                                                </svg>
                                                 Records Found
                                             </button>
                                         </div>
@@ -450,7 +582,9 @@
                                 </tr>
                                 <tr>
                                     <td>Mr</td>
-                                    <td><div class="portal-name"><span>Michael</span></div></td>
+                                    <td>
+                                        <div class="portal-name"><span>Michael</span></div>
+                                    </td>
                                     <td>Patrick</td>
                                     <td>O'Neill</td>
                                     <td>Mick O'Neill</td>
@@ -460,18 +594,28 @@
                                     <td><span class="portal-ni">MO 67 89 01 B</span></td>
                                     <td class="text-nowrap">
                                         <a href="case-details.html" target="_blank" rel="noopener" class="btn-case btn-case-details">
-                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M18 13v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                                <polyline points="15 3 21 3 21 9" />
+                                                <line x1="10" y1="14" x2="21" y2="3" />
+                                            </svg>
                                             Details
                                         </a>
                                     </td>
                                     <td class="text-nowrap">
                                         <div class="portal-actions">
                                             <button type="button" class="btn-case btn-case-none">
-                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M15 9l-6 6M9 9l6 6"/></svg>
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <circle cx="12" cy="12" r="10" />
+                                                    <path d="M15 9l-6 6M9 9l6 6" />
+                                                </svg>
                                                 No Records
                                             </button>
                                             <button type="button" class="btn-case btn-case-found" data-bs-toggle="modal" data-bs-target="#recordsFoundModal">
-                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <circle cx="12" cy="12" r="10" />
+                                                    <path d="M8 12l3 3 5-6" />
+                                                </svg>
                                                 Records Found
                                             </button>
                                         </div>
@@ -484,12 +628,7 @@
             </div>
         </div>
 
-        <footer class="app-footer mt-auto py-3 text-center">
-            <div class="container">
-                <span class="text-muted">Copyright © <span id="footer-year"></span> EPIC Investment Partners</span>
-            </div>
-        </footer>
-        <div class="app-backdrop"></div>
+        <?php include_once 'inc/copyright.php' ?>
     </div>
 </div>
 

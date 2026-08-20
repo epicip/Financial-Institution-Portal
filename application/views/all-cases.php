@@ -530,13 +530,6 @@
             </div>
         </div>
 
-        <footer class="app-footer mt-auto py-3 text-center">
-            <div class="container">
-                <span class="text-muted">Copyright © <span id="footer-year"></span> EPIC Investment Partners</span>
-            </div>
-        </footer>
-        <div class="app-backdrop"></div>
+        <?php include_once 'inc/copyright.php' ?>
     </div>
-</div>
-
-<?php include_once 'inc/footer.php' ?>
+    <?php include_once 'inc/footer.php' ?>

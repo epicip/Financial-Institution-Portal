@@ -94,6 +94,7 @@ class Login extends My_Controller
 		$institutiondata = array(
 			'fc_session_institution_id' => '',
 			'fc_session_user_id' => '',
+			'fc_session_user_name' => '',
 		);
 		$this->session->set_userdata($institutiondata);
 		$cookie = array(
