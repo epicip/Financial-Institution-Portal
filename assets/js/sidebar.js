@@ -65,12 +65,13 @@
         $('.app-sidebar').removeClass('open');
         if($(this).hasClass('collapsed')) {
             $(this).removeClass('collapsed');
-            $('.app-sidebar').removeClass('collapsed')
+            $('.app-sidebar').removeClass('collapsed');
         }
         else {
             $(this).addClass('collapsed');
-            $('.app-sidebar').addClass('collapsed')
+            $('.app-sidebar').addClass('collapsed');
         }
+        $(window).trigger('resize');
     })
 
     $('.app-sidebar-mobile-open').on('click', function(){
