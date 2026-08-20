@@ -143,86 +143,52 @@ class Users extends My_Controller
 
     public function change_password_process()
     {
-        $this->form_validation->set_rules('password', 'Password', 'required');
+        $this->form_validation->set_rules('old_password', 'Password', 'required');
         $this->form_validation->set_rules('new_password', 'New Password', 'required');
         $this->form_validation->set_rules('confirm_password', 'Retype Password', 'required');
 
-        $old_password = $this->input->post('password');
+        $old_password = $this->input->post('old_password');
         $new_password = $this->input->post('new_password');
         $confirm_password = $this->input->post('confirm_password');
 
         if ($this->form_validation->run() === FALSE) {
-            $this->load->view('users/profile', $this->data);
+            $this->load->view('users/change_password', $this->data);
         } else {
 
             // Load PasswordValidation library
             $this->load->library('PasswordValidation');
 
-            if (!empty($this->session->userdata('fc_session_client_user_id'))) {
-                $condition = array('user_id' => $this->session->userdata('fc_session_client_user_id'));
+            $condition = array('user_id' => $this->session->userdata('fc_session_user_id'));
 
-                $userQuery = $this->users_model->get_all_details('admake_customers_users', $condition);
-                if ($userQuery->num_rows() == 1) {
-                    $user = $userQuery->row();
-
-                    // check if new password and confirm password are same
-                    if (!password_verify($old_password, $user->password)) {
-                        $this->setErrorMessage('danger', 'Invalid current password');
-                        redirect('users/password_change');
-                        return;
-                    }
-
-                    // check password validation by PasswordValidation library
-                    $validatePassword =  $this->passwordvalidation->validatePassword($new_password, $user->password);
-                    if ($validatePassword !== true) {
-                        $this->setErrorMessage('danger', $validatePassword);
-                        redirect('users/password_change');
-                        return;
-                    }
-
-                    // create new hashed password
-                    $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
-                    $newdata = array('password' => $hashed_password);
-
-                    $condition = array('user_id' => $this->session->userdata('fc_session_client_user_id'));
-                    $this->users_model->update_details('admake_customers_users', $newdata, $condition);
-                    $this->setErrorMessage('success', 'User password changed successfully');
-                } else {
+            $user_details = $this->users_model->get_row_details('adprep_financial_institutions_users', $condition);
+            if (!empty($user_details)) {
+                // check if new password and confirm password are same
+                if (!password_verify($old_password, $user_details->password)) {
                     $this->setErrorMessage('danger', 'Invalid current password');
+                    redirect('users/change_password');
+                    return;
                 }
+
+                // check password validation by PasswordValidation library
+                $validatePassword =  $this->passwordvalidation->validatePassword($new_password, $user_details->password);
+                if ($validatePassword !== true) {
+                    $this->setErrorMessage('danger', $validatePassword);
+                    redirect('users/change_password');
+                    return;
+                }
+
+                // create new hashed password
+                $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
+                $newdata = array('password' => $hashed_password);
+
+                $condition = array('user_id' => $this->session->userdata('fc_session_user_id'));
+                $this->users_model->update_details('adprep_financial_institutions_users', $newdata, $condition);
+                $this->setErrorMessage('success', 'Your password has been changed successfully');
             } else {
-                $condition = array('id' => $this->session->userdata('fc_session_client_id'));
-                $query = $this->users_model->get_all_details('admake_customers', $condition);
-                if ($query->num_rows() == 1) {
-                    $user = $query->row();
-
-                    // check if new password and confirm password are same
-                    if (!password_verify($old_password, $user->password)) {
-                        $this->setErrorMessage('danger', 'Invalid current password');
-                        redirect('users/password_change');
-                        return;
-                    }
-
-                    // check password validation by PasswordValidation library
-                    $validatePassword =  $this->passwordvalidation->validatePassword($new_password, $user->password);
-                    if ($validatePassword !== true) {
-                        $this->setErrorMessage('danger', $validatePassword);
-                        redirect('users/password_change');
-                        return;
-                    }
-
-                    // create new hashed password
-                    $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
-                    $newdata = array('password' => $hashed_password, 'password_change' => 'Active');
-                    $condition = array('id' => $this->session->userdata('fc_session_client_id'));
-                    $this->users_model->update_details('admake_customers', $newdata, $condition);
-                    $this->setErrorMessage('success', 'Admin password changed successfully');
-                } else {
-                    $this->setErrorMessage('danger', 'Invalid current password');
-                }
+                $this->setErrorMessage('danger', 'Invalid current password');
             }
 
-            redirect('users/view_profile');
+            redirect('users/change_password');
         }
     }
 }

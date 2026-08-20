@@ -3,23 +3,30 @@
     <div id="app-wrapper" class="app-wrapper d-flex flex-column align-items-stretch min-vh-100">
         <?php include_once 'inc/left-sidebar.php' ?>
         <div class="auth-wrapper auth-basic p-5 min-vh-100 d-flex align-items-center justify-content-center">
-                <div class="auth-card ">
-                    <div class="card shadow-xl">
-                        <div class="card-body py-9 px-6 px-sm-12">
-                            <div class="mb-7">
-                                <div class="text-center">
-                                    <h4 class="mb-1 fw-semibold">
-                                        Set Your New Password
-                                    </h4>
-                                    <p>
-                                        Create a new strong password for your account.
-                                    </p>
-                                </div>
+            <div class="auth-card ">
+                <div class="card shadow-xl">
+                    <div class="card-body py-9 px-6 px-sm-12">
+                        <div class="mb-7">
+                            <div class="text-center">
+                                <h4 class="mb-1 fw-semibold">
+                                    Set Your New Password
+                                </h4>
+                                <p>
+                                    Create a new strong password for your account.
+                                </p>
                             </div>
-                             <div class="mb-3">
-                                <label for="loginPassword" class="form-label">Old Password</label>
+                        </div>
+                        <?php if ($this->session->flashdata('sErrMSG') != '') { ?>
+                            <div class="alert alert-<?= html_escape($this->session->flashdata('sErrMSGType')) ?> alert-dismissible fade show page-alert" role="alert">
+                                <?= html_escape($this->session->flashdata('sErrMSG')) ?>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        <?php } ?>
+                        <form novalidate method="post" action="<?= base_url('users/change_password_process') ?>">
+                            <div class="mb-3">
+                                <label for="old_password" class="form-label">Old Password</label>
                                 <div class="input-group mb-3">
-                                    <input type="password" class="form-control" placeholder="**********" id="loginPassword">
+                                    <input type="password" class="form-control" name="old_password" placeholder="**********" id="old_password">
                                     <span class="input-group-text password-toggle">
                                         <span class="close-eye password-eye">
                                             <svg width="22" height="10" viewBox="0 0 22 10" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -40,9 +47,9 @@
                                 </div>
                             </div>
                             <div class="mb-3">
-                                <label for="loginPassword" class="form-label">New Password</label>
+                                <label for="new_password" class="form-label">New Password</label>
                                 <div class="input-group mb-3">
-                                    <input type="password" class="form-control" placeholder="**********" id="loginPassword">
+                                    <input type="password" class="form-control" name="new_password" placeholder="**********" id="new_password">
                                     <span class="input-group-text password-toggle">
                                         <span class="close-eye password-eye">
                                             <svg width="22" height="10" viewBox="0 0 22 10" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -63,9 +70,9 @@
                                 </div>
                             </div>
                             <div class="mb-4">
-                                <label for="loginPasswordConfirm" class="form-label">Confirm Password</label>
+                                <label for="confirm_password" class="form-label">Confirm Password</label>
                                 <div class="input-group mb-3">
-                                    <input type="password" class="form-control" placeholder="**********" id="loginPasswordConfirm">
+                                    <input type="password" class="form-control" name="confirm_password" placeholder="**********" id="confirm_password">
                                     <span class="input-group-text password-toggle">
                                         <span class="close-eye password-eye">
                                             <svg width="22" height="10" viewBox="0 0 22 10" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -86,17 +93,17 @@
                                 </div>
                             </div>
 
-                            <div>
-                                <div class="text-center">
-                                    <button type="submit" class="btn btn-primary w-100">
-                                        Set New Password
-                                    </button>
-                                </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary w-100">
+                                    Set New Password
+                                </button>
                             </div>
-                        </div>
+
+                        </form>
                     </div>
                 </div>
             </div>
+        </div>
 
     </div>
     <?php include_once 'inc/copyright.php' ?>
