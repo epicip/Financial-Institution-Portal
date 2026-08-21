@@ -52,27 +52,100 @@ class Cases extends My_Controller
         $this->load->view('pending-cases', $this->data);
     }
 
-   /**
-    * Display the case details for the given case ID.
-    *
-    * Loads the case details and renders the case-details view.
-    *
-    * @param int $case_id The ID of the case to display details for
-    * @return void
-    */
-
+    /**
+     * Display the case details for the given case ID.
+     *
+     * Loads the case with its email log ID (required for match / no-match
+     * updates) and renders the case-details view.
+     *
+     * @param int         $case_id Case ID from adprep_wills_probate
+     * @param int|null    $log_id  Optional email_logs_institutions.id
+     * @return void
+     */
     function case_details($case_id)
     {
-        $this->data['case_id'] = $case_id;
+        $case = $this->Cases_model->get_case_by_id($case_id);
 
-        
-
-        $this->data['data'] = $this->Cases_model->get_row_details('adprep_wills_probate', ['caseId' => $case_id]);
-        if (empty($this->data['data'])) {
-            $this->setErrorMessage("warning", "Case not found or you do not have access to this case.");
+        if (empty($case) || empty($case->log_id)) {
+            $this->setErrorMessage('warning', 'Case not found or log id is missing for this case.');
             redirect('cases');
-        } else {
-            $this->load->view('case-details', $this->data);
+            return;
         }
+
+        $this->data['case_id'] = $case_id;
+        $this->data['log_id'] = $case->log_id;
+        $this->data['data'] = $case;
+        $this->load->view('case-details', $this->data);
+    }
+
+    /**
+     * Store a no-match (no records) response against the email log.
+     *
+     * Expects POST: log_id
+     * For AJAX requests returns JSON so flashdata is shown on the next page load.
+     *
+     * @return void
+     */
+
+    public function no_match()
+    {
+        $log_id = $this->input->post('log_id');
+
+        if (empty($log_id)) {
+            $this->setErrorMessage('danger', 'Log id is missing. Unable to save no-match response.');
+            return;
+        }
+
+        $this->Cases_model->update_details(
+            'email_logs_institutions',
+            array(
+                'email_status' => 'no_match',
+                'email_response' => 'yes',
+            ),
+            array(
+                'id' => $log_id,
+                'user_id' => $this->session->userdata('fc_session_institution_id'),
+                'notification_type' => 'PORTAL',
+            )
+        );
+
+        $this->setErrorMessage('success', 'No records response saved successfully.');
+
+        redirect('pending');
+    }
+
+    public function match_found()
+    {
+        $log_id = $this->input->post('log_id');
+        $notes = trim((string) $this->input->post('email_notes'));
+
+        if (empty($log_id)) {
+            $this->setErrorMessage('danger', 'Log id is missing. Unable to save match response.');
+            redirect('pending');
+            return;
+        }
+
+        if ($notes === '') {
+            $this->setErrorMessage('danger', 'Notes are missing. Please add details of the assets found.');
+            redirect('pending');
+            return;
+        }
+
+        $this->Cases_model->update_details(
+            'email_logs_institutions',
+            array(
+                'email_status' => 'match',
+                'email_response' => 'yes',
+                'email_notes' => $notes,
+            ),
+            array(
+                'id' => $log_id,
+                'user_id' => $this->session->userdata('fc_session_institution_id'),
+                'notification_type' => 'PORTAL',
+            )
+        );
+
+        $this->setErrorMessage('success', 'Match response saved successfully.');
+        redirect('pending');
     }
 }

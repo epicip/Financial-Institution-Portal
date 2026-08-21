@@ -28,11 +28,8 @@
                                     <th class="fw-medium">Forename</th>
                                     <th class="fw-medium">Middle Names</th>
                                     <th class="fw-medium">Surname</th>
-                                    <th class="fw-medium">Alias</th>
                                     <th class="fw-medium">Date of Birth</th>
                                     <th class="fw-medium">Last known address</th>
-                                    <th class="fw-medium">Previous Address</th>
-                                    <th class="fw-medium">NI Number</th>
                                     <th class="fw-medium">Further Details</th>
                                 </tr>
                             </thead>
@@ -44,11 +41,8 @@
                                             <td><?= $case->forename ?></td>
                                             <td><?= $case->middlename ?></td>
                                             <td><?= $case->surname ?></td>
-                                            <td><?= $case->alias ?></td>
                                             <td><?= date('d M Y', strtotime($case->dob)) ?></td>
                                             <td><?= $case->deceased_address ?></td>
-                                            <td><?= $case->address_history ?></td>
-                                            <td><?= $case->ni_number ?></td>
 
                                             <td class="text-nowrap">
                                                 <a href="<?= base_url('case-details/' . $case->caseId) ?>" target="_blank" rel="noopener" class="btn-case btn-case-details">

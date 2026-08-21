@@ -42,3 +42,23 @@ if (!function_exists('decrypt')) {
 		}
 	}
 }
+
+if (!function_exists('alias_to_text')) {
+	function alias_to_text($alias)
+	{
+		if (empty($alias)) return '';
+		$decoded = json_decode($alias, true);
+		if (!is_array($decoded)) return $alias; // legacy plain text — return as-is
+		$parts = [];
+		foreach ($decoded as $a) {
+			$name = trim(implode(' ', array_filter([
+				$a['title']      ?? '',
+				$a['forename']   ?? '',
+				$a['middlename'] ?? '',
+				$a['surname']    ?? '',
+			])));
+			if ($name !== '') $parts[] = $name;
+		}
+		return implode(', ', $parts);
+	}
+}
