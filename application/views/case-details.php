@@ -5,8 +5,8 @@
 
         <?php include_once 'inc/left-sidebar.php' ?>
 
-        <div class="app-content-wrapper pt-5 pb-5 px-5">
-            <div class="container-fluid px-0">
+        <div class="app-content-wrapper pt-13 pb-13 px-5">
+            <div class="container-fluid">
 
                 <?php if ($this->session->flashdata('sErrMSG') != '') { ?>
                     <div class="alert alert-<?= html_escape($this->session->flashdata('sErrMSGType')) ?> alert-dismissible fade show page-alert" role="alert">
@@ -15,77 +15,133 @@
                     </div>
                 <?php } ?>
 
+                <div class="portal-hero d-flex align-items-center justify-content-between flex-wrap gap-4">
+                    <div class="d-flex align-items-center gap-4">
+                        <span class="portal-avatar portal-avatar-lg"></span>
+                        <div>
+                            <span class="portal-hero-kicker">Further details</span>
+                            <h2 class="fw-semibold fs-7 mb-2"><?= $data->title ?> <?= $data->forename ?> <?= $data->middle ?> <?= $data->surname ?></h2>
+                            <p class="mb-0">Deceased personal details and asset &amp; liability search.</p>
+                        </div>
+                    </div>
+                    <div class="portal-actions">
+                        <button type="button" class="btn btn-outline-light">No Records</button>
+                        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#recordsFoundModal">Records Found</button>
+                    </div>
+                </div>
+
+                <div class="card shadow-custom rounded-custom mb-6">
+                    <div class="card-body p-6">
+                        <h5 class="portal-section-title mb-5">Deceased Personal Details <span class="portal-section-note">(Establish identity of deceased)</span></h5>
+                        <div class="row g-4">
+                            <div class="col-md-6">
+                                <label class="portal-form-label" for="deceasedForename">Forename <span class="text-danger">*</span></label>
+                                <input class="form-control portal-readonly" id="deceasedForename" type="text" value="James" readonly>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="portal-form-label" for="deceasedMiddle">Middle Name</label>
+                                <input class="form-control portal-readonly" id="deceasedMiddle" type="text" value="Edward" readonly>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="portal-form-label" for="deceasedSurname">Surname <span class="text-danger">*</span></label>
+                                <input class="form-control portal-readonly" id="deceasedSurname" type="text" value="Whitaker" readonly>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="portal-form-label" for="deceasedTitle">Title</label>
+                                <input class="form-control portal-readonly" id="deceasedTitle" type="text" value="Mr" readonly>
+                            </div>
+                            <div class="col-12">
+                                <label class="portal-form-label">Alias (Please state if “also known as” or “previously known as”.)</label>
+                                <div class="row g-3">
+                                    <div class="col-md-3">
+                                        <input class="form-control portal-readonly" type="text" value="Mr" aria-label="Alias title" readonly>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <input class="form-control portal-readonly" type="text" value="Jim" aria-label="Alias forename" readonly>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <input class="form-control portal-readonly" type="text" value="" placeholder="Middle Names" aria-label="Alias middle names" readonly>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <input class="form-control portal-readonly" type="text" value="Whitaker" aria-label="Alias surname" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="portal-form-label" for="deceasedDob">Date of Birth <span class="text-danger">*</span></label>
+                                <input class="form-control portal-readonly" id="deceasedDob" type="text" value="12 March 1948" readonly>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="portal-form-label" for="deceasedDod">Date of Death <span class="text-danger">*</span></label>
+                                <input class="form-control portal-readonly" id="deceasedDod" type="text" value="03 February 2026" readonly>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="portal-form-label" for="deceasedGender">Gender</label>
+                                <input class="form-control portal-readonly" id="deceasedGender" type="text" value="Male" readonly>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="portal-form-label" for="deceasedMarital">Marital Status</label>
+                                <input class="form-control portal-readonly" id="deceasedMarital" type="text" value="Widowed" readonly>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="portal-form-label" for="deceasedOccupation">Occupation</label>
+                                <input class="form-control portal-readonly" id="deceasedOccupation" type="text" value="Retired engineer" readonly>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="portal-form-label" for="deceasedPob">Place of Birth</label>
+                                <input class="form-control portal-readonly" id="deceasedPob" type="text" value="York, England" readonly>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="portal-form-label" for="deceasedPod">Place of Death</label>
+                                <input class="form-control portal-readonly" id="deceasedPod" type="text" value="Leeds General Infirmary" readonly>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="portal-form-label" for="deceasedPostcode">Deceased Address Postcode <span class="text-danger">*</span></label>
+                                <input class="form-control portal-readonly" id="deceasedPostcode" type="text" value="LS2 8HD" readonly>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="portal-form-label" for="deceasedAddress">Deceased Address <span class="text-danger">*</span></label>
+                                <textarea class="form-control portal-readonly" id="deceasedAddress" rows="3" readonly>14 Church Lane, Leeds, LS2 8HD</textarea>
+                                <div class="portal-helper">If there is more than one address please include a connective, such as previously of, formerly of etc.</div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="portal-form-label" for="deceasedPrevious">Previous Address</label>
+                                <textarea class="form-control portal-readonly" id="deceasedPrevious" rows="3" readonly>9 Albert Street, York, YO1 6JT</textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="card shadow-custom rounded-custom">
                     <div class="card-body p-6">
-                        <div class="mb-5  border-bottom pb-3">
-                            <h5 class="portal-section-title mb-1">Case Details</h5>
-                            <p class="text-muted mb-0">Case details for the given case ID.</p>
+                        <h5 class="portal-section-title mb-5">Asset &amp; Liability Search</h5>
+                        <div class="row g-4">
+                            <div class="col-md-6">
+                                <label class="portal-form-label" for="assetNi">National Insurance (“NI”) Number</label>
+                                <input class="form-control portal-readonly" id="assetNi" type="text" value="QQ 12 34 56 C" readonly>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="portal-form-label" for="assetOccupation">Previous Occupations</label>
+                                <input class="form-control portal-readonly" id="assetOccupation" type="text" value="Retired engineer, previously British Rail" readonly>
+                            </div>
+                            <div class="col-12">
+                                <label class="portal-form-label" for="assetHistory">Address History (list all known previous addresses) <span class="text-danger">*</span></label>
+                                <textarea class="form-control portal-readonly" id="assetHistory" rows="4" readonly>14 Church Lane, Leeds, LS2 8HD
+previously of 9 Albert Street, York, YO1 6JT</textarea>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="portal-file-row">
+                                    <span class="portal-form-label mb-0">Letter of Authority <span class="text-danger">*</span></span>
+                                    <a class="portal-file-link" href="#" target="_blank" rel="noopener">Show Uploaded File</a>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="portal-file-row">
+                                    <span class="portal-form-label mb-0">Death Certificate <span class="text-danger">*</span></span>
+                                    <a class="portal-file-link" href="#" target="_blank" rel="noopener">Show Uploaded File</a>
+                                </div>
+                            </div>
                         </div>
-                        <table id="casesTable" class="table align-middle portal-table mb-0 w-100">
-                            <thead class="table-light">
-                                <tr>
-                                    <th class="fw-medium">Title</th>
-                                    <th class="fw-medium">Forename</th>
-                                    <th class="fw-medium">Middle Names</th>
-                                    <th class="fw-medium">Surname</th>
-                                    <th class="fw-medium">Alias</th>
-                                    <th class="fw-medium">Date of Birth</th>
-                                    <th class="fw-medium">Last known address</th>
-                                    <th class="fw-medium">Previous Address</th>
-                                    <th class="fw-medium">National Insurance Number</th>
-                                    <th class="fw-medium">Further Details</th>
-                                    <th class="fw-medium text-end">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php if (!empty($cases)) { ?>
-                                    <?php foreach ($cases as $case) { ?>
-                                        <tr>
-                                            <td><?= $case->title ?></td>
-                                            <td><?= $case->forename ?></td>
-                                            <td><?= $case->middlename ?></td>
-                                            <td><?= $case->surname ?></td>
-                                            <td><?= $case->alias ?></td>
-                                            <td><?= date('d M Y', strtotime($case->dob)) ?></td>
-                                            <td><?= $case->deceased_address ?></td>
-                                            <td><?= $case->address_history ?></td>
-                                            <td><?= $case->ni_number ?></td>
-
-                                            <td class="text-nowrap">
-                                                <a href="<?= base_url('case-details/' . $case->caseId) ?>" target="_blank" rel="noopener" class="btn-case btn-case-details">
-                                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                                        <path d="M18 13v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                                                        <polyline points="15 3 21 3 21 9" />
-                                                        <line x1="10" y1="14" x2="21" y2="3" />
-                                                    </svg>
-                                                    Details
-                                                </a>
-                                            </td>
-
-                                            <td class="text-nowrap">
-                                                <div class="portal-actions">
-                                                    <button type="button" class="btn-case btn-case-none">
-                                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                                            <circle cx="12" cy="12" r="10" />
-                                                            <path d="M15 9l-6 6M9 9l6 6" />
-                                                        </svg>
-                                                        No Records
-                                                    </button>
-                                                    <button type="button" class="btn-case btn-case-found" data-bs-toggle="modal" data-bs-target="#recordsFoundModal">
-                                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                                            <circle cx="12" cy="12" r="10" />
-                                                            <path d="M8 12l3 3 5-6" />
-                                                        </svg>
-                                                        Records Found
-                                                    </button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    <?php } ?>
-                                <?php } ?>
-
-                            </tbody>
-                        </table>
                     </div>
                 </div>
             </div>
