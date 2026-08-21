@@ -1,5 +1,10 @@
 <?php include_once 'inc/header.php' ?>
 
+<?php
+
+$deceased_name = $data->title . ' ' . $data->forename . ' ' . $data->middlename . ' ' . $data->surname;
+?>
+
 <div class="app-main">
     <div id="app-wrapper" class="app-wrapper d-flex flex-column align-items-stretch min-vh-100">
 
@@ -17,10 +22,10 @@
 
                 <div class="portal-hero d-flex align-items-center justify-content-between flex-wrap gap-4">
                     <div class="d-flex align-items-center gap-4">
-                        <span class="portal-avatar portal-avatar-lg"></span>
+                        <span class="portal-avatar portal-avatar-lg"><?= substr($data->forename, 0, 1) ?><?= substr($data->surname, 0, 1) ?></span>
                         <div>
                             <span class="portal-hero-kicker">Further details</span>
-                            <h2 class="fw-semibold fs-7 mb-2"><?= $data->title ?> <?= $data->forename ?> <?= $data->middle ?> <?= $data->surname ?></h2>
+                            <h2 class="fw-semibold fs-7 mb-2"><?= $deceased_name ?></h2>
                             <p class="mb-0">Deceased personal details and asset &amp; liability search.</p>
                         </div>
                     </div>

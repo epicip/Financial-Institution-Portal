@@ -64,6 +64,9 @@ class Cases extends My_Controller
     function case_details($case_id)
     {
         $this->data['case_id'] = $case_id;
+
+        
+
         $this->data['data'] = $this->Cases_model->get_row_details('adprep_wills_probate', ['caseId' => $case_id]);
         if (empty($this->data['data'])) {
             $this->setErrorMessage("warning", "Case not found or you do not have access to this case.");
