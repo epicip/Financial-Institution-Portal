@@ -52,19 +52,24 @@ class Cases extends My_Controller
         $this->load->view('pending-cases', $this->data);
     }
 
-    /**
-     * Display the case details for the given case ID.
-     *
-     * Loads the case details and renders the case-details view.
-     *
-     * @param int $case_id The ID of the case to display details for
-     * @return void
-     */
+   /**
+    * Display the case details for the given case ID.
+    *
+    * Loads the case details and renders the case-details view.
+    *
+    * @param int $case_id The ID of the case to display details for
+    * @return void
+    */
 
     function case_details($case_id)
     {
         $this->data['case_id'] = $case_id;
         $this->data['data'] = $this->Cases_model->get_row_details('adprep_wills_probate', ['caseId' => $case_id]);
-        $this->load->view('case-details', $this->data);
+        if (empty($this->data['data'])) {
+            $this->setErrorMessage("warning", "Case not found or you do not have access to this case.");
+            redirect('cases');
+        } else {
+            $this->load->view('case-details', $this->data);
+        }
     }
 }

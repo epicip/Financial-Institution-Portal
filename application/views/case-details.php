@@ -34,27 +34,31 @@
                     <div class="card-body p-6">
                         <h5 class="portal-section-title mb-5">Deceased Personal Details <span class="portal-section-note">(Establish identity of deceased)</span></h5>
                         <div class="row g-4">
-                            <div class="col-md-6">
-                                <label class="portal-form-label" for="deceasedForename">Forename <span class="text-danger">*</span></label>
-                                <input class="form-control portal-readonly" id="deceasedForename" type="text" value="James" readonly>
+                            <div class="col-md-2">
+                                <label class="portal-form-label" for="deceasedTitle">Title</label>
+                                <input class="form-control portal-readonly" id="deceasedTitle" type="text" value="<?= $data->title ?>" readonly>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-5">
+                                <label class="portal-form-label" for="deceasedForename">Forename <span class="text-danger">*</span></label>
+                                <input class="form-control portal-readonly" id="deceasedForename" type="text" value="<?= $data->forename ?>" readonly>
+                            </div>
+                            <div class="col-md-5">
                                 <label class="portal-form-label" for="deceasedMiddle">Middle Name</label>
-                                <input class="form-control portal-readonly" id="deceasedMiddle" type="text" value="Edward" readonly>
+                                <input class="form-control portal-readonly" id="deceasedMiddle" type="text" value="<?= $data->middlename ?>" readonly>
                             </div>
                             <div class="col-md-6">
                                 <label class="portal-form-label" for="deceasedSurname">Surname <span class="text-danger">*</span></label>
-                                <input class="form-control portal-readonly" id="deceasedSurname" type="text" value="Whitaker" readonly>
+                                <input class="form-control portal-readonly" id="deceasedSurname" type="text" value="<?= $data->surname ?>" readonly>
                             </div>
                             <div class="col-md-6">
-                                <label class="portal-form-label" for="deceasedTitle">Title</label>
-                                <input class="form-control portal-readonly" id="deceasedTitle" type="text" value="Mr" readonly>
+                                <label class="portal-form-label" for="deceasedGender">Gender</label>
+                                <input class="form-control portal-readonly" id="deceasedGender" type="text" value="<?= $data->gender ?>" readonly>
                             </div>
                             <div class="col-12">
                                 <label class="portal-form-label">Alias (Please state if “also known as” or “previously known as”.)</label>
                                 <div class="row g-3">
                                     <div class="col-md-3">
-                                        <input class="form-control portal-readonly" type="text" value="Mr" aria-label="Alias title" readonly>
+                                        <input class="form-control portal-readonly" type="text" value="<?= $data->alias ?>" aria-label="Alias title" readonly>
                                     </div>
                                     <div class="col-md-3">
                                         <input class="form-control portal-readonly" type="text" value="Jim" aria-label="Alias forename" readonly>
@@ -69,44 +73,21 @@
                             </div>
                             <div class="col-md-6">
                                 <label class="portal-form-label" for="deceasedDob">Date of Birth <span class="text-danger">*</span></label>
-                                <input class="form-control portal-readonly" id="deceasedDob" type="text" value="12 March 1948" readonly>
+                                <input class="form-control portal-readonly" id="deceasedDob" type="text" value="<?= date('d F Y', strtotime($data->dob)) ?>" readonly>
                             </div>
                             <div class="col-md-6">
                                 <label class="portal-form-label" for="deceasedDod">Date of Death <span class="text-danger">*</span></label>
-                                <input class="form-control portal-readonly" id="deceasedDod" type="text" value="03 February 2026" readonly>
+                                <input class="form-control portal-readonly" id="deceasedDod" type="text" value="<?= date('d F Y', strtotime($data->dod)) ?>" readonly>
                             </div>
-                            <div class="col-md-6">
-                                <label class="portal-form-label" for="deceasedGender">Gender</label>
-                                <input class="form-control portal-readonly" id="deceasedGender" type="text" value="Male" readonly>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="portal-form-label" for="deceasedMarital">Marital Status</label>
-                                <input class="form-control portal-readonly" id="deceasedMarital" type="text" value="Widowed" readonly>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="portal-form-label" for="deceasedOccupation">Occupation</label>
-                                <input class="form-control portal-readonly" id="deceasedOccupation" type="text" value="Retired engineer" readonly>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="portal-form-label" for="deceasedPob">Place of Birth</label>
-                                <input class="form-control portal-readonly" id="deceasedPob" type="text" value="York, England" readonly>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="portal-form-label" for="deceasedPod">Place of Death</label>
-                                <input class="form-control portal-readonly" id="deceasedPod" type="text" value="Leeds General Infirmary" readonly>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="portal-form-label" for="deceasedPostcode">Deceased Address Postcode <span class="text-danger">*</span></label>
-                                <input class="form-control portal-readonly" id="deceasedPostcode" type="text" value="LS2 8HD" readonly>
-                            </div>
+
                             <div class="col-md-6">
                                 <label class="portal-form-label" for="deceasedAddress">Deceased Address <span class="text-danger">*</span></label>
-                                <textarea class="form-control portal-readonly" id="deceasedAddress" rows="3" readonly>14 Church Lane, Leeds, LS2 8HD</textarea>
-                                <div class="portal-helper">If there is more than one address please include a connective, such as previously of, formerly of etc.</div>
+                                <textarea class="form-control portal-readonly" id="deceasedAddress" rows="3" readonly><?= $data->deceased_address ?></textarea>
+
                             </div>
                             <div class="col-md-6">
                                 <label class="portal-form-label" for="deceasedPrevious">Previous Address</label>
-                                <textarea class="form-control portal-readonly" id="deceasedPrevious" rows="3" readonly>9 Albert Street, York, YO1 6JT</textarea>
+                                <textarea class="form-control portal-readonly" id="deceasedPrevious" rows="3" readonly><?= $data->address_history ?></textarea>
                             </div>
                         </div>
                     </div>
@@ -116,29 +97,42 @@
                     <div class="card-body p-6">
                         <h5 class="portal-section-title mb-5">Asset &amp; Liability Search</h5>
                         <div class="row g-4">
-                            <div class="col-md-6">
-                                <label class="portal-form-label" for="assetNi">National Insurance (“NI”) Number</label>
-                                <input class="form-control portal-readonly" id="assetNi" type="text" value="QQ 12 34 56 C" readonly>
-                            </div>
+
                             <div class="col-md-6">
                                 <label class="portal-form-label" for="assetOccupation">Previous Occupations</label>
-                                <input class="form-control portal-readonly" id="assetOccupation" type="text" value="Retired engineer, previously British Rail" readonly>
+                                <input class="form-control portal-readonly" id="assetOccupation" type="text" value="<?= $data->prevOccupations ?>" readonly>
                             </div>
-                            <div class="col-12">
-                                <label class="portal-form-label" for="assetHistory">Address History (list all known previous addresses) <span class="text-danger">*</span></label>
-                                <textarea class="form-control portal-readonly" id="assetHistory" rows="4" readonly>14 Church Lane, Leeds, LS2 8HD
-previously of 9 Albert Street, York, YO1 6JT</textarea>
+                            <div class="col-md-6">
+                                <label class="portal-form-label" for="assetNi">National Insurance (“NI”) Number</label>
+                                <input class="form-control portal-readonly" id="assetNi" type="text" value="<?= $data->ni_number ?>" readonly>
                             </div>
+                            <div class="col-md-6">
+                                <label class="portal-form-label" for="deceasedMarital">Previous Employers of Deceased</label>
+                                <input class="form-control portal-readonly" id="deceasedMarital" type="text" value="<?= $data->deceased_previous_employers ?>" readonly>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="portal-form-label" for="deceasedOccupation">Trading Name of Deceased (if applicable)</label>
+                                <input class="form-control portal-readonly" id="deceasedOccupation" type="text" value="<?= $data->deceased_trading_name ?>" readonly>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="portal-form-label" for="deceasedPob">Mobile Number of Deceased</label>
+                                <input class="form-control portal-readonly" id="deceasedPob" type="text" value="<?= $data->deceased_mobile ?>" readonly>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="portal-form-label" for="deceasedPod">Email Addresses of Deceased</label>
+                                <input class="form-control portal-readonly" id="deceasedPod" type="text" value="<?= $data->deceased_email ?>" readonly>
+                            </div>
+
                             <div class="col-md-6">
                                 <div class="portal-file-row">
                                     <span class="portal-form-label mb-0">Letter of Authority <span class="text-danger">*</span></span>
-                                    <a class="portal-file-link" href="#" target="_blank" rel="noopener">Show Uploaded File</a>
+                                    <a class="portal-file-link" href="<?= $data->documents ?>" target="_blank" rel="noopener">Show Uploaded File</a>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="portal-file-row">
                                     <span class="portal-form-label mb-0">Death Certificate <span class="text-danger">*</span></span>
-                                    <a class="portal-file-link" href="#" target="_blank" rel="noopener">Show Uploaded File</a>
+                                    <a class="portal-file-link" href="<?= $data->dcdocuments ?>" target="_blank" rel="noopener">Show Uploaded File</a>
                                 </div>
                             </div>
                         </div>
