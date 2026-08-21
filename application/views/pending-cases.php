@@ -8,6 +8,13 @@
         <div class="app-content-wrapper pt-5 pb-5 px-5">
             <div class="container-fluid px-0">
 
+                <?php if (!empty($flash_data)) { ?>
+                    <div class="alert alert-<?= html_escape($flash_data_type ?? 'success') ?> alert-dismissible fade show page-alert" role="alert">
+                        <?= html_escape($flash_data) ?>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                <?php } ?>
+
                 <div class="card shadow-custom rounded-custom">
                     <div class="card-body p-6">
                         <div class="mb-5  border-bottom pb-3">
@@ -21,11 +28,8 @@
                                     <th class="fw-medium">Forename</th>
                                     <th class="fw-medium">Middle Names</th>
                                     <th class="fw-medium">Surname</th>
-                                    <th class="fw-medium">Alias</th>
                                     <th class="fw-medium">Date of Birth</th>
                                     <th class="fw-medium">Last known address</th>
-                                    <th class="fw-medium">Previous Address</th>
-                                    <th class="fw-medium">National Insurance Number</th>
                                     <th class="fw-medium">Further Details</th>
                                     <th class="fw-medium text-end">Actions</th>
                                 </tr>
@@ -38,14 +42,11 @@
                                             <td><?= $case->forename ?></td>
                                             <td><?= $case->middlename ?></td>
                                             <td><?= $case->surname ?></td>
-                                            <td><?= $case->alias ?></td>
                                             <td><?= date('d M Y', strtotime($case->dob)) ?></td>
                                             <td><?= $case->deceased_address ?></td>
-                                            <td><?= $case->address_history ?></td>
-                                            <td><?= $case->ni_number ?></td>
 
                                             <td class="text-nowrap">
-                                                <a href="case-details.html" target="_blank" rel="noopener" class="btn-case btn-case-details">
+                                                <a href="<?= base_url('case-details/' . $case->caseId) ?>" target="_blank" rel="noopener" class="btn-case btn-case-details">
                                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                                         <path d="M18 13v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
                                                         <polyline points="15 3 21 3 21 9" />
@@ -57,14 +58,14 @@
 
                                             <td class="text-nowrap">
                                                 <div class="portal-actions">
-                                                    <button type="button" class="btn-case btn-case-none">
+                                                    <button type="button" class="btn-case btn-case-none" onclick="noMatchFound('<?= html_escape($case->log_id ?? '') ?>')">
                                                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                                             <circle cx="12" cy="12" r="10" />
                                                             <path d="M15 9l-6 6M9 9l6 6" />
                                                         </svg>
                                                         No Records
                                                     </button>
-                                                    <button type="button" class="btn-case btn-case-found" data-bs-toggle="modal" data-bs-target="#recordsFoundModal">
+                                                    <button type="button" class="btn-case btn-case-found" data-bs-toggle="modal" data-bs-target="#recordsFoundModal" onclick="matchFound('<?= html_escape($case->log_id ?? '') ?>')">
                                                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                                             <circle cx="12" cy="12" r="10" />
                                                             <path d="M8 12l3 3 5-6" />

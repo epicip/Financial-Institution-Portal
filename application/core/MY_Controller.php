@@ -44,6 +44,23 @@ class MY_Controller extends CI_Controller
 			if (!empty($institutions) && isset($institutions->name)) {
 				$this->data['institution_name'] = $institutions->name;
 			}
+
+			// Keep session user type/name in sync (covers old sessions created before type was stored)
+			if ($this->session->userdata('fc_session_user_type') === NULL
+				|| $this->session->userdata('fc_session_user_type') === '') {
+				$user = $this->db
+					->select('type, name')
+					->from('adprep_financial_institutions_users')
+					->where('user_id', $this->checkLogin('E'))
+					->get()
+					->row();
+				if (!empty($user)) {
+					$this->session->set_userdata(array(
+						'fc_session_user_type' => strtolower(trim((string) ($user->type ?? ''))),
+						'fc_session_user_name' => (string) ($user->name ?? $this->session->userdata('fc_session_user_name')),
+					));
+				}
+			}
 		}
 
 		$this->data['flash_data'] = $this->session->flashdata('sErrMSG');

@@ -3,20 +3,19 @@
     <div id="app-wrapper" class="app-wrapper d-flex flex-column align-items-stretch min-vh-100">
         <?php include_once 'inc/left-sidebar.php' ?>
         <div class="auth-wrapper auth-basic p-5  d-flex align-items-center justify-content-center">
-             <div class="container-fluid px-0">
-
+            <div class="container-fluid px-0">
+                <?php if ($this->session->flashdata('sErrMSG') != '') { ?>
+                    <div class="alert alert-<?= html_escape($this->session->flashdata('sErrMSGType')) ?> alert-dismissible fade show page-alert" role="alert">
+                        <?= html_escape($this->session->flashdata('sErrMSG')) ?>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                <?php } ?>
                 <div class="card shadow-custom rounded-custom">
                     <div class="card-body p-6">
                         <div class="mb-5  border-bottom pb-3">
                             <h5 class="portal-section-title mb-1">Set Your New Password</h5>
                             <p class="text-muted mb-0">Create a new strong password for your account.</p>
                         </div>
-                       <?php if ($this->session->flashdata('sErrMSG') != '') { ?>
-                            <div class="alert alert-<?= html_escape($this->session->flashdata('sErrMSGType')) ?> alert-dismissible fade show page-alert" role="alert">
-                                <?= html_escape($this->session->flashdata('sErrMSG')) ?>
-                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                            </div>
-                        <?php } ?>
                         <form novalidate method="post" action="<?= base_url('users/change_password_process') ?>">
                             <div class="mb-3">
                                 <label for="old_password" class="form-label">Old Password</label>
