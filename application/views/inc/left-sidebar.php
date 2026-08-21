@@ -49,18 +49,18 @@
                     </a>
                 </li>
                 <?php if ($this->session->userdata('fc_session_user_type') == 'admin') { ?>
-                <li class="app-sidebar-menu-item">
-                    <a href="<?= base_url('users') ?>" class="menu-link d-flex align-items-center" title="Users">
-                        <span class="menu-icon flex-shrink-0">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                                <path d="M16 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
-                                <circle cx="9.5" cy="7" r="3.5" stroke="currentColor" stroke-width="1.75" />
-                                <path d="M20 8v6M17 11h6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
-                            </svg>
-                        </span>
-                        <span class="menu-title flex-grow-1">Users</span>
-                    </a>
-                </li>
+                    <li class="app-sidebar-menu-item">
+                        <a href="<?= base_url('users') ?>" class="menu-link d-flex align-items-center" title="Users">
+                            <span class="menu-icon flex-shrink-0">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                    <path d="M16 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
+                                    <circle cx="9.5" cy="7" r="3.5" stroke="currentColor" stroke-width="1.75" />
+                                    <path d="M20 8v6M17 11h6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
+                                </svg>
+                            </span>
+                            <span class="menu-title flex-grow-1">Users</span>
+                        </a>
+                    </li>
                 <?php } ?>
             </ul>
         </div>
@@ -75,11 +75,8 @@
                 </div>
                 <div class="app-sidebar-user-meta">
                     <h6 class="mb-0">
-                        <?php if ($this->session->userdata('fc_session_user_type') == 'user') { ?>
-                            <?= $this->session->userdata('fc_session_user_name') ?>
-                        <?php } else { ?>
-                            Admin
-                        <?php } ?>
+
+                        <?= ($this->session->userdata('fc_session_user_type') == 'admin') ? 'Admin' : $this->session->userdata('fc_session_user_name') ?>
                         <span><?= html_escape($institution_name ?? '') ?></span>
                 </div>
             </div>

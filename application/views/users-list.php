@@ -4,6 +4,14 @@
         <?php include_once 'inc/left-sidebar.php' ?>
         <div class="app-content-wrapper pt-5 pb-5 px-5">
             <div class="container-fluid px-0">
+
+                <?php if ($this->session->flashdata('sErrMSG') != '') { ?>
+                    <div class="alert alert-<?= html_escape($this->session->flashdata('sErrMSGType')) ?> alert-dismissible fade show page-alert" role="alert">
+                        <?= html_escape($this->session->flashdata('sErrMSG')) ?>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                <?php } ?>
+
                 <div class="portal-hero">
 
                     <h2 class="fw-semibold fs-7 mb-2">User</h2>

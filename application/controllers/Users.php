@@ -5,6 +5,14 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class Users extends My_Controller
 {
 
+    /**
+     * Initialize the Users controller.
+     *
+     * Ensures the user is logged in, then loads helpers, form validation,
+     * and the users model used by this controller.
+     *
+     * @return void
+     */
     public function __construct()
     {
         parent::__construct();
@@ -18,55 +26,58 @@ class Users extends My_Controller
         $this->load->model('users_model');
     }
 
-
-
-
     /**
-     * Load the user list view.
+     * Display the institution users list page.
      *
-     * This function renders the user list page by loading.
+     * Only admin users can access this page. Loads all users for the
+     * current institution and renders the users-list view.
      *
      * @return void
      */
     function index()
     {
-
         if ($this->session->userdata('fc_session_user_type') != 'admin') {
-            $this->setErrorMessage('danger', 'You are not authorized to access this page.');
+            $this->setErrorMessage('danger', 'You are not authorized to access users page only admin can access this page.');
             redirect('dashboard');
             return;
         }
 
         $this->data['users'] = $this->users_model->get_all_users();
-
-        // View page link
         $this->load->view('users-list', $this->data);
     }
 
     /**
-     * Loads the add/edit institutions user form.
+     * Load the add/edit user form via AJAX.
      *
-     * Reads institutions and optional user IDs from POST data, fetches user details
-     * when editing, and renders the add-institutions-user view.
+     * Reads an optional user_id from POST. When provided, fetches that
+     * user's details for editing; otherwise loads a blank add-user form.
      *
      * @return void
      */
-
     function add_edit_user_form()
     {
-        $user_id = $this->input->post('user_id'); // Get the user id
+        $user_id = $this->input->post('user_id');
         $this->data['user_id'] = $user_id;
 
         if (!empty($user_id)) {
-            $this->data['data'] = $this->users_model->get_row_details('adprep_financial_institutions_users', ['user_id' => $user_id]); // Get the user details
+            $this->data['data'] = $this->users_model->get_row_details(
+                'adprep_financial_institutions_users',
+                ['user_id' => $user_id]
+            );
         }
 
-        $this->load->view('add-edit-user', $this->data); // Load the view
-
+        $this->load->view('add-edit-user', $this->data);
     }
 
-
-    // User List
+    /**
+     * Create a new user or update an existing user.
+     *
+     * Validates posted name, email, and status. Updates the record when
+     * user_id is present; otherwise creates a new user with a generated
+     * password and emails the login credentials.
+     *
+     * @return void
+     */
     public function insert_update_user()
     {
         $this->form_validation->set_rules('name', 'Name', 'required');
@@ -78,7 +89,6 @@ class Users extends My_Controller
             return;
         }
 
-
         $data = array();
         $data['institutions_id'] = $this->session->userdata('fc_session_institution_id');
         $data['name'] = $this->input->post('name');
@@ -87,7 +97,11 @@ class Users extends My_Controller
         $data['type'] = 'user';
 
         if (!empty($this->input->post('user_id'))) {
-            $this->users_model->update_details('adprep_financial_institutions_users', $data, ['user_id' => $this->input->post('user_id')]);
+            $this->users_model->update_details(
+                'adprep_financial_institutions_users',
+                $data,
+                ['user_id' => $this->input->post('user_id')]
+            );
         } else {
             $password = $this->generate_strong_password(8);
             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
@@ -113,12 +127,25 @@ class Users extends My_Controller
         redirect('users');
     }
 
-    // View Change Password 
+    /**
+     * Display the change password page.
+     *
+     * @return void
+     */
     function change_password()
     {
         $this->load->view('change-password', $this->data);
     }
 
+    /**
+     * Process a password change request for the logged-in user.
+     *
+     * Validates old, new, and confirm password fields. Verifies the current
+     * password, applies password strength rules, then updates the hashed
+     * password in the database.
+     *
+     * @return void
+     */
     public function change_password_process()
     {
         $this->form_validation->set_rules('old_password', 'Password', 'required');
@@ -132,30 +159,25 @@ class Users extends My_Controller
         if ($this->form_validation->run() === FALSE) {
             $this->load->view('users/change_password', $this->data);
         } else {
-
-            // Load PasswordValidation library
             $this->load->library('PasswordValidation');
 
             $condition = array('user_id' => $this->session->userdata('fc_session_user_id'));
 
             $user_details = $this->users_model->get_row_details('adprep_financial_institutions_users', $condition);
             if (!empty($user_details)) {
-                // check if new password and confirm password are same
                 if (!password_verify($old_password, $user_details->password)) {
                     $this->setErrorMessage('danger', 'Invalid current password');
                     redirect('users/change_password');
                     return;
                 }
 
-                // check password validation by PasswordValidation library
-                $validatePassword =  $this->passwordvalidation->validatePassword($new_password, $user_details->password);
+                $validatePassword = $this->passwordvalidation->validatePassword($new_password, $user_details->password);
                 if ($validatePassword !== true) {
                     $this->setErrorMessage('danger', $validatePassword);
                     redirect('users/change_password');
                     return;
                 }
 
-                // create new hashed password
                 $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
                 $newdata = array('password' => $hashed_password);
 

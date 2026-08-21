@@ -5,6 +5,14 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class Login extends My_Controller
 {
 
+	/**
+	 * Initialize the Login controller.
+	 *
+	 * Loads helpers, form validation, and the users model used
+	 * for authentication and password reset flows.
+	 *
+	 * @return void
+	 */
 	public function __construct()
 	{
 		parent::__construct();
@@ -14,7 +22,14 @@ class Login extends My_Controller
 		$this->load->model('users_model');
 	}
 
-	// User Login
+	/**
+	 * Display the login page.
+	 *
+	 * Shows the login form when the user is not logged in;
+	 * otherwise redirects to the dashboard.
+	 *
+	 * @return void
+	 */
 	function index()
 	{
 		if ($this->checkLogin('E') == '') {
@@ -24,6 +39,15 @@ class Login extends My_Controller
 		}
 	}
 
+	/**
+	 * Process the login form submission.
+	 *
+	 * Validates email and password, verifies reCAPTCHA, checks that the
+	 * account is active, and creates the user session on success.
+	 * Optionally sets a remember-me cookie.
+	 *
+	 * @return void
+	 */
 	public function check_login_process()
 	{
 		$this->form_validation->set_rules('email_id', 'Username', 'required');
@@ -52,7 +76,7 @@ class Login extends My_Controller
 							'fc_session_institution_id' => $user_details->institutions_id,
 							'fc_session_user_id' => $user_details->user_id,
 							'fc_session_user_name' => $user_details->name,
-							'fc_session_user_type' => $user_details->type,
+							'fc_session_user_type' => strtolower(trim((string) ($user_details->type ?? ''))),
 						);
 						$this->session->sess_regenerate(TRUE);
 						$this->session->set_userdata($institutiondata);
@@ -84,15 +108,13 @@ class Login extends My_Controller
 	}
 
 	/**
-	 * Log out the current client user.
+	 * Log out the current user.
 	 *
-	 * This function clears all client-related session data,
-	 * removes the client session cookie, sets a success message,
-	 * and redirects the user to the login page.
+	 * Clears session user data, removes the institution session cookie,
+	 * sets a success message, and redirects to the login page.
 	 *
 	 * @return void
 	 */
-
 	public function logout()
 	{
 		$institutiondata = array(
@@ -115,10 +137,7 @@ class Login extends My_Controller
 	}
 
 	/**
-	 * Load the Forgot Password view.
-	 *
-	 * This function renders the forgot password page by loading
-	 * the header, forgot-password form, and footer views.
+	 * Display the forgot password page.
 	 *
 	 * @return void
 	 */
@@ -127,6 +146,14 @@ class Login extends My_Controller
 		$this->load->view('forgot-password', $this->data);
 	}
 
+	/**
+	 * Process a forgot password request.
+	 *
+	 * Validates the email, verifies reCAPTCHA, generates a new password,
+	 * updates the user record, and emails the new credentials.
+	 *
+	 * @return void
+	 */
 	function forgot_password_process()
 	{
 		$this->form_validation->set_rules('email_id', 'Email', 'required|valid_email');
@@ -169,9 +196,12 @@ class Login extends My_Controller
 	}
 
 	/**
-	 * Verify Google reCAPTCHA v3 token from the posted form.
+	 * Verify the Google reCAPTCHA v3 token from the posted form.
 	 *
-	 * @return bool
+	 * Skips validation when the captcha constant is set; otherwise
+	 * verifies the token with Google's siteverify API.
+	 *
+	 * @return bool True when verification succeeds or captcha is skipped
 	 */
 	private function verify_recaptcha()
 	{

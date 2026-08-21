@@ -18,8 +18,8 @@
                 <div class="card shadow-custom rounded-custom">
                     <div class="card-body p-6">
                         <div class="mb-5  border-bottom pb-3">
-                            <h5 class="portal-section-title mb-1">Pending Cases list</h5>
-                            <p class="text-muted mb-0">Deceased personal details supplied for asset and liability search.</p>
+                            <h5 class="portal-section-title mb-1">Case Details</h5>
+                            <p class="text-muted mb-0">Case details for the given case ID.</p>
                         </div>
                         <table id="casesTable" class="table align-middle portal-table mb-0 w-100">
                             <thead class="table-light">

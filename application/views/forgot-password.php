@@ -17,12 +17,6 @@
 </head>
 
 <body class="login-page">
-    <?php if ($this->session->flashdata('sErrMSG') != '') { ?>
-        <div class="alert alert-<?= html_escape($this->session->flashdata('sErrMSGType')) ?> alert-dismissible fade show page-alert" role="alert">
-            <?= html_escape($this->session->flashdata('sErrMSG')) ?>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    <?php } ?>
 
     <div class="auth-wrapper auth-cover min-vh-100 d-flex align-items-center justify-content-center">
         <span class="login-orb login-orb-1"></span>
@@ -42,6 +36,13 @@
                     <h4 class="login-title mb-1">Forgot password</h4>
                     <p class="login-subtitle">Enter your email address and we will send you a new password.</p>
                 </div>
+
+                <?php if ($this->session->flashdata('sErrMSG') != '') { ?>
+                    <div class="alert alert-<?= html_escape($this->session->flashdata('sErrMSGType')) ?> alert-dismissible fade show page-alert" role="alert">
+                        <?= html_escape($this->session->flashdata('sErrMSG')) ?>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                <?php } ?>
 
                 <form id="forgotPasswordForm" action="<?= base_url('forgot-password-process') ?>" method="post">
                     <input type="hidden" name="token" id="token" value="">

@@ -8,6 +8,13 @@
         <div class="app-content-wrapper pt-5 pb-5 px-5">
             <div class="container-fluid px-0">
 
+                <?php if ($this->session->flashdata('sErrMSG') != '') { ?>
+                    <div class="alert alert-<?= html_escape($this->session->flashdata('sErrMSGType')) ?> alert-dismissible fade show page-alert" role="alert">
+                        <?= html_escape($this->session->flashdata('sErrMSG')) ?>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                <?php } ?>
+
                 <div class="card shadow-custom rounded-custom">
                     <div class="card-body p-6">
                         <div class="mb-5 border-bottom pb-3">
@@ -44,7 +51,7 @@
                                             <td><?= $case->ni_number ?></td>
 
                                             <td class="text-nowrap">
-                                                <a href="case-details.html" target="_blank" rel="noopener" class="btn-case btn-case-details">
+                                                <a href="<?= base_url('case-details/' . $case->caseId) ?>" target="_blank" rel="noopener" class="btn-case btn-case-details">
                                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                                         <path d="M18 13v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
                                                         <polyline points="15 3 21 3 21 9" />
@@ -53,7 +60,7 @@
                                                     Details
                                                 </a>
                                             </td>
-                                            
+
                                         </tr>
                                     <?php } ?>
                                 <?php } ?>

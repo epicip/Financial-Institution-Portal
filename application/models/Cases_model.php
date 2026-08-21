@@ -2,15 +2,27 @@
 
 defined('BASEPATH') or exit('No direct script access allowed');
 
-
 class Cases_model extends My_Model
 {
 
+    /**
+     * Initialize the Cases model.
+     *
+     * @return void
+     */
     public function __construct()
     {
         parent::__construct();
     }
 
+    /**
+     * Get all portal cases for the logged-in institution.
+     *
+     * Joins email_logs_institutions with adprep_wills_probate and returns
+     * cases where notification_type is PORTAL for the current institution.
+     *
+     * @return array List of case objects, or an empty array on query failure
+     */
     public function get_all_cases()
     {
         $this->db->select('adprep_wills_probate.*');
@@ -33,6 +45,14 @@ class Cases_model extends My_Model
         return $query->result();
     }
 
+    /**
+     * Get pending portal cases for the logged-in institution.
+     *
+     * Same base query as get_all_cases(), limited to records where
+     * email_status is still NULL (not yet reviewed/responded).
+     *
+     * @return array List of pending case objects, or an empty array on query failure
+     */
     public function get_pending_cases()
     {
         $this->db->select('adprep_wills_probate.*');
@@ -54,5 +74,5 @@ class Cases_model extends My_Model
             return array();
         }
         return $query->result();
-    }   
+    }
 }
