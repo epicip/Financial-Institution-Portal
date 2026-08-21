@@ -76,17 +76,20 @@
 
     $('.app-sidebar-mobile-open').on('click', function(){
         $('.app-sidebar').removeClass('collapsed').addClass('open');
+        $('.app-sidebar-open-btn').removeClass('collapsed');
         $('.app-backdrop').addClass('show');
     });
 
     $('.app-sidebar-mobile-close').on('click', function(){
-        $('.app-sidebar').removeClass('collapsed').removeClass('open');
+        $('.app-sidebar').removeClass('open').addClass('collapsed');
+        $('.app-sidebar-open-btn').addClass('collapsed');
         $('.app-backdrop').removeClass('show');
     });
 
     $('.app-backdrop').on('click', function(){
         $('#app-wrapper').removeClass('open');
-        $('#app-sidebar').removeClass('open');
+        $('#app-sidebar').removeClass('open').addClass('collapsed');
+        $('.app-sidebar-open-btn').addClass('collapsed');
         $(this).removeClass('show');
     });
     

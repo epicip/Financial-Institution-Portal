@@ -5,8 +5,8 @@
 
         <?php include_once 'inc/left-sidebar.php' ?>
 
-        <div class="app-content-wrapper pt-3 pb-3 px-5">
-            <div class="container-fluid">
+        <div class="app-content-wrapper pt-5 pb-5 px-5">
+            <div class="container-fluid px-0">
                 <?php if (!empty($pending_cases)) { ?>
                     <div class="portal-hero d-flex align-items-center justify-content-between flex-wrap gap-4">
                         <div>
@@ -18,10 +18,10 @@
                     </div>
                 <?php } ?>
 
-                <div class="row g-3 row-cols-xxl-3 row-cols-lg-3 row-cols-md-2 row-cols-1 mb-6">
+                <div class="row g-3 row-cols-xxl-3 row-cols-lg-3 row-cols-md-2 row-cols-1 mb-5">
                     <div class="col">
                         <div class="card shadow-custom rounded-custom">
-                            <div class="card-body p-6 position-relative">
+                            <div class="card-body p-3 position-relative">
                                 <div class="btn-icon bg-label-primary rounded-pill btn-lg mb-3">
                                     <svg width="22" height="16" viewBox="0 0 22 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M10.9508 10.5399C7.5008 10.5399 4.58984 11.1037 4.58984 13.2794C4.58984 15.4561 7.5196 16 10.9508 16C14.4008 16 17.3117 15.4362 17.3117 13.2605C17.3117 11.0839 14.382 10.5399 10.9508 10.5399Z" fill="currentColor" />
@@ -32,7 +32,7 @@
                                         <path d="M2.32156 9.51267C1.21752 9.7297 0.492248 10.1719 0.191392 10.8167C-0.0637974 11.3453 -0.0637974 11.9586 0.191392 12.4872C0.651629 13.485 2.13531 13.8065 2.71195 13.8885C2.83104 13.9065 2.92595 13.8038 2.91342 13.6831C2.61883 10.9166 4.9621 9.60453 5.56918 9.30284C5.59425 9.28843 5.59962 9.26772 5.59694 9.25421C5.59515 9.2452 5.5853 9.2317 5.5656 9.22989C4.25294 9.20468 2.84358 9.38479 2.32156 9.51267Z" fill="currentColor" />
                                     </svg>
                                 </div>
-                                <span class="fz-12px fw-medium d-block">Pending cases</span>
+                                <span class="fz-12px fw-medium d-block">Pending Cases</span>
                                 <h3 class="h6 fs-9 mb-0"><?= !empty($pending_cases) ? count($pending_cases) : 0 ?></h3>
 
                                 <div class="position-absolute top-9 end-3 p-1">
@@ -43,7 +43,7 @@
                     </div>
                     <div class="col">
                         <div class="card shadow-custom rounded-custom">
-                            <div class="card-body p-6 position-relative">
+                            <div class="card-body p-3 position-relative">
                                 <div class="btn-icon bg-label-warning rounded-pill btn-lg mb-3">
                                     <svg width="18" height="17" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M17.3721 16.7442H0.627907C0.284651 16.7442 0 16.4595 0 16.1162C0 15.773 0.284651 15.4883 0.627907 15.4883H17.3721C17.7153 15.4883 18 15.773 18 16.1162C18 16.4595 17.7153 16.7442 17.3721 16.7442Z" fill="currentColor" />
@@ -52,7 +52,7 @@
                                         <path opacity="0.4" d="M13.1875 10.8838V16.7442H16.5363V10.8838C16.5363 9.96284 16.2015 9.20935 15.1968 9.20935H14.527C13.5224 9.20935 13.1875 9.96284 13.1875 10.8838Z" fill="currentColor" />
                                     </svg>
                                 </div>
-                                <span class="fz-12px fw-medium d-block">Received this week</span>
+                                <span class="fz-12px fw-medium d-block">All Cases</span>
                                 <h3 class="h6 fs-9 mb-0"><?= !empty($all_cases) ? count($all_cases) : 0 ?></h3>
 
                                 <div class="position-absolute top-9 end-3 p-1">
@@ -63,14 +63,14 @@
                     </div>
                     <div class="col">
                         <div class="card shadow-custom rounded-custom">
-                            <div class="card-body p-6 position-relative">
+                            <div class="card-body p-3 position-relative">
                                 <div class="btn-icon bg-label-success rounded-pill btn-lg mb-3">
                                     <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path opacity="0.4" d="M4.88256 14.9003C5.62898 14.9003 6.2405 15.5118 6.2405 16.2672C6.2405 17.0137 5.62898 17.6252 4.88256 17.6252C4.12715 17.6252 3.51562 17.0137 3.51562 16.2672C3.51562 15.5118 4.12715 14.9003 4.88256 14.9003ZM14.9997 14.9003C15.7461 14.9003 16.3576 15.5118 16.3576 16.2672C16.3576 17.0137 15.7461 17.6252 14.9997 17.6252C14.2443 17.6252 13.6327 17.0137 13.6327 16.2672C13.6327 15.5118 14.2443 14.9003 14.9997 14.9003Z" fill="currentColor" />
                                         <path d="M0.792051 0.0074916L2.93688 0.331239C3.24264 0.386097 3.46747 0.637001 3.49444 0.942763L3.66531 2.95719C3.69229 3.24587 3.92611 3.4617 4.21388 3.4617H16.3589C16.9075 3.4617 17.2672 3.65055 17.6269 4.06423C17.9867 4.47791 18.0496 5.07145 17.9687 5.61013L17.1143 11.5095C16.9525 12.6435 15.9812 13.479 14.8391 13.479H5.02775C3.83168 13.479 2.84245 12.5617 2.74353 11.3755L1.91617 1.57227L0.558233 1.33845C0.198513 1.2755 -0.0532905 0.924777 0.0096604 0.565057C0.0726113 0.196344 0.423338 -0.0464664 0.792051 0.0074916ZM13.4002 6.78821H10.9092C10.5315 6.78821 10.2347 7.08498 10.2347 7.46268C10.2347 7.83139 10.5315 8.13716 10.9092 8.13716H13.4002C13.7779 8.13716 14.0747 7.83139 14.0747 7.46268C14.0747 7.08498 13.7779 6.78821 13.4002 6.78821Z" fill="currentColor" />
                                     </svg>
                                 </div>
-                                <span class="fz-12px fw-medium d-block">Reviewed this month</span>
+                                <span class="fz-12px fw-medium d-block">Active Users</span>
                                 <h3 class="h6 fs-9 mb-0">18</h3>
 
                                 <div class="position-absolute top-9 end-3 p-1">
@@ -148,10 +148,6 @@
                                             </td>
                                         </tr>
                                     <?php } ?>
-                                <?php } else { ?>
-                                    <tr>
-                                        <td colspan="10" class="text-center">No cases found for this user</td>
-                                    </tr>
                                 <?php } ?>
                             </tbody>
                         </table>

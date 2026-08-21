@@ -2,21 +2,16 @@
 <div class="app-main">
     <div id="app-wrapper" class="app-wrapper d-flex flex-column align-items-stretch min-vh-100">
         <?php include_once 'inc/left-sidebar.php' ?>
-        <div class="auth-wrapper auth-basic p-5 min-vh-100 d-flex align-items-center justify-content-center">
-            <div class="auth-card ">
-                <div class="card shadow-xl">
-                    <div class="card-body py-9 px-6 px-sm-12">
-                        <div class="mb-7">
-                            <div class="text-center">
-                                <h4 class="mb-1 fw-semibold">
-                                    Set Your New Password
-                                </h4>
-                                <p>
-                                    Create a new strong password for your account.
-                                </p>
-                            </div>
+        <div class="auth-wrapper auth-basic p-5  d-flex align-items-center justify-content-center">
+             <div class="container-fluid px-0">
+
+                <div class="card shadow-custom rounded-custom">
+                    <div class="card-body p-6">
+                        <div class="mb-5  border-bottom pb-3">
+                            <h5 class="portal-section-title mb-1">Set Your New Password</h5>
+                            <p class="text-muted mb-0">Create a new strong password for your account.</p>
                         </div>
-                        <?php if ($this->session->flashdata('sErrMSG') != '') { ?>
+                       <?php if ($this->session->flashdata('sErrMSG') != '') { ?>
                             <div class="alert alert-<?= html_escape($this->session->flashdata('sErrMSGType')) ?> alert-dismissible fade show page-alert" role="alert">
                                 <?= html_escape($this->session->flashdata('sErrMSG')) ?>
                                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>

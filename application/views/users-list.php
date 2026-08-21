@@ -2,15 +2,15 @@
 <div class="app-main">
     <div id="app-wrapper" class="app-wrapper d-flex flex-column align-items-stretch min-vh-100">
         <?php include_once 'inc/left-sidebar.php' ?>
-        <div class="app-content-wrapper pt-3 pb-3 px-5">
-            <div class="container-fluid">
+        <div class="app-content-wrapper pt-5 pb-5 px-5">
+            <div class="container-fluid px-0">
                 <div class="portal-hero">
                   
                     <h2 class="fw-semibold fs-7 mb-2">User</h2>
                     <p class="mb-0">Manage portal logins and how often reminder emails are sent.</p>
                 </div>
 
-                <div class="card shadow-custom rounded-custom mb-6 eachfinancial-ins">
+                <div class="card shadow-custom rounded-custom mb-0 eachfinancial-ins">
                     <div class="card-body p-6">
                         <div class="d-flex flex-wrap align-items-start justify-content-between gap-3 mb-2">
                             <div>
@@ -121,12 +121,14 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content portal-modal">
             <div class="modal-header">
-                <h5 class="modal-title" id="addUserModalLabel">Add User</h5>
+                <div>
+                    <h5 class="modal-title" id="addUserModalLabel">Add User</h5>
+                    <p class="text-muted mb-0">Create a new portal login for this financial institution.</p>
+                </div>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form id="addUserForm" action="javascript:void(0);">
                 <div class="modal-body">
-                    <p class="text-muted mb-4">Create a new portal login for this financial institution.</p>
                     <div class="mb-4">
                         <label class="form-label" for="userName">Name</label>
                         <input type="text" class="form-control" id="userName" name="name" placeholder="Full name" required>
@@ -157,12 +159,15 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content portal-modal">
             <div class="modal-header">
-                <h5 class="modal-title" id="editUserModalLabel">Edit User</h5>
+                <div>
+                    <h5 class="modal-title" id="editUserModalLabel">Edit User</h5>
+                     <p class="text-muted mb-0">Update this portal login details.</p>
+                </div>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form id="editUserForm" action="javascript:void(0);">
                 <div class="modal-body">
-                    <p class="text-muted mb-4">Update this portal login details.</p>
+                   
                     <div class="mb-4">
                         <label class="form-label" for="editUserName">Name</label>
                         <input type="text" class="form-control" id="editUserName" name="name" placeholder="Full name" required>

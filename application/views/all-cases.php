@@ -5,12 +5,12 @@
 
         <?php include_once 'inc/left-sidebar.php' ?>
 
-        <div class="app-content-wrapper pt-3 pb-3 px-5">
-            <div class="container-fluid">
+        <div class="app-content-wrapper pt-5 pb-5 px-5">
+            <div class="container-fluid px-0">
 
                 <div class="card shadow-custom rounded-custom">
                     <div class="card-body p-6">
-                        <div class="mb-5">
+                        <div class="mb-5 border-bottom pb-3">
                             <h5 class="portal-section-title mb-1">All Cases List</h5>
                             <p class="text-muted mb-0">Deceased personal details supplied for asset and liability search.</p>
                         </div>
@@ -56,10 +56,6 @@
                                             
                                         </tr>
                                     <?php } ?>
-                                <?php } else { ?>
-                                    <tr>
-                                        <td colspan="10" class="text-center">No cases found for this user</td>
-                                    </tr>
                                 <?php } ?>
 
                             </tbody>

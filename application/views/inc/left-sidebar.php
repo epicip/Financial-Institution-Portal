@@ -1,4 +1,4 @@
-<div id="app-sidebar" class="app-sidebar overflow-hidden">
+<div id="app-sidebar" class="app-sidebar overflow-hidden collapsed">
     <div class="app-sidebar-wrapper">
         <div class="app-sidebar-header d-flex align-items-center justify-content-between">
             <a href="<?= base_url() ?>" class="app-sidebar-logo">
@@ -90,7 +90,7 @@
 <div class="app-header bg-card py-2 px-4 px-md-6 d-flex align-items-center">
     <div class="d-flex align-items-center justify-content-between w-100">
         <div class="d-flex align-items-center">
-            <button type="button" class="app-header-bar-btn app-sidebar-open-btn me-4 d-none d-xl-inline-block">
+            <button type="button" class="app-header-bar-btn app-sidebar-open-btn collapsed me-4 d-none d-xl-inline-block">
                 <span></span><span></span><span></span>
             </button>
             <button type="button" class="app-header-bar-btn app-sidebar-mobile-open d-xl-none me-4">
@@ -223,7 +223,7 @@
 
 
             <!-- User Options -->
-            <li class="header-nav-item header-user me-2">
+            <li class="header-nav-item header-user me-0">
                 <a class="header-nav-link header-user-toggle" href="javascript:void(0);" data-bs-toggle="dropdown" aria-expanded="false" aria-label="User menu">
                     <div class="svguers">
                         <div class="app-sidebar-user-avatar">
