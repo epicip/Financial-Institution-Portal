@@ -30,111 +30,87 @@ class Users extends My_Controller
      */
     function index()
     {
+
+        if ($this->session->userdata('fc_session_user_type') != 'admin') {
+            $this->setErrorMessage('danger', 'You are not authorized to access this page.');
+            redirect('dashboard');
+            return;
+        }
+
+        $this->data['users'] = $this->users_model->get_all_users();
+
         // View page link
         $this->load->view('users-list', $this->data);
     }
 
-    // User List
-    function add_user()
+    /**
+     * Loads the add/edit institutions user form.
+     *
+     * Reads institutions and optional user IDs from POST data, fetches user details
+     * when editing, and renders the add-institutions-user view.
+     *
+     * @return void
+     */
+
+    function add_edit_user_form()
     {
-        $this->load->view('add-user', $this->data);
+        $user_id = $this->input->post('user_id'); // Get the user id
+        $this->data['user_id'] = $user_id;
+
+        if (!empty($user_id)) {
+            $this->data['data'] = $this->users_model->get_row_details('adprep_financial_institutions_users', ['user_id' => $user_id]); // Get the user details
+        }
+
+        $this->load->view('add-edit-user', $this->data); // Load the view
+
     }
 
+
     // User List
-    public function insertUser()
+    public function insert_update_user()
     {
-        // Get user details from post
-        $ContactName   = trim((string) $this->input->post('ContactName', true));
-        $ContactNumber = trim((string) $this->input->post('ContactNumber', true));
-        $ContactEmail  = trim((string) $this->input->post('ContactEmail', true));
-        $comp_id       = $this->input->post('comp_id', true);
-        $customer_id   = $this->input->post('customer_id', true);
+        $this->form_validation->set_rules('name', 'Name', 'required');
+        $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
+        $this->form_validation->set_rules('status', 'Status', 'required');
 
-        if ($ContactName === '' || $ContactEmail === '' || $ContactNumber === '') {
-            $this->setErrorMessage('warning', 'Required fields are missing.');
-            redirect('users/add_user', $this->data);
+        if ($this->form_validation->run() === FALSE) {
+            $this->load->view('add-edit-user', $this->data);
             return;
         }
 
-        if (!filter_var($ContactEmail, FILTER_VALIDATE_EMAIL)) {
-            $this->setErrorMessage('warning', 'Invalid email address.');
-            redirect('users/add_user', $this->data);
-            return;
-        }
 
-        $this->load->helper('xss');
-        if (xss_payload_detected($ContactName) || xss_payload_detected($ContactNumber)) {
-            $this->setErrorMessage('error', 'Invalid input detected.');
-            redirect('users/add_user', $this->data);
-            return;
-        }
+        $data = array();
+        $data['institutions_id'] = $this->session->userdata('fc_session_institution_id');
+        $data['name'] = $this->input->post('name');
+        $data['email'] = $this->input->post('email');
+        $data['status'] = $this->input->post('status');
+        $data['type'] = 'user';
 
-        $pass = $this->generate_strong_password(8);
-        $hashed_password = password_hash($pass, PASSWORD_DEFAULT);
-
-        $data = array(
-            'comp_id'       => $comp_id,
-            'customer_id'   => $customer_id,
-            'ContactName'   => $ContactName,
-            'ContactNumber' => $ContactNumber,
-            'ContactEmail'  => $ContactEmail,
-            'password'      => $hashed_password,
-            'status'        => 'Active',
-        );
-
-        $condition = array('ContactEmail' => $ContactEmail, 'comp_id' => $comp_id);
-        $multiquery = $this->users_model->get_all_details('admake_customers', $condition);
-
-        if ($multiquery->num_rows() == 1) {
-            $this->setErrorMessage('Danger', 'Email Id already exists');
-            redirect('users/add_user', $this->data);
-            return;
-        }
-
-        $usercondition = array('ContactEmail' => $ContactEmail, 'customer_id' => $customer_id);
-        $query = $this->users_model->get_all_details('admake_customers_users', $usercondition);
-
-        if ($query->num_rows() == 1) {
-            $this->setErrorMessage('Danger', 'Email Id already exists in user');
-            redirect('users/add_user', $this->data);
-            return;
-        }
-
-        if (empty($ContactEmail)) {
-            redirect('users/add_user', $this->data);
-            return;
-        }
-
-        $this->users_model->insert_details('admake_customers_users', $data, $pass);
-
-        $safeName  = htmlspecialchars($ContactName, ENT_QUOTES, 'UTF-8');
-        $safeEmail = htmlspecialchars($ContactEmail, ENT_QUOTES, 'UTF-8');
-
-        $message  = 'Dear ' . htmlspecialchars(current(explode(' ', $ContactName)), ENT_QUOTES, 'UTF-8') . ', <br /><br />';
-        $message .= 'You have just created a new account on EPE Client Portal. <br /> <br />';
-        $message .= 'Please use the credentials below to access the client portal.<br /><br />';
-        $message .= '<strong>Login here - </strong> https://www.legaladvertisers.co.uk/reynell-thorpe/users/login<br /><br />';
-        $message .= '<strong>Username:</strong> ' . $safeEmail . '<br />';
-        $message .= '<strong>Password:</strong> ' . htmlspecialchars($pass, ENT_QUOTES, 'UTF-8') . '<br /><br />';
-
-        if (getReturnData('admake_customers', 'id', $customer_id, 'comp_id') == 2) {
-            $message .= "If you have any problems with order's and your account, please contact EPE Legal and public notice advertising  - customer.service@epicads.co.uk <br /><br />";
+        if (!empty($this->input->post('user_id'))) {
+            $this->users_model->update_details('adprep_financial_institutions_users', $data, ['user_id' => $this->input->post('user_id')]);
         } else {
-            $message .= "If you have any problems with order's and your account, please contact EPE Legal and public notice advertising  - either 020 8501 9730 or customer.service@epicads.co.uk  <br /><br />";
+            $password = $this->generate_strong_password(8);
+            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+            $data['password'] = $hashed_password;
+            $this->users_model->insert_details('adprep_financial_institutions_users', $data);
+
+            $message  = 'Dear ' . $data['name'] . ', <br /><br />';
+            $message .= 'You have just created a new account on Financial Institutions Portal. <br /> <br />';
+            $message .= 'Please use the credentials below to access the client portal.<br /><br />';
+            $message .= '<strong>Login here - </strong> https://www.financialinstitutions.com/users/login<br /><br />';
+            $message .= '<strong>Username:</strong> ' . $data['email'] . '<br />';
+            $message .= '<strong>Password:</strong> ' . $password . '<br /><br />';
+
+            $subject  = 'Financial Institutions Portal : Add New User';
+            $response = $this->users_model->common_mail_send($data['email'], $subject, $message, NR_EPICADS_EMAIL);
+
+            if (!empty($response) && $response == 'sent') {
+                $this->setErrorMessage('success', 'New user has been added and will receive login details shortly.');
+            } else {
+                $this->setErrorMessage('warning', 'Email not sent, please try after sometime.');
+            }
         }
-        $message .= 'Thanks & Regards,<br /><strong>EPE Legal and public notice advertising</strong>';
-
-        $subject  = 'EPE Client Portal : Add New User';
-        $response = $this->users_model->common_mail_send($ContactEmail, $subject, $message, NR_EPICADS_EMAIL);
-
-        if (!empty($response) && $response == 'sent') {
-            // Do not put raw ContactName in flash (XSS)
-            $this->setErrorMessage('success', 'New user has been added and will receive login details shortly.');
-        } else {
-            $this->setErrorMessage('warning', 'Email not sent, please try after sometime.');
-        }
-
-        redirect('users/users_list', $this->data);
+        redirect('users');
     }
 
     // View Change Password 

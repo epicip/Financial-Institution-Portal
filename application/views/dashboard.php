@@ -33,7 +33,7 @@
                                     </svg>
                                 </div>
                                 <span class="fz-12px fw-medium d-block">Pending Cases</span>
-                                <h3 class="h6 fs-9 mb-0"><?= !empty($pending_cases) ? count($pending_cases) : 0 ?></h3>
+                                <h3 class="h6 fs-9 mb-0"><?= sprintf('%02d', !empty($pending_cases) ? count($pending_cases) : 0) ?></h3>
 
                                 <div class="position-absolute top-9 end-3 p-1">
                                     <img src="assets/img/icons/dashboard/chart-up.png" alt="">
@@ -53,7 +53,7 @@
                                     </svg>
                                 </div>
                                 <span class="fz-12px fw-medium d-block">All Cases</span>
-                                <h3 class="h6 fs-9 mb-0"><?= !empty($all_cases) ? count($all_cases) : 0 ?></h3>
+                                <h3 class="h6 fs-9 mb-0"><?= sprintf('%02d', !empty($all_cases) ? count($all_cases) : 0) ?></h3>
 
                                 <div class="position-absolute top-9 end-3 p-1">
                                     <img src="assets/img/icons/dashboard/chart-up.png" alt="">
@@ -70,8 +70,8 @@
                                         <path d="M0.792051 0.0074916L2.93688 0.331239C3.24264 0.386097 3.46747 0.637001 3.49444 0.942763L3.66531 2.95719C3.69229 3.24587 3.92611 3.4617 4.21388 3.4617H16.3589C16.9075 3.4617 17.2672 3.65055 17.6269 4.06423C17.9867 4.47791 18.0496 5.07145 17.9687 5.61013L17.1143 11.5095C16.9525 12.6435 15.9812 13.479 14.8391 13.479H5.02775C3.83168 13.479 2.84245 12.5617 2.74353 11.3755L1.91617 1.57227L0.558233 1.33845C0.198513 1.2755 -0.0532905 0.924777 0.0096604 0.565057C0.0726113 0.196344 0.423338 -0.0464664 0.792051 0.0074916ZM13.4002 6.78821H10.9092C10.5315 6.78821 10.2347 7.08498 10.2347 7.46268C10.2347 7.83139 10.5315 8.13716 10.9092 8.13716H13.4002C13.7779 8.13716 14.0747 7.83139 14.0747 7.46268C14.0747 7.08498 13.7779 6.78821 13.4002 6.78821Z" fill="currentColor" />
                                     </svg>
                                 </div>
-                                <span class="fz-12px fw-medium d-block">Active Users</span>
-                                <h3 class="h6 fs-9 mb-0">18</h3>
+                                <span class="fz-12px fw-medium d-block">Users</span>
+                                <h3 class="h6 fs-9 mb-0"><?= sprintf('%02d', !empty($users) ? count($users) : 0) ?></h3>
 
                                 <div class="position-absolute top-9 end-3 p-1">
                                     <img src="assets/img/icons/dashboard/chart-down.png" alt="">

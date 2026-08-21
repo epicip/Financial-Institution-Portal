@@ -48,6 +48,7 @@
                         <span class="menu-title flex-grow-1">All Cases</span>
                     </a>
                 </li>
+                <?php if ($this->session->userdata('fc_session_user_type') == 'admin') { ?>
                 <li class="app-sidebar-menu-item">
                     <a href="<?= base_url('users') ?>" class="menu-link d-flex align-items-center" title="Users">
                         <span class="menu-icon flex-shrink-0">
@@ -60,6 +61,7 @@
                         <span class="menu-title flex-grow-1">Users</span>
                     </a>
                 </li>
+                <?php } ?>
             </ul>
         </div>
 

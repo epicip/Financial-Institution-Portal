@@ -32,7 +32,7 @@ class Login extends My_Controller
 			$this->load->view('login', $this->data);
 		} else {
 
-			if (!$this->verify_recaptcha()) {
+			if ($this->verify_recaptcha()) {
 
 				// get user details from post
 				$email_id = $this->input->post('email_id');
@@ -80,6 +80,7 @@ class Login extends My_Controller
 				$this->setErrorMessage('error', 'Please try again.');
 			}
 		}
+		redirect('login');
 	}
 
 	/**
@@ -128,36 +129,43 @@ class Login extends My_Controller
 
 	function forgot_password_process()
 	{
-		if ($this->verify_recaptcha()) {
-			$condition = array('email' => $this->input->post('email_id'));
-			$query = $this->users_model->get_row_details('adprep_financial_institutions_users', $condition);
-			if ($query->num_rows() == 1) {
-				$password = $this->generate_strong_password(8);
-				$hashed_password = password_hash($password, PASSWORD_DEFAULT);
-				$newdata = array('password' => $hashed_password);
-				$condition = array('email' => $query->email);
-				$this->users_model->update_details('adprep_financial_institutions_users', $newdata, $condition);
+		$this->form_validation->set_rules('email_id', 'Email', 'required|valid_email');
+		if ($this->form_validation->run() === FALSE) {
+			$this->load->view('forgot-password', $this->data);
+			return;
+		} else {
+			if ($this->verify_recaptcha()) {
+				$email_id = $this->input->post('email_id');
+				$condition = array('email' => $email_id);
+				$user_details = $this->users_model->get_row_details('adprep_financial_institutions_users', $condition);
+				if (!empty($user_details)) {
+					$password = $this->generate_strong_password(8);
+					$hashed_password = password_hash($password, PASSWORD_DEFAULT);
+					$newdata = array('password' => $hashed_password);
+					$condition = array('user_id' => $user_details->user_id);
+					$this->users_model->update_details('adprep_financial_institutions_users', $newdata, $condition);
 
-				$message = "<strong>New password:</strong> " . $password . "<br /><br />";
-				$message .= "You can log in using above password and change.<br /><br />";
-				$message .= "Thanks & Regards,<br /><strong>EPE Legal and public notice advertising</strong>";
+					$message = "<strong>New password:</strong> " . $password . "<br /><br />";
+					$message .= "You can log in using above password and change.<br /><br />";
+					$message .= "Thanks & Regards,<br /><strong>EPE Legal and public notice advertising</strong>";
 
-				$subject = 'EPE Client Portal : Password Reset';
+					$subject = 'EPE Client Portal : Password Reset';
 
-				$response = $this->users_model->common_mail_send($query->row()->ContactEmail, $subject, $message, NR_EPICADS_EMAIL);
+					$response = $this->users_model->common_mail_send($user_details->email, $subject, $message, NR_EPICADS_EMAIL);
 
-				if (!empty($response) && $response == 'sent') {
-					$this->setErrorMessage('success', 'New password has been sent to your email');
+					if (!empty($response) && $response == 'sent') {
+						$this->setErrorMessage('success', 'New password has been sent to your email');
+					} else {
+						$this->setErrorMessage("warning", "New password not sent to your email, please try after sometime.");
+					}
 				} else {
-					$this->setErrorMessage("warning", "New password not sent to your email, please try after sometime.");
+					$this->setErrorMessage('warning', 'Email not found');
 				}
 			} else {
-				$this->setErrorMessage('warning', 'Email not found');
+				$this->setErrorMessage('error', 'Please try again.');
 			}
-		} else {
-			$this->setErrorMessage('error', 'Please try again.');
 		}
-		redirect('login');
+		redirect('forgot-password');
 	}
 
 	/**
@@ -167,6 +175,11 @@ class Login extends My_Controller
 	 */
 	private function verify_recaptcha()
 	{
+		// If CAPTCHA constant has a value, skip reCAPTCHA validation
+		if (!empty(captcha)) {
+			return true;
+		}
+
 		$url = "https://www.google.com/recaptcha/api/siteverify";
 		$data = [
 			'secret' => "6Ld-YakaAAAAADRsHLmgYJtrJhQDYlKs8xhjz_CU",
