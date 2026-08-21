@@ -42,25 +42,28 @@
                                             <h6 class="mb-0"><?= $user->type == 'admin' ? 'Admin' : html_escape($user->name ?? '') ?></h6>
                                             <span class="text-muted"><?= html_escape($user->email ?? '') ?></span>
                                         </div>
-                                        <span class="portal-status-badge is-active"><?= html_escape($user->status ?? '') ?></span>
-                                        <div class="portal-user-actions">
-                                            <button type="button" class="btn btn-sm btn-outline-portal portal-edit-btn" onclick="add_edit_user_form('<?= html_escape($user->user_id ?? '') ?>')">
-                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                                    <path d="M12 20h9" />
-                                                    <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z" />
-                                                </svg>
-                                                Edit
-                                            </button>
-                                            <button type="button" class="btn btn-sm btn-outline-secondary portal-remove-btn" onclick="deleteUser('<?= html_escape($user->user_id ?? ($user->id ?? '')) ?>')">
-                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                                    <polyline points="3 6 5 6 21 6" />
-                                                    <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6" />
-                                                    <path d="M10 11v6M14 11v6" />
-                                                    <path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2" />
-                                                </svg>
-                                                Remove
-                                            </button>
-                                        </div>
+                                        <?php if ($user->type != 'admin') { ?>
+                                            <span class="portal-status-badge is-<?= $user->status == 'Active' ? 'active' : 'inactive' ?>"><?= html_escape($user->status ?? '') ?></span>
+
+                                            <div class="portal-user-actions">
+                                                <button type="button" class="btn btn-sm btn-outline-portal portal-edit-btn" onclick="add_edit_user_form('<?= html_escape($user->user_id ?? '') ?>')">
+                                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                                        <path d="M12 20h9" />
+                                                        <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z" />
+                                                    </svg>
+                                                    Edit
+                                                </button>
+                                                <button type="button" class="btn btn-sm btn-outline-secondary portal-remove-btn" onclick="deleteUser('<?= html_escape($user->user_id ?? ($user->id ?? '')) ?>')">
+                                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                                        <polyline points="3 6 5 6 21 6" />
+                                                        <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6" />
+                                                        <path d="M10 11v6M14 11v6" />
+                                                        <path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2" />
+                                                    </svg>
+                                                    Remove
+                                                </button>
+                                            </div>
+                                        <?php } ?>
                                     </div>
                                 <?php } ?>
                             <?php } else { ?>
@@ -108,5 +111,25 @@
                 alert('Unable to load the user form. Please try again.');
             }
         });
+    }
+</script>
+
+<script>
+    function deleteUser(user_id) {
+        if (confirm('Are you sure you want to delete this user?')) {
+            $.ajax({
+                url: '<?= base_url('users/delete_user') ?>',
+                type: 'POST',
+                data: {
+                    user_id: user_id
+                },
+                success: function(response) {
+                    window.location.reload();
+                },
+                error: function() {
+                    alert('Unable to delete the user. Please try again.');
+                }
+            });
+        }
     }
 </script>

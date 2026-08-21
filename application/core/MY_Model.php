@@ -96,6 +96,12 @@ class My_Model extends CI_Model
 		return $this->db->insert_id();
 	}
 
+	public function delete_details($table = '', $condition = '')
+	{
+		$this->db->where($condition);
+		$this->db->delete($table);
+	}
+
 
 	/**
 	 * 

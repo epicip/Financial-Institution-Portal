@@ -191,4 +191,12 @@ class Users extends My_Controller
             redirect('users/change_password');
         }
     }
+
+    public function delete_user()
+    {
+        $user_id = $this->input->post('user_id');
+        $this->users_model->delete_details('adprep_financial_institutions_users', ['user_id' => $user_id]);
+        $this->setErrorMessage('success', 'User has been deleted successfully');
+        redirect('users');
+    }
 }
