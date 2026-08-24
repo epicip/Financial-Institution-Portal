@@ -77,6 +77,21 @@ class Cases_model extends My_Model
     }
 
     /**
+     * Count pending portal cases for a specific institution.
+     *
+     * @param int|string $institution_id Institution ID (stored as user_id on email logs)
+     * @return int
+     */
+    public function count_pending_cases_by_institution($institution_id)
+    {
+        $this->db->from('email_logs_institutions');
+        $this->db->where('notification_type', 'PORTAL');
+        $this->db->where('user_id', $institution_id);
+        $this->db->where('email_status IS NULL', null, false);
+        return (int) $this->db->count_all_results();
+    }
+
+    /**
      * Get a single portal case with its email log ID for the logged-in institution.
      *
      * Used by case details and match/no-match updates so the correct
