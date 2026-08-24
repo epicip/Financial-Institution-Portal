@@ -43,6 +43,7 @@ class Users extends My_Controller
         }
 
         $this->data['users'] = $this->users_model->get_all_users();
+        $this->data['reminder'] = $this->users_model->get_row_details('adprep_financial_institutions_list', ['id' => $this->session->userdata('fc_session_institution_id')]);
         $this->load->view('users-list', $this->data);
     }
 
@@ -197,6 +198,27 @@ class Users extends My_Controller
         $user_id = $this->input->post('user_id');
         $this->users_model->delete_details('adprep_financial_institutions_users', ['user_id' => $user_id]);
         $this->setErrorMessage('success', 'User has been deleted successfully');
+        redirect('users');
+    }
+
+
+    public function update_reminder_emails()
+    {
+        $allowed = array('weekly', 'two_weekly', 'monthly', 'quarterly');
+        $reminder = strtolower(trim((string) $this->input->post('reminder')));
+
+        if (!in_array($reminder, $allowed, true)) {
+            $this->setErrorMessage('danger', 'Invalid reminder frequency selected.');
+            redirect('users');
+            return;
+        }
+
+        $this->users_model->update_details(
+            'adprep_financial_institutions_list',
+            array('reminder' => $reminder),
+            array('id' => $this->session->userdata('fc_session_institution_id'))
+        );
+        $this->setErrorMessage('success', 'Reminder emails have been updated successfully');
         redirect('users');
     }
 }

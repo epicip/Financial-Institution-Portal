@@ -18,7 +18,7 @@
                     <p class="mb-0">Manage portal logins and how often reminder emails are sent.</p>
                 </div>
 
-                <div class="card shadow-custom rounded-custom mb-0 eachfinancial-ins">
+                <div class="card shadow-custom rounded-custom mb-6 eachfinancial-ins">
                     <div class="card-body p-6">
                         <div class="d-flex flex-wrap align-items-start justify-content-between gap-3 mb-2">
                             <div>
@@ -72,6 +72,39 @@
                                 </div>
                             <?php } ?>
                         </div>
+                    </div>
+                </div>
+
+                <div class="card shadow-custom rounded-custom">
+                    <div class="card-body p-6">
+                        <h5 class="portal-section-title mb-2">Reminder emails</h5>
+                        <p class="text-muted mb-5">Reminders are sent to all users.</p>
+
+                        <form action="<?= base_url('users/update_reminder_emails') ?>" method="post">
+                            <div class="mb-5">
+                                <label class="form-label d-block mb-3">How often should reminders be sent?</label>
+                                <div class="d-flex flex-wrap gap-3">
+                                    <label class="portal-choice" for="reminderWeekly">
+                                        <input class="form-check-input me-2" type="radio" name="reminder" value="weekly" id="reminderWeekly" <?= $reminder->reminder == 'weekly' ? 'checked' : '' ?>>
+                                        Weekly
+                                    </label>
+                                    <label class="portal-choice" for="reminderTwoWeekly">
+                                        <input class="form-check-input me-2" type="radio" name="reminder" value="two_weekly" id="reminderTwoWeekly" <?= $reminder->reminder == 'two_weekly' ? 'checked' : '' ?>>
+                                        Two weekly
+                                    </label>
+                                    <label class="portal-choice" for="reminderMonthly">
+                                        <input class="form-check-input me-2" type="radio" name="reminder" value="monthly" id="reminderMonthly" <?= $reminder->reminder == 'monthly' ? 'checked' : '' ?>>
+                                        Monthly
+                                    </label>
+                                    <label class="portal-choice" for="reminderQuarterly">
+                                        <input class="form-check-input me-2" type="radio" name="reminder" value="quarterly" id="reminderQuarterly" <?= $reminder->reminder == 'quarterly' ? 'checked' : '' ?>>
+                                        Quarterly
+                                    </label>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-portal">Save settings</button>
+                        </form>
                     </div>
                 </div>
 

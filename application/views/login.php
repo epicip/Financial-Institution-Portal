@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Login | LegalAds Advertisement Agency</title>
+    <title>Login | Financial institution Portal</title>
 
     <!-- favicon -->
     <link rel="shortcut icon" href="assets/img/logo/favicon.png" type="image/png">
