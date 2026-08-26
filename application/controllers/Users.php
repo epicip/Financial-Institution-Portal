@@ -43,7 +43,11 @@ class Users extends My_Controller
         }
 
         $this->data['users'] = $this->users_model->get_all_users();
-        $this->data['reminder'] = $this->users_model->get_row_details('adprep_financial_institutions_list', ['id' => $this->session->userdata('fc_session_institution_id')]);
+        $reminder = $this->users_model->get_row_details(
+            'adprep_financial_institutions_list',
+            ['id' => $this->session->userdata('fc_session_institution_id')]
+        );
+        $this->data['reminder'] = !empty($reminder) ? $reminder : (object) ['reminder' => 'weekly'];
         $this->load->view('users-list', $this->data);
     }
 
