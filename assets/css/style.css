@@ -3728,17 +3728,77 @@ input[type="password"]::-ms-clear {
     box-shadow: none !important;
 }
 
-.page-loader {
+.preloader-it {
+  background: rgba(255, 255, 255, 0.8);
   position: fixed;
-  inset: 0;
-  z-index: 2000;
+  z-index: 10001;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
   display: none;
-  align-items: center;
-  justify-content: center;
-  background: rgba(0, 0, 0, 0.35);
+  inset: 0;
 }
-.page-loader.is-active {
-  display: flex;
+.preloader-it.is-active {
+  display: block;
+}
+.loader-pendulums {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+  display: block;
+  margin: 0 auto;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 4rem;
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  border: 0.1em solid #e0e3e4;
+}
+.loader-pendulums:before,
+.loader-pendulums:after {
+  content: '';
+  box-sizing: border-box;
+  width: 1em;
+  height: 1em;
+  left: -.1em;
+  top: -.1em;
+  display: block;
+  border-radius: 50%;
+  position: absolute;
+  -webkit-transform-origin: center center;
+  transform-origin: center center;
+  border: .1em solid transparent;
+  border-top-color: #1a2352;
+  -webkit-animation: pendulum 1.2s linear infinite;
+  animation: pendulum 1.2s linear infinite;
+}
+.loader-pendulums:after {
+  -webkit-transform: rotate(180deg);
+  transform: rotate(180deg);
+  -webkit-animation-name: pendulum2;
+  animation-name: pendulum2;
+}
+@-webkit-keyframes pendulum {
+  from { -webkit-transform: rotate(0deg); transform: rotate(0deg); }
+  to { -webkit-transform: rotate(360deg); transform: rotate(360deg); }
+}
+@keyframes pendulum {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@-webkit-keyframes pendulum2 {
+  from { -webkit-transform: rotate(180deg); transform: rotate(180deg); }
+  to { -webkit-transform: rotate(540deg); transform: rotate(540deg); }
+}
+@keyframes pendulum2 {
+  from { transform: rotate(180deg); }
+  to { transform: rotate(540deg); }
 }
 
 /*# sourceMappingURL=conca.css.map */

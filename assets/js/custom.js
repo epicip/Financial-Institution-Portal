@@ -290,7 +290,7 @@
     window.showPageLoader = function () {
         var $loader = $('#pageLoader');
         if (!$loader.length) {
-            $loader = $('<div id="pageLoader" class="page-loader" aria-live="polite" aria-busy="true"><div class="spinner-border text-light" role="status"><span class="visually-hidden">Loading...</span></div></div>');
+            $loader = $('<div id="pageLoader" class="preloader-it" aria-live="polite" aria-busy="true"><div class="loader-pendulums"></div></div>');
             $('body').append($loader);
         }
         $loader.addClass('is-active');
