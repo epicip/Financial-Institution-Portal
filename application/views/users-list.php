@@ -75,6 +75,10 @@
                     </div>
                 </div>
 
+                <?php
+                $reminder = $reminder ?? null;
+                $reminder_frequency = strtolower(trim((string) (($reminder->reminder ?? '') ?: 'weekly')));
+                ?>
                 <div class="card shadow-custom rounded-custom">
                     <div class="card-body p-6">
                         <h5 class="portal-section-title mb-2">Reminder emails</h5>
@@ -85,19 +89,19 @@
                                 <label class="form-label d-block mb-3">How often should reminders be sent?</label>
                                 <div class="d-flex flex-wrap gap-3">
                                     <label class="portal-choice" for="reminderWeekly">
-                                        <input class="form-check-input me-2" type="radio" name="reminder" value="weekly" id="reminderWeekly" <?= $reminder->reminder == 'weekly' ? 'checked' : '' ?>>
+                                        <input class="form-check-input me-2" type="radio" name="reminder" value="weekly" id="reminderWeekly" <?= $reminder_frequency === 'weekly' ? 'checked' : '' ?>>
                                         Weekly
                                     </label>
                                     <label class="portal-choice" for="reminderTwoWeekly">
-                                        <input class="form-check-input me-2" type="radio" name="reminder" value="two_weekly" id="reminderTwoWeekly" <?= $reminder->reminder == 'two_weekly' ? 'checked' : '' ?>>
+                                        <input class="form-check-input me-2" type="radio" name="reminder" value="two_weekly" id="reminderTwoWeekly" <?= $reminder_frequency === 'two_weekly' ? 'checked' : '' ?>>
                                         Two weekly
                                     </label>
                                     <label class="portal-choice" for="reminderMonthly">
-                                        <input class="form-check-input me-2" type="radio" name="reminder" value="monthly" id="reminderMonthly" <?= $reminder->reminder == 'monthly' ? 'checked' : '' ?>>
+                                        <input class="form-check-input me-2" type="radio" name="reminder" value="monthly" id="reminderMonthly" <?= $reminder_frequency === 'monthly' ? 'checked' : '' ?>>
                                         Monthly
                                     </label>
                                     <label class="portal-choice" for="reminderQuarterly">
-                                        <input class="form-check-input me-2" type="radio" name="reminder" value="quarterly" id="reminderQuarterly" <?= $reminder->reminder == 'quarterly' ? 'checked' : '' ?>>
+                                        <input class="form-check-input me-2" type="radio" name="reminder" value="quarterly" id="reminderQuarterly" <?= $reminder_frequency === 'quarterly' ? 'checked' : '' ?>>
                                         Quarterly
                                     </label>
                                 </div>
