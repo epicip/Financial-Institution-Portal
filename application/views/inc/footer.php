@@ -54,9 +54,15 @@
              data: {
                  log_id: log_id
              },
+             beforeSend: function() {
+                 showPageLoader();
+             },
              success: function(response) {
                  window.location.reload();
              },
+             error: function() {
+                 hidePageLoader();
+             }
          });
      }
 

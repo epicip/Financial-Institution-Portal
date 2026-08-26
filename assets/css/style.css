@@ -3717,5 +3717,28 @@ button {
   border-radius: 16px;
   padding: 20px 22px;
 }
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+    display: none;
+}
+.btn-primary.disabled, .btn-primary:disabled {
+    color: #fff !important;
+    background-color: #302c5b !important;
+    border-color: #302c5b !important;
+    box-shadow: none !important;
+}
+
+.page-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.35);
+}
+.page-loader.is-active {
+  display: flex;
+}
 
 /*# sourceMappingURL=conca.css.map */

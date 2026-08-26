@@ -6,13 +6,16 @@ $status = strtolower((string) ($user->status ?? 'active'));
 <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content portal-modal">
         <div class="modal-header">
+            <div>
             <h5 class="modal-title" id="addUserModalLabel"><?= $is_edit ? 'Edit User' : 'Add User' ?></h5>
+            <p class="text-muted mb-0"><?= $is_edit ? 'Update this portal login.' : 'Create a new portal login for this financial institution.' ?></p>
+            </div>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <form method="post" action="<?= base_url('users/insert_update_user') ?>" action="javascript:void(0);">
             <input type="hidden" name="user_id" value="<?= html_escape($user->user_id ?? '') ?>">
             <div class="modal-body">
-                <p class="text-muted mb-4"><?= $is_edit ? 'Update this portal login.' : 'Create a new portal login for this financial institution.' ?></p>
+                
                 <div class="mb-4">
                     <label class="form-label" for="userName">Name</label>
                     <input type="text" class="form-control" id="userName" name="name" placeholder="Full name" value="<?= html_escape($user->name ?? '') ?>" required>
