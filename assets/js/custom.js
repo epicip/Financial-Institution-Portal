@@ -287,4 +287,22 @@
         });
     }
 
+    window.showPageLoader = function () {
+        var $loader = $('#pageLoader');
+        if (!$loader.length) {
+            $loader = $('<div id="pageLoader" class="preloader-it" aria-live="polite" aria-busy="true"><div class="loader-pendulums"></div></div>');
+            $('body').append($loader);
+        }
+        $loader.addClass('is-active');
+    };
+
+    window.hidePageLoader = function () {
+        $('#pageLoader').removeClass('is-active');
+    };
+
+    $(document).on('submit', 'form[method="post"]', function () {
+        $(this).find('[type="submit"]').prop('disabled', true);
+        window.showPageLoader();
+    });
+
 }(jQuery))

@@ -136,7 +136,11 @@
             data: {
                 user_id: user_id
             },
+            beforeSend: function() {
+                showPageLoader();
+            },
             success: function(response) {
+                hidePageLoader();
                 var $modal = $('#addUserModal');
                 $modal.html(response);
 
@@ -145,6 +149,7 @@
                 modalInstance.show();
             },
             error: function() {
+                hidePageLoader();
                 alert('Unable to load the user form. Please try again.');
             }
         });
@@ -160,10 +165,14 @@
                 data: {
                     user_id: user_id
                 },
+                beforeSend: function() {
+                    showPageLoader();
+                },
                 success: function(response) {
                     window.location.reload();
                 },
                 error: function() {
+                    hidePageLoader();
                     alert('Unable to delete the user. Please try again.');
                 }
             });
