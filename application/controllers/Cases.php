@@ -131,12 +131,42 @@ class Cases extends My_Controller
             return;
         }
 
+        if (!empty($_FILES['match_attachment']['name'])) {
+            $upload_dir = FCPATH . 'files/case_matches/';
+
+            if (!is_dir($upload_dir) && !mkdir($upload_dir, 0777, true) && !is_dir($upload_dir)) {
+                $this->setErrorMessage('danger', 'Unable to create upload folder for the PDF attachment.');
+                redirect('pending');
+                return;
+            }
+
+            $file_name = preg_replace('/[^A-Za-z0-9_.-]+/', '_', basename($_FILES['match_attachment']['name']));
+            $extension = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
+            $allowed_types = array('application/pdf', 'application/octet-stream');
+
+            if ($extension !== 'pdf' || !in_array($_FILES['match_attachment']['type'], $allowed_types, true)) {
+                $this->setErrorMessage('danger', 'Only PDF files are allowed for attachment.');
+                redirect('pending');
+                return;
+            }
+
+            $stored_name = time() . '_' . $file_name;
+            $destination = $upload_dir . $stored_name;
+
+            if (!move_uploaded_file($_FILES['match_attachment']['tmp_name'], $destination)) {
+                $this->setErrorMessage('danger', 'Unable to upload the selected PDF file. Please try again.');
+                redirect('pending');
+                return;
+            }
+        }
+
         $this->Cases_model->update_details(
             'email_logs_institutions',
             array(
                 'email_status' => 'match',
                 'email_response' => 'yes',
                 'email_notes' => $notes,
+                'email_attached' => isset($stored_name) ? $stored_name : '',
             ),
             array(
                 'id' => $log_id,

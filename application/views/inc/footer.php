@@ -1,7 +1,7 @@
  <div class="modal fade" id="recordsFoundModal" tabindex="-1" aria-labelledby="recordsFoundModalLabel" aria-hidden="true">
      <div class="modal-dialog modal-lg modal-dialog-centered">
          <div class="modal-content">
-             <form id="matchFoundForm" action="<?= base_url('cases/match_found') ?>" method="post">
+             <form id="matchFoundForm" action="<?= base_url('cases/match_found') ?>" method="post" enctype="multipart/form-data">
                  <div class="modal-header">
                      <h5 class="modal-title">Records Found</h5>
                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -13,6 +13,11 @@
                          <div class="col-12">
                              <label class="form-label" for="assetNotes">Notes</label>
                              <textarea class="form-control" id="assetNotes" name="email_notes" rows="4" placeholder="Please add details of the assets found" required></textarea>
+                         </div>
+                         <div class="col-12">
+                             <label class="form-label" for="matchAttachment">Attachment (PDF only)</label>
+                             <input type="file" class="form-control" id="matchAttachment" name="match_attachment" accept="application/pdf,.pdf" aria-describedby="matchAttachmentHelp">
+                             <div id="matchAttachmentHelp" class="form-text">Optional. Upload a PDF document for this match response.</div>
                          </div>
                      </div>
                  </div>
@@ -72,6 +77,7 @@
              return;
          }
 
+         $('#matchFoundForm')[0].reset();
          $('#log_id').val(log_id);
          $('#assetNotes').val('');
      }

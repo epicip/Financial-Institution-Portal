@@ -36,6 +36,8 @@ $dod = !empty($data->dod) ? date('d F Y', strtotime($data->dod)) : '';
                     </div>
                 <?php } ?>
 
+                <?= $data->services ?>
+
                 <div class="portal-hero d-flex align-items-center justify-content-between flex-wrap gap-4">
                     <div class="d-flex align-items-center gap-4">
                         <span class="portal-avatar portal-avatar-lg"><?= html_escape($forename_initial . $surname_initial) ?></span>
@@ -53,9 +55,16 @@ $dod = !empty($data->dod) ? date('d F Y', strtotime($data->dod)) : '';
                     <?php } ?>
                 </div>
 
+                <?php $services = explode(',', $data->services); ?>
+
                 <div class="card shadow-custom rounded-custom mb-6">
                     <div class="card-body p-6">
-                        <h5 class="portal-section-title mb-5">Deceased Personal Details <span class="portal-section-note">(Establish identity of deceased)</span></h5>
+                        <h5 class="portal-section-title mb-5">
+                            <?php if (in_array('51', $services, true)): ?>
+                                Protected Person Details <span class="portal-section-note">(Establish identity)</span>
+                            <?php else: ?>
+                                Deceased Personal Details <span class="portal-section-note">(Establish identity of deceased)</span>
+                            <?php endif; ?></h5>
                         <div class="row g-4">
                             <div class="col-md-6">
                                 <label class="portal-form-label" for="deceasedTitle">Title</label>
@@ -105,7 +114,12 @@ $dod = !empty($data->dod) ? date('d F Y', strtotime($data->dod)) : '';
 
                 <div class="card shadow-custom rounded-custom">
                     <div class="card-body p-6">
-                        <h5 class="portal-section-title mb-5">Asset &amp; Liability Search</h5>
+                        <h5 class="portal-section-title mb-5">
+                            <?php if (in_array('51', $services, true)): ?>
+                                Court of Protection - Asset & Liability Search
+                            <?php else: ?>
+                                Asset & Liability Search
+                            <?php endif; ?></h5>
                         <div class="row g-4">
 
                             <div class="col-md-6">
@@ -141,7 +155,11 @@ $dod = !empty($data->dod) ? date('d F Y', strtotime($data->dod)) : '';
                             </div>
                             <div class="col-md-6">
                                 <div class="portal-file-row">
-                                    <span class="portal-form-label mb-0">Death Certificate <span class="text-danger">*</span></span>
+                                    <span class="portal-form-label mb-0"><?php if (in_array('51', $services, true)): ?>
+                                                Court of Protection Order
+                                            <?php else: ?>
+                                                Death Certificate
+                                            <?php endif; ?> <span class="text-danger">*</span></span>
                                     <a class="portal-file-link" href="<?= html_escape($data->dcdocuments ?? '#') ?>" target="_blank" rel="noopener">Show Uploaded File</a>
                                 </div>
                             </div>
