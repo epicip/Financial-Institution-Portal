@@ -19,11 +19,11 @@
                     <div class="card-body p-6">
                         <div class="mb-5  border-bottom pb-3">
                             <h5 class="portal-section-title mb-1">Pending Cases list</h5>
-                            <p class="text-muted mb-0">Deceased personal details supplied for asset and liability search.</p>
+                            <p class="text-muted mb-0">Personal details supplied for asset and liability search.</p>
                         </div>
                         <table id="casesTable" class="table align-middle portal-table mb-0 w-100">
                             <thead class="table-light">
-                                <tr>
+                                <tr style="border-left: 5px solid #F6F6F9;">
                                     <th class="fw-medium">Title</th>
                                     <th class="fw-medium">Forename</th>
                                     <th class="fw-medium">Middle Names</th>
@@ -37,7 +37,12 @@
                             <tbody>
                                 <?php if (!empty($cases)) { ?>
                                     <?php foreach ($cases as $case) { ?>
-                                        <tr>
+                                        <?php
+                                        $services = explode(',', $case->services ?? '');
+                                        $color = in_array('51', $services, true) ? '#64c3d1' : '#9785c2';
+                                        ?>
+
+                                        <tr style="border-left: 5px solid <?= $color; ?>;">
                                             <td><?= $case->title ?></td>
                                             <td><?= $case->forename ?></td>
                                             <td><?= $case->middlename ?></td>

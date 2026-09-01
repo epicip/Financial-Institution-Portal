@@ -21,7 +21,7 @@
                         <div>
                             <!-- <span class="portal-hero-kicker">Asset search portal</span> -->
                             <h2 class="fw-semibold fs-7 mb-2">Pending Cases </h2>
-                            <p class="mb-0">Review deceased customer details and confirm whether records are held.</p>
+                            <p class="mb-0">Review customer details and confirm whether records are held.</p>
                         </div>
                         <div class="portal-hero-badge"><?= !empty($pending_cases) ? count($pending_cases) : 0 ?> awaiting review</div>
                     </div>
@@ -94,11 +94,11 @@
                     <div class="card-body p-6">
                         <div class="mb-5">
                             <h5 class="portal-section-title mb-1">Pending Case list</h5>
-                            <p class="text-muted mb-0">Deceased personal details supplied for asset and liability search.</p>
+                            <p class="text-muted mb-0">Personal details supplied for asset and liability search.</p>
                         </div>
                         <table id="casesTable" class="table align-middle portal-table mb-0 w-100">
                             <thead class="table-light">
-                                <tr>
+                                <tr style="border-left: 5px solid #F6F6F9;">
                                     <th class="fw-medium">Title</th>
                                     <th class="fw-medium">Forename</th>
                                     <th class="fw-medium">Middle Names</th>
@@ -112,7 +112,12 @@
                             <tbody>
                                 <?php if (!empty($pending_cases)) { ?>
                                     <?php foreach ($pending_cases as $case) { ?>
-                                        <tr>
+                                        <?php
+                                        $services = explode(',', $case->services ?? '');
+                                        $color = in_array('51', $services, true) ? '#64c3d1' : '#9785c2';
+                                        ?>
+
+                                        <tr style="border-left: 5px solid <?= $color; ?>;">
                                             <td><?= $case->title ?></td>
                                             <td><?= $case->forename ?></td>
                                             <td><?= $case->middlename ?></td>

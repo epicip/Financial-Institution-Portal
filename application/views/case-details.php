@@ -19,6 +19,7 @@ $forename_initial = !empty($data->forename) ? substr($data->forename, 0, 1) : ''
 $surname_initial = !empty($data->surname) ? substr($data->surname, 0, 1) : '';
 $dob = !empty($data->dob) ? date('d F Y', strtotime($data->dob)) : '';
 $dod = !empty($data->dod) ? date('d F Y', strtotime($data->dod)) : '';
+$services = explode(',', $data->services);
 ?>
 
 <div class="app-main">
@@ -36,15 +37,19 @@ $dod = !empty($data->dod) ? date('d F Y', strtotime($data->dod)) : '';
                     </div>
                 <?php } ?>
 
-                <?= $data->services ?>
-
                 <div class="portal-hero d-flex align-items-center justify-content-between flex-wrap gap-4">
                     <div class="d-flex align-items-center gap-4">
                         <span class="portal-avatar portal-avatar-lg"><?= html_escape($forename_initial . $surname_initial) ?></span>
                         <div>
                             <span class="portal-hero-kicker">Further details</span>
                             <h2 class="fw-semibold fs-7 mb-2"><?= html_escape($deceased_name) ?></h2>
-                            <p class="mb-0">Deceased personal details and asset &amp; liability search.</p>
+                            <p class="mb-0">
+                                <?php if (in_array('51', $services, true)): ?>
+                                    Protected Person Details and Court of Protection - Asset & Liability Search
+
+                                <?php else: ?>
+                                    Deceased personal details and asset &amp; liability search.
+                                <?php endif; ?></p>
                         </div>
                     </div>
                     <?php if (empty($data->email_status)) { ?>
@@ -54,8 +59,6 @@ $dod = !empty($data->dod) ? date('d F Y', strtotime($data->dod)) : '';
                         </div>
                     <?php } ?>
                 </div>
-
-                <?php $services = explode(',', $data->services); ?>
 
                 <div class="card shadow-custom rounded-custom mb-6">
                     <div class="card-body p-6">
@@ -90,15 +93,17 @@ $dod = !empty($data->dod) ? date('d F Y', strtotime($data->dod)) : '';
                                 <label class="portal-form-label">Alias (Please state if “also known as” or “previously known as”.)</label>
                                 <input class="form-control portal-readonly" type="text" value="<?= html_escape(alias_to_text($data->alias ?? '')) ?>" readonly>
                             </div>
+
                             <div class="col-md-6">
                                 <label class="portal-form-label" for="deceasedDob">Date of Birth <span class="text-danger">*</span></label>
                                 <input class="form-control portal-readonly" id="deceasedDob" type="text" value="<?= html_escape($dob) ?>" readonly>
                             </div>
-                            <div class="col-md-6">
-                                <label class="portal-form-label" for="deceasedDod">Date of Death <span class="text-danger">*</span></label>
-                                <input class="form-control portal-readonly" id="deceasedDod" type="text" value="<?= html_escape($dod) ?>" readonly>
-                            </div>
-
+                            <?php if (!in_array('51', $services, true)) { ?>
+                                <div class="col-md-6">
+                                    <label class="portal-form-label" for="deceasedDod">Date of Death <span class="text-danger">*</span></label>
+                                    <input class="form-control portal-readonly" id="deceasedDod" type="text" value="<?= html_escape($dod) ?>" readonly>
+                                </div>
+                            <?php } ?>
                             <div class="col-md-6">
                                 <label class="portal-form-label" for="deceasedAddress">Deceased Address <span class="text-danger">*</span></label>
                                 <textarea class="form-control portal-readonly" id="deceasedAddress" rows="3" readonly><?= html_escape($data->deceased_address ?? '') ?></textarea>
@@ -156,10 +161,10 @@ $dod = !empty($data->dod) ? date('d F Y', strtotime($data->dod)) : '';
                             <div class="col-md-6">
                                 <div class="portal-file-row">
                                     <span class="portal-form-label mb-0"><?php if (in_array('51', $services, true)): ?>
-                                                Court of Protection Order
-                                            <?php else: ?>
-                                                Death Certificate
-                                            <?php endif; ?> <span class="text-danger">*</span></span>
+                                            Court of Protection Order
+                                        <?php else: ?>
+                                            Death Certificate
+                                        <?php endif; ?> <span class="text-danger">*</span></span>
                                     <a class="portal-file-link" href="<?= html_escape($data->dcdocuments ?? '#') ?>" target="_blank" rel="noopener">Show Uploaded File</a>
                                 </div>
                             </div>

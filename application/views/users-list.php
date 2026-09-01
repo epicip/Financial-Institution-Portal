@@ -100,10 +100,6 @@
                                         <input class="form-check-input me-2" type="radio" name="reminder" value="monthly" id="reminderMonthly" <?= $reminder_frequency === 'monthly' ? 'checked' : '' ?>>
                                         Monthly
                                     </label>
-                                    <label class="portal-choice" for="reminderQuarterly">
-                                        <input class="form-check-input me-2" type="radio" name="reminder" value="quarterly" id="reminderQuarterly" <?= $reminder_frequency === 'quarterly' ? 'checked' : '' ?>>
-                                        Quarterly
-                                    </label>
                                 </div>
                             </div>
 
