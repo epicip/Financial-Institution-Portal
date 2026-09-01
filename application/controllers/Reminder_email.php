@@ -14,7 +14,6 @@ class Reminder_email extends My_Controller
 		'weekly'      => 7,
 		'two_weekly'  => 14,
 		'monthly'     => 30,
-		'quarterly'   => 90,
 	);
 
 	/**
