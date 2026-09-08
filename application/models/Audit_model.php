@@ -4,7 +4,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Audit_model extends My_Model
 {
-    private $table = 'financial_institution_audit_logs';
+    private $table = 'fi_portal_audit_logs';
 
     public function log_event($action, $entity_type, $entity_id, $description)
     {
