@@ -155,7 +155,7 @@ class Users extends My_Controller
     {
         $this->form_validation->set_rules('old_password', 'Password', 'required');
         $this->form_validation->set_rules('new_password', 'New Password', 'required');
-        $this->form_validation->set_rules('confirm_password', 'Retype Password', 'required');
+        $this->form_validation->set_rules('confirm_password', 'Retype Password', 'required|matches[new_password]');
 
         $old_password = $this->input->post('old_password');
         $new_password = $this->input->post('new_password');

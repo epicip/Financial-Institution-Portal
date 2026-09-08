@@ -16,11 +16,11 @@
                             <h5 class="portal-section-title mb-1">Set Your New Password</h5>
                             <p class="text-muted mb-0">Create a new strong password for your account.</p>
                         </div>
-                        <form novalidate method="post" action="<?= base_url('users/change_password_process') ?>">
+                        <form id="changePasswordForm" method="post" action="<?= base_url('users/change_password_process') ?>">
                             <div class="mb-3">
                                 <label for="old_password" class="form-label">Old Password</label>
                                 <div class="input-group mb-3">
-                                    <input type="password" class="form-control" name="old_password" placeholder="**********" id="old_password">
+                                    <input type="password" class="form-control" name="old_password" placeholder="**********" id="old_password" required>
                                     <span class="input-group-text password-toggle">
                                         <span class="close-eye password-eye">
                                             <svg width="22" height="10" viewBox="0 0 22 10" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -43,7 +43,7 @@
                             <div class="mb-3">
                                 <label for="new_password" class="form-label">New Password</label>
                                 <div class="input-group mb-3">
-                                    <input type="password" class="form-control" name="new_password" placeholder="**********" id="new_password">
+                                    <input type="password" class="form-control" name="new_password" placeholder="**********" id="new_password" required>
                                     <span class="input-group-text password-toggle">
                                         <span class="close-eye password-eye">
                                             <svg width="22" height="10" viewBox="0 0 22 10" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -61,12 +61,23 @@
                                             </svg>
                                         </span>
                                     </span>
+                                </div>
+                                <div id="passwordPolicy" class="d-none bg-light border rounded-3 p-3">
+                                    <div class="fw-semibold mb-2">Password requirements</div>
+                                    <ul class="list-unstyled small mb-1">
+                                        <li class="mb-1"><span class="policy-icon me-2">×</span>8–32 characters</li>
+                                        <li class="mb-1"><span class="policy-icon me-2">×</span>At least 1 uppercase and 1 lowercase letter</li>
+                                        <li class="mb-1"><span class="policy-icon me-2">×</span>At least 1 number</li>
+                                        <li class="mb-1"><span class="policy-icon me-2">×</span>At least 1 special character (@#$^*-)</li>
+                                        <li><span class="policy-icon me-2">×</span>Must not contain spaces</li>
+                                    </ul>
+                                    <div class="small text-muted">Passwords are case sensitive.</div>
                                 </div>
                             </div>
                             <div class="mb-4">
                                 <label for="confirm_password" class="form-label">Confirm Password</label>
                                 <div class="input-group mb-3">
-                                    <input type="password" class="form-control" name="confirm_password" placeholder="**********" id="confirm_password">
+                                    <input type="password" class="form-control" name="confirm_password" placeholder="**********" id="confirm_password" required>
                                     <span class="input-group-text password-toggle">
                                         <span class="close-eye password-eye">
                                             <svg width="22" height="10" viewBox="0 0 22 10" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -85,10 +96,13 @@
                                         </span>
                                     </span>
                                 </div>
+                                <div id="confirmPasswordError" class="small text-danger d-none">
+                                    Passwords do not match.
+                                </div>
                             </div>
 
                             <div class="text-center">
-                                <button type="submit" class="btn btn-primary w-100">
+                                <button type="submit" id="changePasswordSubmit" class="btn btn-primary w-100" disabled>
                                     Set New Password
                                 </button>
                             </div>
@@ -103,3 +117,63 @@
     <?php include_once 'inc/copyright.php' ?>
 </div>
 <?php include_once 'inc/footer.php' ?>
+
+<script>
+    $(function () {
+        var $form = $('#changePasswordForm');
+        var $password = $('#new_password');
+        var $confirmPassword = $('#confirm_password');
+        var $policy = $('#passwordPolicy');
+        var $rules = $policy.find('li');
+        var $submit = $('#changePasswordSubmit');
+        var $confirmError = $('#confirmPasswordError');
+
+        function setRule(index, isValid) {
+            var $rule = $rules.eq(index);
+            $rule
+                .toggleClass('text-success', isValid)
+                .toggleClass('text-danger', !isValid);
+            $rule.find('.policy-icon').text(isValid ? '✓' : '×');
+        }
+
+        function validatePasswordPolicy() {
+            var value = $password.val();
+            var checks = [
+                value.length >= 8 && value.length <= 32,
+                /[A-Z]/.test(value) && /[a-z]/.test(value),
+                /\d/.test(value),
+                /[@#$^*-]/.test(value),
+                !/\s/.test(value)
+            ];
+
+            $.each(checks, setRule);
+            return value !== '' && checks.every(Boolean);
+        }
+
+        function validateForm() {
+            var policyValid = validatePasswordPolicy();
+            var confirmHasValue = $confirmPassword.val() !== '';
+            var passwordsMatch = $password.val() === $confirmPassword.val();
+
+            $policy.toggleClass('d-none', policyValid);
+            $confirmError.toggleClass('d-none', !confirmHasValue || passwordsMatch);
+            $submit.prop('disabled', !policyValid || !passwordsMatch || !confirmHasValue);
+
+            return policyValid && passwordsMatch && confirmHasValue;
+        }
+
+        $password.on('focus', function () {
+            $policy.toggleClass('d-none', validatePasswordPolicy());
+        });
+
+        $password.add($confirmPassword).on('input', validateForm);
+
+        $form.on('submit', function (event) {
+            if (!validateForm()) {
+                event.preventDefault();
+                event.stopImmediatePropagation();
+                $policy.removeClass('d-none');
+            }
+        });
+    });
+</script>
