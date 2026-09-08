@@ -24,6 +24,18 @@ class Users extends My_Controller
         $this->load->helper(array('cookie', 'date', 'form'));
         $this->load->library(array('form_validation'));
         $this->load->model('users_model');
+        $this->load->model('Audit_model');
+    }
+
+    private function require_admin()
+    {
+        if ($this->session->userdata('fc_session_user_type') === 'admin') {
+            return true;
+        }
+
+        $this->setErrorMessage('danger', 'Only administrators can manage portal users.');
+        redirect('dashboard');
+        return false;
     }
 
     /**
@@ -36,9 +48,7 @@ class Users extends My_Controller
      */
     function index()
     {
-        if ($this->session->userdata('fc_session_user_type') != 'admin') {
-            $this->setErrorMessage('danger', 'You are not authorized to access users page only admin can access this page.');
-            redirect('dashboard');
+        if (!$this->require_admin()) {
             return;
         }
 
@@ -61,6 +71,10 @@ class Users extends My_Controller
      */
     function add_edit_user_form()
     {
+        if (!$this->require_admin()) {
+            return;
+        }
+
         $user_id = $this->input->post('user_id');
         $this->data['user_id'] = $user_id;
 
@@ -85,6 +99,10 @@ class Users extends My_Controller
      */
     public function insert_update_user()
     {
+        if (!$this->require_admin()) {
+            return;
+        }
+
         $this->form_validation->set_rules('name', 'Name', 'required');
         $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
         $this->form_validation->set_rules('status', 'Status', 'required');
@@ -111,7 +129,14 @@ class Users extends My_Controller
             $password = $this->generate_strong_password(8);
             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
             $data['password'] = $hashed_password;
-            $this->users_model->insert_details('adprep_financial_institutions_users', $data);
+            $new_user_id = $this->users_model->insert_details('adprep_financial_institutions_users', $data);
+
+            $this->Audit_model->log_event(
+                'user_created',
+                'user',
+                $new_user_id,
+                'Created portal user ' . $data['name'] . ' (' . $data['email'] . ').'
+            );
 
             $message  = 'Dear ' . $data['name'] . ', <br /><br />';
             $message .= 'You have just created a new account on Financial Institutions Portal. <br /> <br />';
@@ -199,6 +224,10 @@ class Users extends My_Controller
 
     public function delete_user()
     {
+        if (!$this->require_admin()) {
+            return;
+        }
+
         $user_id = $this->input->post('user_id');
         $this->users_model->delete_details('adprep_financial_institutions_users', ['user_id' => $user_id]);
         $this->setErrorMessage('success', 'User has been deleted successfully');
@@ -208,6 +237,10 @@ class Users extends My_Controller
 
     public function update_reminder_emails()
     {
+        if (!$this->require_admin()) {
+            return;
+        }
+
         $allowed = array('weekly', 'two_weekly', 'monthly', 'quarterly');
         $reminder = strtolower(trim((string) $this->input->post('reminder')));
 

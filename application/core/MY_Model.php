@@ -87,7 +87,7 @@ class My_Model extends CI_Model
 	public function update_details($table = '', $data = '', $condition = '')
 	{
 		$this->db->where($condition);
-		$this->db->update($table, $data);
+		return $this->db->update($table, $data);
 	}
 
 	public function insert_details($table = '', $data = '')
@@ -99,7 +99,7 @@ class My_Model extends CI_Model
 	public function delete_details($table = '', $condition = '')
 	{
 		$this->db->where($condition);
-		$this->db->delete($table);
+		return $this->db->delete($table);
 	}
 
 

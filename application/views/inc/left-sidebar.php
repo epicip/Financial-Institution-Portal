@@ -61,6 +61,16 @@
                             <span class="menu-title flex-grow-1">Users</span>
                         </a>
                     </li>
+                    <li class="app-sidebar-menu-item">
+                        <a href="<?= base_url('audit-logs') ?>" class="menu-link d-flex align-items-center" title="Audit Logs">
+                            <span class="menu-icon flex-shrink-0">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                    <path d="M9 5h10M9 12h10M9 19h10M5 5h.01M5 12h.01M5 19h.01" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
+                                </svg>
+                            </span>
+                            <span class="menu-title flex-grow-1">Audit Logs</span>
+                        </a>
+                    </li>
                 <?php } ?>
             </ul>
         </div>

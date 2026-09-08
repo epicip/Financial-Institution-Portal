@@ -24,6 +24,7 @@ class Cases extends My_Controller
         $this->load->helper(array('cookie', 'date', 'form'));
         $this->load->library(array('form_validation'));
         $this->load->model('Cases_model');
+        $this->load->model('Audit_model');
     }
 
     /**
@@ -93,10 +94,18 @@ class Cases extends My_Controller
 
         if (empty($log_id)) {
             $this->setErrorMessage('danger', 'Log id is missing. Unable to save no-match response.');
+            redirect('pending');
             return;
         }
 
-        $this->Cases_model->update_details(
+        $portal_log = $this->Cases_model->get_portal_log_by_id($log_id);
+        if (empty($portal_log)) {
+            $this->setErrorMessage('danger', 'The selected case could not be found.');
+            redirect('pending');
+            return;
+        }
+        $this->db->trans_begin();
+        $updated = $this->Cases_model->update_details(
             'email_logs_institutions',
             array(
                 'email_status' => 'no_match',
@@ -109,6 +118,22 @@ class Cases extends My_Controller
             )
         );
 
+        $case_name = trim($portal_log->forename . ' ' . $portal_log->surname);
+        $audit_saved = $updated && $this->Audit_model->log_event(
+            'case_no_match',
+            'case',
+            $portal_log->case_id,
+            'Marked ' . ($case_name !== '' ? $case_name : 'case #' . $portal_log->case_id) . ' as no match.'
+        );
+
+        if (!$audit_saved || $this->db->trans_status() === false) {
+            $this->db->trans_rollback();
+            $this->setErrorMessage('danger', 'Unable to save the no-match response and audit record.');
+            redirect('pending');
+            return;
+        }
+
+        $this->db->trans_commit();
         $this->setErrorMessage('success', 'No records response saved successfully.');
 
         redirect('pending');
@@ -121,6 +146,13 @@ class Cases extends My_Controller
 
         if (empty($log_id)) {
             $this->setErrorMessage('danger', 'Log id is missing. Unable to save match response.');
+            redirect('pending');
+            return;
+        }
+
+        $portal_log = $this->Cases_model->get_portal_log_by_id($log_id);
+        if (empty($portal_log)) {
+            $this->setErrorMessage('danger', 'The selected case could not be found.');
             redirect('pending');
             return;
         }
@@ -160,7 +192,8 @@ class Cases extends My_Controller
             }
         }
 
-        $this->Cases_model->update_details(
+        $this->db->trans_begin();
+        $updated = $this->Cases_model->update_details(
             'email_logs_institutions',
             array(
                 'email_status' => 'match',
@@ -175,6 +208,25 @@ class Cases extends My_Controller
             )
         );
 
+        $case_name = trim($portal_log->forename . ' ' . $portal_log->surname);
+        $audit_saved = $updated && $this->Audit_model->log_event(
+            'case_match',
+            'case',
+            $portal_log->case_id,
+            'Marked ' . ($case_name !== '' ? $case_name : 'case #' . $portal_log->case_id) . ' as a match.'
+        );
+
+        if (!$audit_saved || $this->db->trans_status() === false) {
+            $this->db->trans_rollback();
+            if (isset($destination) && is_file($destination)) {
+                unlink($destination);
+            }
+            $this->setErrorMessage('danger', 'Unable to save the match response and audit record.');
+            redirect('pending');
+            return;
+        }
+
+        $this->db->trans_commit();
         $this->setErrorMessage('success', 'Match response saved successfully.');
         redirect('pending');
     }
