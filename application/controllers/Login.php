@@ -98,7 +98,7 @@ class Login extends My_Controller
 						$this->setErrorMessage('danger', 'Invalid login credentials');
 					}
 				} else {
-					$this->setErrorMessage('danger', 'your account is not active');
+					$this->setErrorMessage('danger', 'Your account is not active');
 				}
 			} else {
 				$this->setErrorMessage('error', 'Please try again.');
