@@ -17,13 +17,26 @@
 
                 <div class="card shadow-custom rounded-custom">
                     <div class="card-body p-6">
-                        <div class="mb-5  border-bottom pb-3">
-                            <h5 class="portal-section-title mb-1">Pending Cases list</h5>
-                            <p class="text-muted mb-0">Personal details supplied for asset and liability search.</p>
+                        <div class="case-list-heading mb-5 border-bottom pb-3">
+                            <div>
+                                <h5 class="portal-section-title mb-1">Pending Cases list</h5>
+                                <p class="text-muted mb-0">Personal details supplied for asset and liability search.</p>
+                            </div>
+                            <div class="case-type-legend" aria-label="Order type colour legend">
+                                <span class="case-type-legend-label">Order Type:</span>
+                                <span class="case-type-legend-item case-type-protection">
+                                    <span class="case-type-legend-dot" aria-hidden="true"></span>
+                                    Court of Protection
+                                </span>
+                                <span class="case-type-legend-item case-type-estate">
+                                    <span class="case-type-legend-dot" aria-hidden="true"></span>
+                                    Asset &amp; Liability
+                                </span>
+                            </div>
                         </div>
                         <table id="casesTable" class="table align-middle portal-table mb-0 w-100" data-preserve-source-order="true">
                             <thead class="table-light">
-                                <tr style="border-left: 5px solid #F6F6F9;">
+                                <tr>
                                     <th class="fw-medium">Title</th>
                                     <th class="fw-medium">Forename</th>
                                     <th class="fw-medium">Middle Names</th>
@@ -39,10 +52,11 @@
                                     <?php foreach ($cases as $case) { ?>
                                         <?php
                                         $services = explode(',', $case->services ?? '');
-                                        $color = in_array('51', $services, true) ? '#64c3d1' : '#9785c2';
+                                        $is_protection_order = in_array('51', $services, true);
+                                        $case_type_class = $is_protection_order ? 'case-type-protection' : 'case-type-estate';
                                         ?>
 
-                                        <tr style="border-left: 5px solid <?= $color; ?>;">
+                                        <tr class="<?= $case_type_class; ?>">
                                             <td><?= $case->title ?></td>
                                             <td><?= $case->forename ?></td>
                                             <td><?= $case->middlename ?></td>
