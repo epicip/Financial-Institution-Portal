@@ -63,12 +63,20 @@ class Reminder_email extends My_Controller
 			'institutions_due'     => 0,
 			'emails_sent'          => 0,
 			'emails_failed'        => 0,
+			'skipped_non_portal'   => 0,
 			'skipped_no_pending'   => 0,
 			'details'              => array(),
 		);
 
 		foreach ($institutions as $institution) {
 			$summary['institutions_checked']++;
+
+			$method = strtolower(trim((string) ($institution->method ?? '')));
+			if ($method !== 'portal') {
+				$summary['skipped_non_portal']++;
+				$summary['details'][] = 'Institution #' . $institution->id . ': skipped (method is not portal)';
+				continue;
+			}
 
 			$frequency = strtolower(trim((string) ($institution->reminder ?? '')));
 			if (!$this->is_reminder_due($frequency, $institution->last_reminder_sent ?? null)) {
