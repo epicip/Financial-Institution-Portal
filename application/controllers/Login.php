@@ -80,6 +80,8 @@ class Login extends My_Controller
 						);
 						$this->session->sess_regenerate(TRUE);
 						$this->session->set_userdata($institutiondata);
+						$this->users_model->update_details('adprep_financial_institutions_users', array('last_login' => date('Y-m-d H:i:s')), array('user_id' => $user_details->user_id));
+						// set the user type to the session
 						if ($this->input->post('remember') != '') {
 							$cookie = array(
 								'name'   => 'institution_session',
@@ -117,6 +119,7 @@ class Login extends My_Controller
 	 */
 	public function logout()
 	{
+		$this->users_model->update_details('adprep_financial_institutions_users', array('last_logout' => date('Y-m-d H:i:s')), array('user_id' => $this->session->userdata('fc_session_user_id')));
 		$institutiondata = array(
 			'fc_session_institution_id' => '',
 			'fc_session_user_id' => '',

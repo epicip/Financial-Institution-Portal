@@ -58,6 +58,7 @@ $route['forgot-password'] = 'login/forgot_password';
 $route['forgot-password-process'] = 'login/forgot_password_process';
 $route['pending'] = 'cases/pending_cases';
 $route['case-details/(:num)'] = 'cases/case_details/$1';
+$route['audit-logs'] = 'audit_logs/index';
 $route['reminder-email'] = 'reminder_email/send';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

@@ -37,6 +37,7 @@ class Cases_model extends My_Model
             'email_logs_institutions.user_id',
             $this->session->userdata('fc_session_institution_id')
         );
+        $this->db->order_by('email_logs_institutions.id', 'DESC');
 
         $query = $this->db->get();
         if ($query === false) {
@@ -69,6 +70,7 @@ class Cases_model extends My_Model
         );
 
         $this->db->where('email_logs_institutions.email_status IS NULL', null, false);
+        $this->db->order_by('email_logs_institutions.id', 'DESC');
         $query = $this->db->get();
         if ($query === false) {
             return array();
@@ -119,6 +121,39 @@ class Cases_model extends My_Model
 
         $this->db->order_by('email_logs_institutions.id', 'DESC');
         $this->db->limit(1);
+
+        $query = $this->db->get();
+        if ($query === false || $query->num_rows() === 0) {
+            return null;
+        }
+
+        return $query->row();
+    }
+
+    /**
+     * Get a portal email log and its case name for the current institution.
+     *
+     * @param int|string $log_id
+     * @return object|null
+     */
+    public function get_portal_log_by_id($log_id)
+    {
+        $this->db->select(
+            'email_logs_institutions.id, email_logs_institutions.case_id, ' .
+            'adprep_wills_probate.forename, adprep_wills_probate.surname'
+        );
+        $this->db->from('email_logs_institutions');
+        $this->db->join(
+            'adprep_wills_probate',
+            'adprep_wills_probate.caseId = email_logs_institutions.case_id',
+            'inner'
+        );
+        $this->db->where('email_logs_institutions.id', $log_id);
+        $this->db->where('email_logs_institutions.notification_type', 'PORTAL');
+        $this->db->where(
+            'email_logs_institutions.user_id',
+            $this->session->userdata('fc_session_institution_id')
+        );
 
         $query = $this->db->get();
         if ($query === false || $query->num_rows() === 0) {

@@ -34,7 +34,7 @@
                                 </span>
                             </div>
                         </div>
-                        <table id="casesTable" class="table align-middle portal-table mb-0 w-100">
+                        <table id="casesTable" class="table align-middle portal-table mb-0 w-100" data-preserve-source-order="true">
                             <thead class="table-light">
                                 <tr>
                                     <th class="fw-medium">Title</th>
