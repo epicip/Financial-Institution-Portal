@@ -21,7 +21,7 @@
                             <h5 class="portal-section-title mb-1">All Cases List</h5>
                             <p class="text-muted mb-0">Personal details supplied for asset and liability search.</p>
                         </div>
-                        <table id="casesTable" class="table align-middle portal-table mb-0 w-100">
+                        <table id="casesTable" class="table align-middle portal-table mb-0 w-100" data-preserve-source-order="true">
                             <thead class="table-light">
                                 <tr style="border-left: 5px solid #F6F6F9;">
                                     <th class="fw-medium">Title</th>

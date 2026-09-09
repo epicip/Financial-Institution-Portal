@@ -37,6 +37,7 @@ class Cases_model extends My_Model
             'email_logs_institutions.user_id',
             $this->session->userdata('fc_session_institution_id')
         );
+        $this->db->order_by('email_logs_institutions.id', 'DESC');
 
         $query = $this->db->get();
         if ($query === false) {
@@ -69,6 +70,7 @@ class Cases_model extends My_Model
         );
 
         $this->db->where('email_logs_institutions.email_status IS NULL', null, false);
+        $this->db->order_by('email_logs_institutions.id', 'DESC');
         $query = $this->db->get();
         if ($query === false) {
             return array();

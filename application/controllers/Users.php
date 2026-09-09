@@ -27,17 +27,6 @@ class Users extends My_Controller
         $this->load->model('Audit_model');
     }
 
-    private function require_admin()
-    {
-        if ($this->session->userdata('fc_session_user_type') === 'admin') {
-            return true;
-        }
-
-        $this->setErrorMessage('danger', 'Only administrators can manage portal users.');
-        redirect('dashboard');
-        return false;
-    }
-
     /**
      * Display the institution users list page.
      *
@@ -48,10 +37,6 @@ class Users extends My_Controller
      */
     function index()
     {
-        if (!$this->require_admin()) {
-            return;
-        }
-
         $this->data['users'] = $this->users_model->get_all_users();
         $reminder = $this->users_model->get_row_details(
             'adprep_financial_institutions_list',
@@ -71,10 +56,6 @@ class Users extends My_Controller
      */
     function add_edit_user_form()
     {
-        if (!$this->require_admin()) {
-            return;
-        }
-
         $user_id = $this->input->post('user_id');
         $this->data['user_id'] = $user_id;
 
@@ -99,10 +80,6 @@ class Users extends My_Controller
      */
     public function insert_update_user()
     {
-        if (!$this->require_admin()) {
-            return;
-        }
-
         $this->form_validation->set_rules('name', 'Name', 'required');
         $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
         $this->form_validation->set_rules('status', 'Status', 'required');
@@ -112,18 +89,27 @@ class Users extends My_Controller
             return;
         }
 
+        $user_id = $this->input->post('user_id');
+        $email = strtolower(trim((string) $this->input->post('email')));
+
+        if ($this->users_model->email_exists($email, $user_id)) {
+            $this->setErrorMessage('danger', 'A user account with this email address already exists.');
+            redirect('users');
+            return;
+        }
+
         $data = array();
         $data['institutions_id'] = $this->session->userdata('fc_session_institution_id');
         $data['name'] = $this->input->post('name');
-        $data['email'] = $this->input->post('email');
+        $data['email'] = $email;
         $data['status'] = $this->input->post('status');
         $data['type'] = 'user';
 
-        if (!empty($this->input->post('user_id'))) {
+        if (!empty($user_id)) {
             $this->users_model->update_details(
                 'adprep_financial_institutions_users',
                 $data,
-                ['user_id' => $this->input->post('user_id')]
+                ['user_id' => $user_id]
             );
         } else {
             $password = $this->generate_strong_password(8);
@@ -222,25 +208,32 @@ class Users extends My_Controller
         }
     }
 
+    /**
+     * Delete a user account.
+     *
+     * Reads the user ID from POST, removes the corresponding user record,
+     * and redirects to the users page with a success message.
+     *
+     * @return void
+     */
     public function delete_user()
     {
-        if (!$this->require_admin()) {
-            return;
-        }
-
         $user_id = $this->input->post('user_id');
         $this->users_model->delete_details('adprep_financial_institutions_users', ['user_id' => $user_id]);
         $this->setErrorMessage('success', 'User has been deleted successfully');
         redirect('users');
     }
 
-
+    /**
+     * Update the reminder email frequency for the current institution.
+     *
+     * Accepts weekly, two-weekly, monthly, or quarterly values and
+     * redirects back to the users page with an appropriate status message.
+     *
+     * @return void
+     */
     public function update_reminder_emails()
     {
-        if (!$this->require_admin()) {
-            return;
-        }
-
         $allowed = array('weekly', 'two_weekly', 'monthly', 'quarterly');
         $reminder = strtolower(trim((string) $this->input->post('reminder')));
 

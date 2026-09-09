@@ -19,7 +19,7 @@ $(function () {
         pageLength: 5,
         lengthMenu: [[5, 10, 25, -1], [5, 10, 25, 'All']],
         pagingType: 'full_numbers',
-        order: [[3, 'asc']],
+        order: $table.data('preserve-source-order') ? [] : [[3, 'asc']],
         columnDefs: nonOrderableTargets.length
             ? [{ orderable: false, targets: nonOrderableTargets }]
             : [],

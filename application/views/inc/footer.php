@@ -11,7 +11,7 @@
                      <input type="hidden" name="log_id" id="log_id" value="">
                      <div class="row g-4">
                          <div class="col-12">
-                             <label class="form-label" for="assetNotes">Notes</label>
+                             <label class="form-label" for="assetNotes">Notes<span class="text-danger">*</span></label>
                              <textarea class="form-control" id="assetNotes" name="email_notes" rows="4" placeholder="Please add details of the assets found" required></textarea>
                          </div>
                          <div class="col-12">

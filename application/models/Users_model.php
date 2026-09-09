@@ -36,6 +36,25 @@ class Users_model extends My_Model
   }
 
   /**
+   * Check whether an email address is already assigned to a user.
+   *
+   * @param string $email
+   * @param int|string|null $exclude_user_id User ID to ignore when editing
+   * @return bool
+   */
+  public function email_exists($email, $exclude_user_id = null)
+  {
+    $this->db->from('adprep_financial_institutions_users');
+    $this->db->where('email', trim($email));
+
+    if (!empty($exclude_user_id)) {
+      $this->db->where('user_id !=', $exclude_user_id);
+    }
+
+    return $this->db->count_all_results() > 0;
+  }
+
+  /**
    * Get institutions that have a reminder frequency configured.
    *
    * @return array
