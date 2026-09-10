@@ -97,6 +97,16 @@ class Users extends My_Controller
             redirect('users');
             return;
         }
+        $adminEmail = $this->session->userdata('fc_session_user_email');
+
+        $adminDomain = substr(strrchr($adminEmail, '@'), 1);
+        $userDomain  = substr(strrchr($email, '@'), 1);
+
+        if ($adminDomain != $userDomain) {
+            $this->setErrorMessage('danger', 'A user can only be added with the same email domain as the admin account.');
+            redirect('users');
+            return;
+        }
 
         $data = array();
         $data['institutions_id'] = $this->session->userdata('fc_session_institution_id');
