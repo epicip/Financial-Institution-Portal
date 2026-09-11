@@ -3246,14 +3246,14 @@ button {
   background: #241e63;
   border-color: #241e63;
 }
-#casesTable_wrapper {
+:is(#casesTable_wrapper, #auditLogsTable_wrapper) {
   width: 100%;
 }
-#casesTable_wrapper .dataTables_filter {
+:is(#casesTable_wrapper, #auditLogsTable_wrapper) .dataTables_filter {
   text-align: right;
 }
-#casesTable_wrapper .dataTables_length label,
-#casesTable_wrapper .dataTables_filter label {
+:is(#casesTable_wrapper, #auditLogsTable_wrapper) .dataTables_length label,
+:is(#casesTable_wrapper, #auditLogsTable_wrapper) .dataTables_filter label {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -3262,8 +3262,8 @@ button {
   color: #6b6a78;
   font-weight: 500;
 }
-#casesTable_wrapper .cases-length-select,
-#casesTable_wrapper .dataTables_length select {
+:is(#casesTable_wrapper, #auditLogsTable_wrapper) .cases-length-select,
+:is(#casesTable_wrapper, #auditLogsTable_wrapper) .dataTables_length select {
   display: inline-block;
   width: auto;
   min-width: 72px;
@@ -3282,18 +3282,18 @@ button {
   background-size: 12px 12px;
   cursor: pointer;
 }
-#casesTable_wrapper .cases-search-wrap {
+:is(#casesTable_wrapper, #auditLogsTable_wrapper) .cases-search-wrap {
   position: relative;
   display: flex;
   justify-content: flex-end;
 }
-#casesTable_wrapper .cases-search-wrap label {
+:is(#casesTable_wrapper, #auditLogsTable_wrapper) .cases-search-wrap label {
   position: relative;
   width: 280px;
   max-width: 100%;
 }
-#casesTable_wrapper .dataTables_filter input,
-#casesTable_wrapper .cases-search-input {
+:is(#casesTable_wrapper, #auditLogsTable_wrapper) .dataTables_filter input,
+:is(#casesTable_wrapper, #auditLogsTable_wrapper) .cases-search-input {
   width: 100%;
   margin-left: 0;
   min-height: 38px;
@@ -3304,32 +3304,32 @@ button {
   background: #fff url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%236b6a78' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'%3e%3ccircle cx='11' cy='11' r='7'/%3e%3cpath d='M20 20l-3-3'/%3e%3c/svg%3e") no-repeat 12px center;
   background-size: 16px 16px;
 }
-#casesTable_wrapper .cases-table-scroll {
+:is(#casesTable_wrapper, #auditLogsTable_wrapper) .cases-table-scroll {
   width: 100%;
   overflow-x: auto;
 }
-#casesTable.dataTable {
+:is(#casesTable, #auditLogsTable).dataTable {
   width: 100% !important;
   margin: 0 !important;
   border-collapse: collapse !important;
 }
-#casesTable.dataTable th,
-#casesTable.dataTable td {
+:is(#casesTable, #auditLogsTable).dataTable th,
+:is(#casesTable, #auditLogsTable).dataTable td {
   box-sizing: border-box !important;
   vertical-align: middle;
 }
-#casesTable_wrapper .dataTables_info {
+:is(#casesTable_wrapper, #auditLogsTable_wrapper) .dataTables_info {
   padding-top: 0;
   font-size: 13px;
   color: #6b6a78;
 }
-#casesTable_wrapper .dataTables_paginate {
+:is(#casesTable_wrapper, #auditLogsTable_wrapper) .dataTables_paginate {
   padding-top: 0;
 }
-#casesTable_wrapper .pagination {
+:is(#casesTable_wrapper, #auditLogsTable_wrapper) .pagination {
   gap: 0px;
 }
-#casesTable_wrapper .pagination .page-link {
+:is(#casesTable_wrapper, #auditLogsTable_wrapper) .pagination .page-link {
   min-width: 34px;
   height: 34px;
   display: inline-flex;
@@ -3343,21 +3343,21 @@ button {
   font-weight: 600;
   background: #fff;
 }
-#casesTable_wrapper .pagination .page-item.active .page-link {
+:is(#casesTable_wrapper, #auditLogsTable_wrapper) .pagination .page-item.active .page-link {
   background: #302c5b;
   border-color: #302c5b;
   color: #fff;
 }
-#casesTable_wrapper .pagination .page-item.disabled .page-link {
+:is(#casesTable_wrapper, #auditLogsTable_wrapper) .pagination .page-item.disabled .page-link {
   color: #b7b5c4;
   background: #f7f6fb;
 }
-#casesTable_wrapper .pagination .page-link:hover {
+:is(#casesTable_wrapper, #auditLogsTable_wrapper) .pagination .page-link:hover {
   background: rgba(26, 21, 73, 0.07);
   border-color: #d8d4ea;
   color: #302c5b;
 }
-#casesTable_wrapper .pagination .page-item.active .page-link:hover {
+:is(#casesTable_wrapper, #auditLogsTable_wrapper) .pagination .page-item.active .page-link:hover {
   background: #302c5b;
   color: #fff;
 }
@@ -3638,6 +3638,21 @@ button {
   color: #6b6a78;
   background: #f5f4fa;
   border: 1px solid #eceaf4;
+}
+.portal-status-badge.is-created {
+    color: #fff;
+    background: #3a3480;
+    border: 1px solid #3a3480;
+}
+.portal-status-badge.is-deleted {
+  color: #9b1c1c;
+  background: #fdecec;
+  border: 1px solid #f5c2c2;
+}
+.portal-status-badge.is-updated {
+  color: #1d4f91;
+  background: #e8f1fb;
+  border: 1px solid #c5daf3;
 }
 .portal-modal .modal-content {
   border: 0;

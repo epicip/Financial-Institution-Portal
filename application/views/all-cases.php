@@ -20,7 +20,7 @@
                         <div class="case-list-heading mb-5 border-bottom pb-3">
                             <div>
                                 <h5 class="portal-section-title mb-1">All Cases List</h5>
-                                <p class="text-muted mb-0">Personal details supplied for asset and liability search.</p>
+                                <p class="text-muted mb-0">Complete list of Court of Protection and Asset & Liability cases.</p>
                             </div>
                             <div class="case-type-legend" aria-label="Order type colour legend">
                                 <span class="case-type-legend-label">Order Type:</span>

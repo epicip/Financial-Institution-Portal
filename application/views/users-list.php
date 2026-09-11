@@ -15,7 +15,7 @@
                 <div class="portal-hero">
 
                     <h2 class="fw-semibold fs-7 mb-2">User</h2>
-                    <p class="mb-0">Manage portal logins and how often reminder emails are sent.</p>
+                    <p class="mb-0">Add or update portal logins, and choose how often reminder emails are sent.</p>
                 </div>
 
                 <div class="card shadow-custom rounded-custom mb-6 eachfinancial-ins">

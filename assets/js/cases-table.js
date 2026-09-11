@@ -25,7 +25,7 @@ $(function () {
             : [],
         language: {
             search: '',
-            searchPlaceholder: 'Search name or National Insurance Number',
+            searchPlaceholder: 'Search...',
             lengthMenu: 'Show _MENU_ cases',
             info: 'Showing _START_ to _END_ of _TOTAL_ cases',
             infoEmpty: 'No cases to show',

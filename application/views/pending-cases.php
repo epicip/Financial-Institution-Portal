@@ -20,7 +20,7 @@
                         <div class="case-list-heading mb-5 border-bottom pb-3">
                             <div>
                                 <h5 class="portal-section-title mb-1">Pending Cases list</h5>
-                                <p class="text-muted mb-0">Personal details supplied for asset and liability search.</p>
+                                <p class="text-muted mb-0">Personal details supplied for Court of Protection and Asset & Liability searches.</p>
                             </div>
                             <div class="case-type-legend" aria-label="Order type colour legend">
                                 <span class="case-type-legend-label">Order Type:</span>

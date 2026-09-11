@@ -12,7 +12,7 @@ include_once 'inc/header.php';
             <div class="container-fluid px-0">
                 <div class="portal-hero">
                     <h2 class="fw-semibold fs-7 mb-2">Audit logs</h2>
-                    <p class="mb-0">Review portal user changes, reminder settings, and case match decisions.</p>
+                    <p class="mb-0">View a record of activity in the portal.</p>
                 </div>
 
                 <div class="card shadow-custom rounded-custom">
@@ -22,19 +22,18 @@ include_once 'inc/header.php';
                             <p class="text-muted mb-0">Only administrators in this institution can view these records.</p>
                         </div>
 
-                        <div class="table-responsive">
-                            <table id="auditLogsTable" class="table align-middle portal-table mb-0 w-100">
-                                <thead class="table-light">
-                                    <tr>
-                                        <th class="fw-medium">Date and time</th>
-                                        <th class="fw-medium">User</th>
-                                        <th class="fw-medium">Role</th>
-                                        <th class="fw-medium">Action</th>
-                                        <th class="fw-medium">Record</th>
-                                        <th class="fw-medium">Details</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
+                        <table id="auditLogsTable" class="table align-middle portal-table mb-0 w-100">
+                            <thead class="table-light">
+                                <tr>
+                                    <th class="fw-medium">Date and time</th>
+                                    <th class="fw-medium">User</th>
+                                    <th class="fw-medium">Role</th>
+                                    <th class="fw-medium">Action</th>
+                                    <th class="fw-medium">Record</th>
+                                    <th class="fw-medium">Details</th>
+                                </tr>
+                            </thead>
+                            <tbody>
                                     <?php foreach ($audit_logs as $log) { ?>
                                         <?php
                                         $action_labels = array(
@@ -45,7 +44,16 @@ include_once 'inc/header.php';
                                             'user_deleted' => 'User removed',
                                             'reminder_updated' => 'Reminder updated',
                                         );
+                                        $action_badge_classes = array(
+                                            'case_match' => 'is-active',
+                                            'case_no_match' => 'is-inactive',
+                                            'user_created' => 'is-created',
+                                            'user_updated' => 'is-updated',
+                                            'user_deleted' => 'is-deleted',
+                                            'reminder_updated' => 'is-updated',
+                                        );
                                         $action_label = $action_labels[$log->action] ?? ucwords(str_replace('_', ' ', $log->action));
+                                        $action_badge_class = $action_badge_classes[$log->action] ?? 'is-inactive';
                                         ?>
                                         <tr>
                                             <td data-order="<?= html_escape($log->created_at) ?>" class="text-nowrap">
@@ -53,7 +61,7 @@ include_once 'inc/header.php';
                                             </td>
                                             <td><?= html_escape($log->actor_name ?: 'Unknown user') ?></td>
                                             <td><?= html_escape(ucfirst($log->actor_type ?: 'unknown')) ?></td>
-                                            <td><span class="portal-status-badge is-active"><?= html_escape($action_label) ?></span></td>
+                                            <td><span class="portal-status-badge <?= html_escape($action_badge_class) ?>"><?= html_escape($action_label) ?></span></td>
                                             <td><?= html_escape(ucfirst($log->entity_type) . ' #' . $log->entity_id) ?></td>
                                             <td><?= html_escape($log->description) ?></td>
                                         </tr>
@@ -75,7 +83,11 @@ include_once 'inc/header.php';
 <script>
     $(function() {
         $('#auditLogsTable').DataTable({
+            autoWidth: false,
+            scrollX: false,
             pageLength: 25,
+            lengthMenu: [[5, 10, 25, -1], [5, 10, 25, 'All']],
+            pagingType: 'full_numbers',
             order: [[0, 'desc']],
             language: {
                 search: '',
@@ -83,7 +95,24 @@ include_once 'inc/header.php';
                 lengthMenu: 'Show _MENU_ logs',
                 info: 'Showing _START_ to _END_ of _TOTAL_ logs',
                 infoEmpty: 'No audit logs to show',
-                emptyTable: 'No audit activity has been recorded yet'
+                infoFiltered: '(filtered from _MAX_ logs)',
+                emptyTable: 'No audit activity has been recorded yet',
+                zeroRecords: 'No matching audit logs found',
+                paginate: {
+                    first: 'First',
+                    last: 'Last',
+                    next: 'Next',
+                    previous: 'Prev'
+                }
+            },
+            dom:
+                "<'row align-items-center g-3 mb-4 cases-table-toolbar'<'col-md-6'l><'col-md-6'f>>" +
+                "<'cases-table-scroll'tr>" +
+                "<'row align-items-center g-3 mt-4'<'col-md-5'i><'col-md-7'p>>",
+            initComplete: function () {
+                $('#auditLogsTable_length select').addClass('form-select cases-length-select');
+                $('#auditLogsTable_filter input').addClass('form-control cases-search-input');
+                $('#auditLogsTable_filter').addClass('cases-search-wrap');
             }
         });
     });
