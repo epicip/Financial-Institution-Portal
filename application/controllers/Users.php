@@ -121,6 +121,15 @@ class Users extends My_Controller
                 $data,
                 ['user_id' => $user_id]
             );
+
+            $this->Audit_model->log_event(
+                'user_updated',
+                'user',
+                $user_id,
+                'Updated portal user ' . $data['name'] . ' (' . $data['email'] . ').'
+            );
+
+            $this->setErrorMessage('success', 'User has been updated successfully.');
         } else {
             $password = $this->generate_strong_password(8);
             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
@@ -229,7 +238,29 @@ class Users extends My_Controller
     public function delete_user()
     {
         $user_id = $this->input->post('user_id');
+        $user = $this->users_model->get_row_details(
+            'adprep_financial_institutions_users',
+            ['user_id' => $user_id]
+        );
+
         $this->users_model->delete_details('adprep_financial_institutions_users', ['user_id' => $user_id]);
+
+        if (!empty($user)) {
+            $this->Audit_model->log_event(
+                'user_deleted',
+                'user',
+                $user_id,
+                'Removed portal user ' . $user->name . ' (' . $user->email . ').'
+            );
+        } else {
+            $this->Audit_model->log_event(
+                'user_deleted',
+                'user',
+                $user_id,
+                'Removed portal user #' . $user_id . '.'
+            );
+        }
+
         $this->setErrorMessage('success', 'User has been deleted successfully');
         redirect('users');
     }
@@ -253,11 +284,28 @@ class Users extends My_Controller
             return;
         }
 
+        $institution_id = $this->session->userdata('fc_session_institution_id');
         $this->users_model->update_details(
             'adprep_financial_institutions_list',
             array('reminder' => $reminder),
-            array('id' => $this->session->userdata('fc_session_institution_id'))
+            array('id' => $institution_id)
         );
+
+        $frequency_labels = array(
+            'weekly' => 'weekly',
+            'two_weekly' => 'two-weekly',
+            'monthly' => 'monthly',
+            'quarterly' => 'quarterly',
+        );
+        $frequency_label = $frequency_labels[$reminder] ?? $reminder;
+
+        $this->Audit_model->log_event(
+            'reminder_updated',
+            'institution',
+            $institution_id,
+            'Updated reminder email frequency to ' . $frequency_label . '.'
+        );
+
         $this->setErrorMessage('success', 'Reminder emails have been updated successfully');
         redirect('users');
     }

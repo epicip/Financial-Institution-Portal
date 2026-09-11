@@ -3649,6 +3649,11 @@ button {
   background: #fdecec;
   border: 1px solid #f5c2c2;
 }
+.portal-status-badge.is-updated {
+  color: #1d4f91;
+  background: #e8f1fb;
+  border: 1px solid #c5daf3;
+}
 .portal-modal .modal-content {
   border: 0;
   border-radius: 16px;

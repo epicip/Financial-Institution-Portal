@@ -34,36 +34,41 @@ include_once 'inc/header.php';
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($audit_logs as $log) { ?>
-                                    <?php
-                                    $action_labels = array(
-                                        'case_match' => 'Match',
-                                        'case_no_match' => 'No match',
-                                        'user_created' => 'User created',
-                                        'user_deleted' => 'User deleted',
-                                    );
-                                    $action_badge_classes = array(
-                                        'case_match' => 'is-active',
-                                        'case_no_match' => 'is-inactive',
-                                        'user_created' => 'is-created',
-                                        'user_deleted' => 'is-deleted',
-                                    );
-                                    $action_label = $action_labels[$log->action] ?? ucwords(str_replace('_', ' ', $log->action));
-                                    $action_badge_class = $action_badge_classes[$log->action] ?? 'is-inactive';
-                                    ?>
-                                    <tr>
-                                        <td data-order="<?= html_escape($log->created_at) ?>" class="text-nowrap">
-                                            <?= html_escape(date('d M Y H:i', strtotime($log->created_at))) ?>
-                                        </td>
-                                        <td><?= html_escape($log->actor_name ?: 'Unknown user') ?></td>
-                                        <td><?= html_escape(ucfirst($log->actor_type ?: 'unknown')) ?></td>
-                                        <td><span class="portal-status-badge <?= html_escape($action_badge_class) ?>"><?= html_escape($action_label) ?></span></td>
-                                        <td><?= html_escape(ucfirst($log->entity_type) . ' #' . $log->entity_id) ?></td>
-                                        <td><?= html_escape($log->description) ?></td>
-                                    </tr>
-                                <?php } ?>
-                            </tbody>
-                        </table>
+                                    <?php foreach ($audit_logs as $log) { ?>
+                                        <?php
+                                        $action_labels = array(
+                                            'case_match' => 'Match',
+                                            'case_no_match' => 'No match',
+                                            'user_created' => 'User created',
+                                            'user_updated' => 'User updated',
+                                            'user_deleted' => 'User removed',
+                                            'reminder_updated' => 'Reminder updated',
+                                        );
+                                        $action_badge_classes = array(
+                                            'case_match' => 'is-active',
+                                            'case_no_match' => 'is-inactive',
+                                            'user_created' => 'is-created',
+                                            'user_updated' => 'is-updated',
+                                            'user_deleted' => 'is-deleted',
+                                            'reminder_updated' => 'is-updated',
+                                        );
+                                        $action_label = $action_labels[$log->action] ?? ucwords(str_replace('_', ' ', $log->action));
+                                        $action_badge_class = $action_badge_classes[$log->action] ?? 'is-inactive';
+                                        ?>
+                                        <tr>
+                                            <td data-order="<?= html_escape($log->created_at) ?>" class="text-nowrap">
+                                                <?= html_escape(date('d M Y H:i', strtotime($log->created_at))) ?>
+                                            </td>
+                                            <td><?= html_escape($log->actor_name ?: 'Unknown user') ?></td>
+                                            <td><?= html_escape(ucfirst($log->actor_type ?: 'unknown')) ?></td>
+                                            <td><span class="portal-status-badge <?= html_escape($action_badge_class) ?>"><?= html_escape($action_label) ?></span></td>
+                                            <td><?= html_escape(ucfirst($log->entity_type) . ' #' . $log->entity_id) ?></td>
+                                            <td><?= html_escape($log->description) ?></td>
+                                        </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
