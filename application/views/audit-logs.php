@@ -12,7 +12,7 @@ include_once 'inc/header.php';
             <div class="container-fluid px-0">
                 <div class="portal-hero">
                     <h2 class="fw-semibold fs-7 mb-2">Audit logs</h2>
-                    <p class="mb-0">Review portal user creation and case match decisions.</p>
+                    <p class="mb-0">View a record of activity in the portal.</p>
                 </div>
 
                 <div class="card shadow-custom rounded-custom">
