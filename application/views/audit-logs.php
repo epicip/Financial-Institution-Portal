@@ -12,7 +12,7 @@ include_once 'inc/header.php';
             <div class="container-fluid px-0">
                 <div class="portal-hero">
                     <h2 class="fw-semibold fs-7 mb-2">Audit logs</h2>
-                    <p class="mb-0">Review portal user creation and case match decisions.</p>
+                    <p class="mb-0">Review portal user changes, reminder settings, and case match decisions.</p>
                 </div>
 
                 <div class="card shadow-custom rounded-custom">
@@ -41,6 +41,9 @@ include_once 'inc/header.php';
                                             'case_match' => 'Match',
                                             'case_no_match' => 'No match',
                                             'user_created' => 'User created',
+                                            'user_updated' => 'User updated',
+                                            'user_deleted' => 'User removed',
+                                            'reminder_updated' => 'Reminder updated',
                                         );
                                         $action_label = $action_labels[$log->action] ?? ucwords(str_replace('_', ' ', $log->action));
                                         ?>
