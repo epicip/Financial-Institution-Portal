@@ -21,7 +21,7 @@
                         <div>
                             <!-- <span class="portal-hero-kicker">Asset search portal</span> -->
                             <h2 class="fw-semibold fs-7 mb-2">Pending Cases </h2>
-                            <p class="mb-0">Review customer details and confirm whether records are held.</p>
+                            <p class="mb-0">Review pending Court of Protection and Asset & Liability cases and confirm whether records are held.</p>
                         </div>
                         <div class="portal-hero-badge"><?= !empty($pending_cases) ? count($pending_cases) : 0 ?> awaiting review</div>
                     </div>
