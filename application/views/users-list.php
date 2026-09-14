@@ -93,7 +93,7 @@
                                         Weekly
                                     </label>
                                     <label class="portal-choice" for="reminderTwoWeekly">
-                                        <input class="form-check-input me-2" type="radio" name="reminder" value="two_weekly" id="reminderTwoWeekly" <?= $reminder_frequency === 'two_weekly' ? 'checked' : '' ?>>
+                                        <input class="form-check-input me-2" type="radio" name="reminder" value="fortnightly" id="reminderTwoWeekly" <?= $reminder_frequency === 'fortnightly' ? 'checked' : '' ?>>
                                         Fortnightly
                                     </label>
                                     <label class="portal-choice" for="reminderMonthly">
