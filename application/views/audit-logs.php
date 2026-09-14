@@ -50,7 +50,7 @@ include_once 'inc/header.php';
                                             'user_created' => 'is-created',
                                             'user_updated' => 'is-updated',
                                             'user_deleted' => 'is-deleted',
-                                            'reminder_updated' => 'is-updated',
+                                            'reminder_updated' => 'is-updatedreminder',
                                         );
                                         $action_label = $action_labels[$log->action] ?? ucwords(str_replace('_', ' ', $log->action));
                                         $action_badge_class = $action_badge_classes[$log->action] ?? 'is-inactive';
