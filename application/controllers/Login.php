@@ -66,43 +66,49 @@ class Login extends My_Controller
 				$condition = array('email' => $email_id);
 				$user_details = $this->users_model->get_row_details('adprep_financial_institutions_users', $condition);
 
-				// check if user exists in adprep_financial_institutions_users
-				if (!empty($user_details) && $user_details->status == 'Active') {
+				// Always run password_verify (with a dummy hash when needed) so timing
+				// does not reveal whether the account exists.
+				$dummy_hash = '$2y$10$abcdefghijklmnopqrstuuABCDEFGHIJKLMNOPQRSTUVWXYZ01234';
+				$password_hash = (!empty($user_details) && !empty($user_details->password))
+					? $user_details->password
+					: $dummy_hash;
+				$password_ok = password_verify($password, $password_hash);
 
-					// check if password is correct
-					if (password_verify($password, $user_details->password)) {
+				// Use one generic failure path for missing, inactive, or bad-password
+				// accounts so responses do not leak account existence or status.
+				$login_ok = !empty($user_details)
+					&& isset($user_details->status)
+					&& $user_details->status === 'Active'
+					&& $password_ok;
 
-						$institutiondata = array(
-							'fc_session_institution_id' => $user_details->institutions_id,
-							'fc_session_user_id' => $user_details->user_id,
-							'fc_session_user_name' => $user_details->name,
-							'fc_session_user_email' => strtolower(trim((string) ($user_details->email ?? ''))),
-							'fc_session_user_type' => strtolower(trim((string) ($user_details->type ?? ''))),
+				if ($login_ok) {
+					$institutiondata = array(
+						'fc_session_institution_id' => $user_details->institutions_id,
+						'fc_session_user_id' => $user_details->user_id,
+						'fc_session_user_name' => $user_details->name,
+						'fc_session_user_email' => strtolower(trim((string) ($user_details->email ?? ''))),
+						'fc_session_user_type' => strtolower(trim((string) ($user_details->type ?? ''))),
+					);
+					$this->session->sess_regenerate(TRUE);
+					$this->session->set_userdata($institutiondata);
+					$this->users_model->update_details('adprep_financial_institutions_users', array('last_login' => date('Y-m-d H:i:s')), array('user_id' => $user_details->user_id));
+					if ($this->input->post('remember') != '') {
+						$cookie = array(
+							'name'   => 'institution_session',
+							'value'  => $user_details->user_id,
+							'expire' => 86400,
+							'secure' => TRUE,
+							'httponly' => TRUE
 						);
-						$this->session->sess_regenerate(TRUE);
-						$this->session->set_userdata($institutiondata);
-						$this->users_model->update_details('adprep_financial_institutions_users', array('last_login' => date('Y-m-d H:i:s')), array('user_id' => $user_details->user_id));
-						// set the user type to the session
-						if ($this->input->post('remember') != '') {
-							$cookie = array(
-								'name'   => 'institution_session',
-								'value'  => $user_details->user_id,
-								'expire' => 86400,
-								'secure' => TRUE,
-								'httponly' => TRUE
-							);
 
-							$this->input->set_cookie($cookie);
-						}
-						$this->setErrorMessage('success', 'Login successfully');
-
-						redirect('dashboard');
-					} else {
-						$this->setErrorMessage('danger', 'Invalid login credentials');
+						$this->input->set_cookie($cookie);
 					}
-				} else {
-					$this->setErrorMessage('danger', 'Your account is not active');
+					$this->setErrorMessage('success', 'Login successfully');
+
+					redirect('dashboard');
 				}
+
+				$this->setErrorMessage('danger', 'Invalid login credentials');
 			} else {
 				$this->setErrorMessage('error', 'Please try again.');
 			}
@@ -170,6 +176,11 @@ class Login extends My_Controller
 				$email_id = $this->input->post('email_id');
 				$condition = array('email' => $email_id);
 				$user_details = $this->users_model->get_row_details('adprep_financial_institutions_users', $condition);
+
+				// Always return the same message whether or not the email exists,
+				// so this flow cannot be used to enumerate accounts.
+				$generic_message = 'If an account exists for that email address, a new password has been sent.';
+
 				if (!empty($user_details)) {
 					$password = $this->generate_strong_password(8);
 					$hashed_password = password_hash($password, PASSWORD_DEFAULT);
@@ -185,14 +196,12 @@ class Login extends My_Controller
 
 					$response = $this->users_model->common_mail_send($user_details->email, $subject, $message, NR_EPICADS_EMAIL);
 
-					if (!empty($response) && $response == 'sent') {
-						$this->setErrorMessage('success', 'New password has been sent to your email');
-					} else {
-						$this->setErrorMessage("warning", "New password not sent to your email, please try after sometime.");
+					if (empty($response) || $response != 'sent') {
+						log_message('error', 'Forgot password email failed for user_id ' . $user_details->user_id);
 					}
-				} else {
-					$this->setErrorMessage('warning', 'Email not found');
 				}
+
+				$this->setErrorMessage('success', $generic_message);
 			} else {
 				$this->setErrorMessage('error', 'Please try again.');
 			}

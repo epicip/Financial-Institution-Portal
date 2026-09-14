@@ -18,9 +18,27 @@ class MY_Controller extends CI_Controller
 		$this->load->helper('url');
 		$this->output->set_header('Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0');
 		$this->output->set_header('Pragma: no-cache');
-		// Clickjacking protection
+		// HTTP security headers
 		$this->output->set_header('X-Frame-Options: DENY');
-		$this->output->set_header("Content-Security-Policy: frame-ancestors 'self';");
+		$this->output->set_header('X-Content-Type-Options: nosniff');
+		$this->output->set_header('Referrer-Policy: strict-origin-when-cross-origin');
+		$this->output->set_header('Permissions-Policy: accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()');
+		$this->output->set_header(
+			"Content-Security-Policy: default-src 'self'; "
+			. "script-src 'self' 'unsafe-inline' https://www.google.com https://www.gstatic.com; "
+			. "style-src 'self' 'unsafe-inline'; "
+			. "img-src 'self' data:; "
+			. "font-src 'self' data:; "
+			. "connect-src 'self' https://www.google.com; "
+			. "frame-src https://www.google.com https://www.gstatic.com https://recaptcha.google.com; "
+			. "object-src 'none'; "
+			. "base-uri 'self'; "
+			. "form-action 'self'; "
+			. "frame-ancestors 'self'"
+		);
+		if (is_https()) {
+			$this->output->set_header('Strict-Transport-Security: max-age=31536000; includeSubDomains');
+		}
 		$this->load->library('session');
 		//for XSS protection
 		$this->config->set_item('global_xss_filtering', TRUE);
