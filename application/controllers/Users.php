@@ -28,6 +28,22 @@ class Users extends My_Controller
     }
 
     /**
+     * Restrict user-management actions to administrators.
+     *
+     * Normal users can still reach change-password actions; all other
+     * endpoints in this controller require type === admin.
+     *
+     * @return void
+     */
+    private function require_admin()
+    {
+        if ($this->session->userdata('fc_session_user_type') !== 'admin') {
+            $this->setErrorMessage('danger', 'Only administrators can manage users.');
+            redirect('dashboard');
+        }
+    }
+
+    /**
      * Display the institution users list page.
      *
      * Only admin users can access this page. Loads all users for the
@@ -37,6 +53,8 @@ class Users extends My_Controller
      */
     function index()
     {
+        $this->require_admin();
+
         $this->data['users'] = $this->users_model->get_all_users();
         $reminder = $this->users_model->get_row_details(
             'adprep_financial_institutions_list',
@@ -56,6 +74,8 @@ class Users extends My_Controller
      */
     function add_edit_user_form()
     {
+        $this->require_admin();
+
         $user_id = $this->input->post('user_id');
         $this->data['user_id'] = $user_id;
 
@@ -80,6 +100,8 @@ class Users extends My_Controller
      */
     public function insert_update_user()
     {
+        $this->require_admin();
+
         $this->form_validation->set_rules('name', 'Name', 'required');
         $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
         $this->form_validation->set_rules('status', 'Status', 'required');
@@ -237,6 +259,8 @@ class Users extends My_Controller
      */
     public function delete_user()
     {
+        $this->require_admin();
+
         $user_id = $this->input->post('user_id');
         $user = $this->users_model->get_row_details(
             'adprep_financial_institutions_users',
@@ -275,6 +299,8 @@ class Users extends My_Controller
      */
     public function update_reminder_emails()
     {
+        $this->require_admin();
+
         $allowed = array('weekly', 'fortnightly', 'monthly', 'quarterly');
         $reminder = strtolower(trim((string) $this->input->post('reminder')));
 
