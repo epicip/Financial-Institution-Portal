@@ -26,9 +26,9 @@ class MY_Controller extends CI_Controller
 		$this->output->set_header(
 			"Content-Security-Policy: default-src 'self'; "
 			. "script-src 'self' 'unsafe-inline' https://www.google.com https://www.gstatic.com; "
-			. "style-src 'self' 'unsafe-inline'; "
+			. "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; "
 			. "img-src 'self' data:; "
-			. "font-src 'self' data:; "
+			. "font-src 'self' data: https://fonts.gstatic.com; "
 			. "connect-src 'self' https://www.google.com; "
 			. "frame-src https://www.google.com https://www.gstatic.com https://recaptcha.google.com; "
 			. "object-src 'none'; "
