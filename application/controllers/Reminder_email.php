@@ -12,7 +12,7 @@ class Reminder_email extends My_Controller
 	 */
 	private $reminder_days = array(
 		'weekly'      => 7,
-		'two_weekly'  => 14,
+		'fortnightly'  => 14,
 		'monthly'     => 30,
 	);
 

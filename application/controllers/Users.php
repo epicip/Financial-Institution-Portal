@@ -268,14 +268,14 @@ class Users extends My_Controller
     /**
      * Update the reminder email frequency for the current institution.
      *
-     * Accepts weekly, two-weekly, monthly, or quarterly values and
+     * Accepts weekly, fortnightly, monthly, or quarterly values and
      * redirects back to the users page with an appropriate status message.
      *
      * @return void
      */
     public function update_reminder_emails()
     {
-        $allowed = array('weekly', 'two_weekly', 'monthly', 'quarterly');
+        $allowed = array('weekly', 'fortnightly', 'monthly', 'quarterly');
         $reminder = strtolower(trim((string) $this->input->post('reminder')));
 
         if (!in_array($reminder, $allowed, true)) {
@@ -293,7 +293,7 @@ class Users extends My_Controller
 
         $frequency_labels = array(
             'weekly' => 'weekly',
-            'two_weekly' => 'two-weekly',
+            'fortnightly' => 'fortnightly',
             'monthly' => 'monthly',
             'quarterly' => 'quarterly',
         );
