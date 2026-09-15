@@ -270,8 +270,9 @@ class Cases extends My_Controller
             array(
                 'email_status' => 'match',
                 'email_response' => 'yes',
+                'email_notes_date' => date('Y-m-d'),
                 'email_notes' => $notes,
-                'email_attached' => !empty($stored_names) ? json_encode($stored_names) : '',
+                'email_attached' => isset($destination) ? $destination : '',
             ),
             array(
                 'id' => $log_id,
