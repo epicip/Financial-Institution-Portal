@@ -264,6 +264,11 @@ class Cases extends My_Controller
             }
         }
 
+        $attachment_urls = array();
+        foreach ($stored_names as $stored_name) {
+            $attachment_urls[] = base_url('files/case_matches/' . $stored_name);
+        }
+
         $this->db->trans_begin();
         $updated = $this->Cases_model->update_details(
             'email_logs_institutions',
@@ -272,7 +277,7 @@ class Cases extends My_Controller
                 'email_response' => 'yes',
                 'email_notes_date' => date('Y-m-d'),
                 'email_notes' => $notes,
-                'email_attached' => isset($destination) ? $destination : '',
+                'email_attached' => !empty($attachment_urls) ? implode(',', $attachment_urls) : '',
             ),
             array(
                 'id' => $log_id,
