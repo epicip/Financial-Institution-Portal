@@ -121,7 +121,7 @@ class My_Model extends CI_Model
 		$mail->isSMTP();                                            //Send using SMTP
 		$mail->Host       =     'smtp-mail.outlook.com';                //Set the SMTP server to send through
 		$mail->SMTPAuth   =     true;                                   //Enable SMTP authentication
-		$mail->Username   =     SEARCH_FROM_EMAIL;       //SMTP username
+		$mail->Username   =     SEARCH_MAIL_EMAIL;       //SMTP username
 		$mail->Password   =     SEARCH_MAIL_PASSWORD;                             //SMTP password
 		$mail->SMTPSecure =     'tls';                                  //Enable implicit TLS encryption
 		$mail->Port       =     587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
