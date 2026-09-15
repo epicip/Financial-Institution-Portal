@@ -164,8 +164,9 @@ class Cases extends My_Controller
     /**
      * Store a match response against the email log.
      *
-     * Validates the submitted log ID and notes, optionally uploads a PDF
-     * attachment, updates the case response, and records the audit event.
+     * Validates the submitted log ID and notes, optionally uploads one or
+     * more PDF attachments (stored as JSON in email_attached), updates the
+     * case response, and records the audit event.
      *
      * @return void
      */
@@ -193,6 +194,9 @@ class Cases extends My_Controller
             return;
         }
 
+        $stored_names = array();
+        $uploaded_paths = array();
+
         if (!empty($_FILES['match_attachment']['name'])) {
             $upload_dir = FCPATH . 'files/case_matches/';
 
@@ -202,23 +206,61 @@ class Cases extends My_Controller
                 return;
             }
 
-            $file_name = preg_replace('/[^A-Za-z0-9_.-]+/', '_', basename($_FILES['match_attachment']['name']));
-            $extension = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
+            $files = $_FILES['match_attachment'];
+            // Normalize single-file and multi-file uploads into the same shape.
+            $file_names = is_array($files['name']) ? $files['name'] : array($files['name']);
+            $file_types = is_array($files['type']) ? $files['type'] : array($files['type']);
+            $file_tmps  = is_array($files['tmp_name']) ? $files['tmp_name'] : array($files['tmp_name']);
+            $file_errors = is_array($files['error']) ? $files['error'] : array($files['error']);
             $allowed_types = array('application/pdf', 'application/octet-stream');
 
-            if ($extension !== 'pdf' || !in_array($_FILES['match_attachment']['type'], $allowed_types, true)) {
-                $this->setErrorMessage('danger', 'Only PDF files are allowed for attachment.');
-                redirect('pending');
-                return;
-            }
+            foreach ($file_names as $index => $original_name) {
+                if ($original_name === '' || (isset($file_errors[$index]) && (int) $file_errors[$index] === UPLOAD_ERR_NO_FILE)) {
+                    continue;
+                }
 
-            $stored_name = time() . '_' . $file_name;
-            $destination = $upload_dir . $stored_name;
+                if (isset($file_errors[$index]) && (int) $file_errors[$index] !== UPLOAD_ERR_OK) {
+                    foreach ($uploaded_paths as $path) {
+                        if (is_file($path)) {
+                            unlink($path);
+                        }
+                    }
+                    $this->setErrorMessage('danger', 'Unable to upload one of the selected PDF files. Please try again.');
+                    redirect('pending');
+                    return;
+                }
 
-            if (!move_uploaded_file($_FILES['match_attachment']['tmp_name'], $destination)) {
-                $this->setErrorMessage('danger', 'Unable to upload the selected PDF file. Please try again.');
-                redirect('pending');
-                return;
+                $file_name = preg_replace('/[^A-Za-z0-9_.-]+/', '_', basename($original_name));
+                $extension = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
+                $mime_type = isset($file_types[$index]) ? $file_types[$index] : '';
+
+                if ($extension !== 'pdf' || !in_array($mime_type, $allowed_types, true)) {
+                    foreach ($uploaded_paths as $path) {
+                        if (is_file($path)) {
+                            unlink($path);
+                        }
+                    }
+                    $this->setErrorMessage('danger', 'Only PDF files are allowed for attachment.');
+                    redirect('pending');
+                    return;
+                }
+
+                $stored_name = time() . '_' . $index . '_' . $file_name;
+                $destination = $upload_dir . $stored_name;
+
+                if (!move_uploaded_file($file_tmps[$index], $destination)) {
+                    foreach ($uploaded_paths as $path) {
+                        if (is_file($path)) {
+                            unlink($path);
+                        }
+                    }
+                    $this->setErrorMessage('danger', 'Unable to upload the selected PDF file. Please try again.');
+                    redirect('pending');
+                    return;
+                }
+
+                $stored_names[] = $stored_name;
+                $uploaded_paths[] = $destination;
             }
         }
 
@@ -229,7 +271,7 @@ class Cases extends My_Controller
                 'email_status' => 'match',
                 'email_response' => 'yes',
                 'email_notes' => $notes,
-                'email_attached' => isset($stored_name) ? $stored_name : '',
+                'email_attached' => !empty($stored_names) ? json_encode($stored_names) : '',
             ),
             array(
                 'id' => $log_id,
@@ -248,8 +290,10 @@ class Cases extends My_Controller
 
         if (!$audit_saved || $this->db->trans_status() === false) {
             $this->db->trans_rollback();
-            if (isset($destination) && is_file($destination)) {
-                unlink($destination);
+            foreach ($uploaded_paths as $path) {
+                if (is_file($path)) {
+                    unlink($path);
+                }
             }
             $this->setErrorMessage('danger', 'Unable to save the match response and audit record.');
             redirect('pending');

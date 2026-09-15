@@ -15,9 +15,9 @@
                              <textarea class="form-control" id="assetNotes" name="email_notes" rows="4" placeholder="Please add details of the assets found" required></textarea>
                          </div>
                          <div class="col-12">
-                             <label class="form-label" for="matchAttachment">Attachment (PDF only)</label>
-                             <input type="file" class="form-control" id="matchAttachment" name="match_attachment" accept="application/pdf,.pdf" aria-describedby="matchAttachmentHelp">
-                             <div id="matchAttachmentHelp" class="form-text">Optional. Upload a PDF document for this match response.</div>
+                             <label class="form-label" for="matchAttachment">Attachments (PDF only)</label>
+                             <input type="file" class="form-control" id="matchAttachment" name="match_attachment[]" accept="application/pdf,.pdf" multiple aria-describedby="matchAttachmentHelp">
+                             <div id="matchAttachmentHelp" class="form-text">Optional. Upload one or more PDF documents for this match response.</div>
                          </div>
                      </div>
                  </div>
