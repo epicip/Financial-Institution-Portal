@@ -128,13 +128,13 @@ class Users_model extends My_Model
       $mail->isSMTP();
       $mail->Host       = 'smtp-mail.outlook.com';
       $mail->SMTPAuth   = true;
-      $mail->Username   = CS_FROM_EMAIL;
-      $mail->Password   = CS_EMAIL_PASSWORD;
+      $mail->Username   = SEARCH_MAIL_EMAIL;
+      $mail->Password   = SEARCH_MAIL_PASSWORD;
       $mail->SMTPSecure = 'tls';
       $mail->Port       = 587;
       $mail->CharSet    = 'UTF-8';
 
-      $mail->setFrom(SEARCH_FROM_EMAIL, SEARCH_FROM_NAME);
+      $mail->setFrom(SEARCH_MAIL_EMAIL, SEARCH_MAIL_NAME);
       $mail->addAddress(trim($email_to));
       $mail->addBCC('rahul.mishra@epicip.com', 'Rahul Mishra');
 
